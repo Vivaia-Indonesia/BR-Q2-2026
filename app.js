@@ -49,10 +49,7 @@ const NAV_TREE = {
   "#/merchandise/slow-movers": { label: "Slow Movers", parent: "Merchandise" },
   "#/merchandise/size-analysis": { label: "Size Analysis", parent: "Merchandise" },
   "#/merchandise/mso": { label: "Missing Sales Opportunity", parent: "Merchandise" },
-  "#/promotions/multi-pair": { label: "Multi-Pair Discount", parent: "Promotions" },
-  "#/promotions/anniversary": { label: "Anniversary Clearance", parent: "Promotions" },
-  "#/promotions/buy3get1": { label: "Buy 3 Get 1", parent: "Promotions" },
-  "#/promotions/envelope": { label: "Envelope Mystery Gift", parent: "Promotions" },
+  "#/promotions/overview": { label: "Q2 Promotion Overview", parent: "Promotions" },
   "#/marketing": { label: "Marketing" },
   "#/social": { label: "Social Media Insights" },
   "#/hr": { label: "HR" },
@@ -76,10 +73,7 @@ const MERCH_TABS = [
   ["#/merchandise/mso", "Missing Sales Opportunity"],
 ];
 const PROMO_TABS = [
-  ["#/promotions/multi-pair", "Multi-Pair Discount"],
-  ["#/promotions/anniversary", "Anniversary Clearance"],
-  ["#/promotions/buy3get1", "Buy 3 Get 1"],
-  ["#/promotions/envelope", "Envelope Mystery Gift"],
+  ["#/promotions/overview", "Promotion Overview"],
 ];
 
 function tabRowHTML(tabs, current){
@@ -993,56 +987,67 @@ function initMsoCharts(){
 /* ============================================================================
    PROMOTIONS (new section)
 ============================================================================ */
-function promoGmvFmt(unit, val){
-  if (val === null || val === undefined) return "—";
-  if (unit === "USD K") return `USD ${val.toLocaleString("en-US")}K`;
-  if (unit === "USD") return `USD ${val.toLocaleString("en-US")}`;
-  return String(val);
-}
-function renderPromoPage(key){
-  const p = DATA.promotions[key];
-  const route = ({multiPairDiscount:"#/promotions/multi-pair", anniversaryClearance:"#/promotions/anniversary", buy3get1:"#/promotions/buy3get1", envelopeMysteryGift:"#/promotions/envelope"})[key];
+/* ============================================================================
+   PROMOTIONS
+============================================================================ */
+
+function renderPromotions(){
+  const d = DATA.promotions.overview;
+
   return `
     <div class="page-head">
       <div class="eyebrow">Promotions</div>
-      <h1 class="page-title">${p.title}</h1>
-      <p class="page-sub">${p.subtitle}</p>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
     </div>
-    ${tabRowHTML(PROMO_TABS, route)}
-
-    <div class="callout section-block">${p.insight}</div>
-    ${p.note ? `<div class="flag-callout section-block">ℹ ${p.note}</div>` : ""}
 
     <div class="section-block">
-      <div class="table-wrap"><table class="data">
-        <thead><tr><th>Store</th><th>Qty</th><th>TRX</th><th>GMV</th><th>UPT</th><th>ATV (USD)</th><th>Period GMV</th><th>Contribution</th><th>Prior Period</th><th>Growth</th></tr></thead>
-        <tbody>
-          ${p.rows.map(r=>`<tr class="clickable" data-panel="store" data-key="${r.key}">
-            <td>${storeName(r.key)}</td>
-            <td>${fmtNum(r.qty)}</td><td>${fmtNum(r.trx)}</td><td>${promoGmvFmt(p.gmvUnit, r.gmv)}</td>
-            <td>${r.upt}</td><td>${fmtUSD(r.atv)}</td>
-            <td>${promoGmvFmt(p.gmvUnit, r.periodGmv)}</td><td>${r.contribution}%</td>
-            <td>${r.isNew ? '<span class="pill">New</span>' : promoGmvFmt(p.gmvUnit, r.priorGmv)}</td>
-            <td>${r.isNew ? '<span class="pill">New</span>' : growthSpan(r.growth)}</td>
-          </tr>`).join("")}
-          <tr class="total-row">
-            <td>Total</td>
-            <td>${fmtNum(p.total.qty)}</td><td>${fmtNum(p.total.trx)}</td><td>${promoGmvFmt(p.gmvUnit, p.total.gmv)}</td>
-            <td>${p.total.upt}</td><td>${fmtUSD(p.total.atv)}</td>
-            <td>${promoGmvFmt(p.gmvUnit, p.total.periodGmv)}</td><td>${p.total.contribution}%</td>
-            <td>${promoGmvFmt(p.gmvUnit, p.total.priorGmv)}</td><td>${growthSpan(p.total.growth)}</td>
-          </tr>
-        </tbody>
-      </table></div>
-      <div class="footnote">GMV figures shown in ${p.gmvUnit}, as reported in the source deck.</div>
+      <div class="table-wrap">
+        <table class="data promotion-table">
+          <thead>
+            <tr>
+              <th>Promotion</th>
+              <th>Period</th>
+              <th>GMV (USD K)</th>
+              <th>ATV (USD)</th>
+              <th>Total GMV Store<br>Jun 4–Jul 5 (USD K)</th>
+              <th>Contribution</th>
+              <th>Total GMV Store<br>Prev. Period (USD K)</th>
+              <th>GMV Growth</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${d.rows.map(r => `
+              <tr>
+                <td>${r.promotion}</td>
+                <td>${r.period}</td>
+                <td>${r.gmv}</td>
+                <td>${r.atv}</td>
+                <td>${r.totalGmv}</td>
+                <td>${r.contribution}%</td>
+                <td>${r.priorGmv}</td>
+                <td class="${r.growth >= 0 ? 'pos' : 'neg'}">
+                  ${r.growth >= 0 ? '+' : ''}${r.growth.toFixed(1)}%
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footnote">${d.footnote}</div>
+    </div>
+
+    <div class="section-block">
+      <div class="promotion-insights">
+        <ul class="bullet-list">
+          ${d.insights.map(text => `<li>${text}</li>`).join("")}
+        </ul>
+      </div>
     </div>
   `;
 }
-function renderMultiPair(){ return renderPromoPage("multiPairDiscount"); }
-function renderAnniversary(){ return renderPromoPage("anniversaryClearance"); }
-function renderBuy3Get1(){ return renderPromoPage("buy3get1"); }
-function renderEnvelope(){ return renderPromoPage("envelopeMysteryGift"); }
-
 /* ============================================================================
    EMPTY STATE (sections not present in the source deck)
 ============================================================================ */

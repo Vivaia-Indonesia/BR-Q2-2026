@@ -455,76 +455,83 @@ const DATA = {
   },
 
   promotions: {
-    multiPairDiscount: {
-      title: "Multi-Pair Discount Overview",
-      subtitle: "Buy 2 pairs: 15% OFF, Buy 3 pairs: 20% OFF, Buy 4+ pairs: 25% OFF | Jun 4–14 2026 | Selected collection | All Independent Store VIVAIA",
-      rows: [
-        { key: "plaza_senayan", qty: 105, trx: 43, gmv: 11, upt: 2.44, atv: 279, periodGmv: 46, contribution: 25.9, priorGmv: 48, growth: -4.0 },
-        { key: "plaza_indonesia", qty: 38, trx: 17, gmv: 4, upt: 2.24, atv: 284, periodGmv: 29, contribution: 16.5, priorGmv: 26, growth: 8.9 },
-        { key: "aeon_bsd", qty: 21, trx: 10, gmv: 2, upt: 2.10, atv: 257, periodGmv: 26, contribution: 9.6, priorGmv: 23, growth: 13.6 },
-        { key: "tsm_cibubur", qty: 4, trx: 2, gmv: 0.5, upt: 2.00, atv: 274, periodGmv: 9, contribution: 5.7, priorGmv: 7, growth: 27.2 },
-        { key: "tsm_bandung", qty: 39, trx: 17, gmv: 4, upt: 2.29, atv: 278, periodGmv: 32, contribution: 14.7, priorGmv: 22, growth: 43.3 },
-        { key: "pakuwon_bekasi", qty: 25, trx: 11, gmv: 3, upt: 2.27, atv: 283, periodGmv: 17, contribution: 18.1, priorGmv: 13, growth: 30.3 },
-        { key: "kota_kasablanka", qty: 87, trx: 35, gmv: 10, upt: 2.49, atv: 287, periodGmv: 40, contribution: 25.0, priorGmv: 35, growth: 12.8 },
-        { key: "tunjungan_plaza_6", qty: 60, trx: 25, gmv: 7, upt: 2.40, atv: 287, periodGmv: 28, contribution: 25.1, priorGmv: 25, growth: 12.3 },
-        { key: "pim2", qty: 115, trx: 51, gmv: 13, upt: 2.25, atv: 265, periodGmv: 62, contribution: 21.5, priorGmv: 64, growth: -2.3 },
-        { key: "dp_mall_semarang", qty: 99, trx: 41, gmv: 11, upt: 2.41, atv: 280, periodGmv: 41, contribution: 27.6, isNew: true },
-      ],
-      total: { qty: 593, trx: 252, gmv: 69, upt: 2.35, atv: 278, periodGmv: 333, contribution: 20.9, priorGmv: 266, growth: 25.1 },
-      gmvUnit: "USD K",
-      insight: "Multi-Pair promo delivered +25.1% GMV growth with 2.35 UPT, indicating these kind of promo successfully encouraged customers to purchase multiple items.",
-    },
-    anniversaryClearance: {
-      title: "Anniversary Clearance Overview",
-      subtitle: "Flash Sale Selected Items | Jun 4–28 2026 | Selected collection | All Independent Store VIVAIA",
-      rows: [
-        { key: "plaza_senayan", qty: 95, trx: 85, gmv: 5, upt: 1.12, atv: 62, periodGmv: 101, contribution: 5.2, priorGmv: 112, growth: -9.1 },
-        { key: "plaza_indonesia", qty: 58, trx: 55, gmv: 3, upt: 1.05, atv: 64, periodGmv: 64, contribution: 5.4, priorGmv: 65, growth: -1.2 },
-        { key: "aeon_bsd", qty: 136, trx: 121, gmv: 9, upt: 1.12, atv: 79, periodGmv: 65, contribution: 14.6, priorGmv: 57, growth: 13.4 },
-        { key: "tsm_cibubur", qty: 34, trx: 31, gmv: 2, upt: 1.10, atv: 69, periodGmv: 20, contribution: 10.5, priorGmv: 15, growth: 31.6 },
-        { key: "tsm_bandung", qty: 119, trx: 103, gmv: 9, upt: 1.16, atv: 91, periodGmv: 63, contribution: 14.7, priorGmv: 53, growth: 17.2 },
-        { key: "pakuwon_bekasi", qty: 83, trx: 74, gmv: 5, upt: 1.12, atv: 76, periodGmv: 36, contribution: 15.4, priorGmv: 32, growth: 13.0 },
-        { key: "kota_kasablanka", qty: 112, trx: 94, gmv: 8, upt: 1.19, atv: 86, periodGmv: 82, contribution: 9.8, priorGmv: 83, growth: -1.5 },
-        { key: "tunjungan_plaza_6", qty: 89, trx: 81, gmv: 6, upt: 1.10, atv: 74, periodGmv: 58, contribution: 10.2, priorGmv: 53, growth: 8.7 },
-        { key: "pim2", qty: 167, trx: 154, gmv: 10, upt: 1.08, atv: 67, periodGmv: 142, contribution: 7.2, priorGmv: 140, growth: 1.6 },
-        { key: "dp_mall_semarang", qty: 59, trx: 57, gmv: 1, upt: 1.04, atv: 34, periodGmv: 74, contribution: 2.5, isNew: true },
-      ],
-      total: { qty: 952, trx: 855, gmv: 61, upt: 1.11, atv: 72, periodGmv: 710, contribution: 8.7, priorGmv: 614, growth: 15.5 },
-      gmvUnit: "USD K",
-      insight: "TSM stores led the clearance performance, with TSM Cibubur and TSM Bandung delivering a combined +48.8% GMV growth.",
-    },
-    buy3get1: {
-      title: "Buy 3 Get 1 Promotion Overview",
-      subtitle: "Buy 3 full price shoes and get 1 selected shoes with limited selection | Jun 27–28 2026 | Selected collection | All Independent Store VIVAIA",
-      rows: [
-        { key: "plaza_senayan", qty: 9, trx: 2, gmv: 759, upt: 4.5, atv: 379, periodGmv: 12, contribution: 6.3, priorGmv: 11, growth: 0.7 },
-        { key: "pim2", qty: 8, trx: 2, gmv: 812, upt: 4.0, atv: 406, periodGmv: 17, contribution: 4.5, priorGmv: 14, growth: 21.3 },
-      ],
-      total: { qty: 17, trx: 4, gmv: 1571, upt: 4.2, atv: 393, periodGmv: 29, contribution: 5.2, priorGmv: 26, growth: 12.1 },
-      gmvUnit: "USD",
-      insight: "The promotion successfully encouraged high-basket purchases (UPT 4.2), as customers who participated were willing to commit to the 3-pair.",
-      note: "Limited to Plaza Senayan and Pondok Indah Mall 2 — the deck does not show this mechanic running network-wide.",
-    },
-    envelopeMysteryGift: {
-      title: "Envelope Mystery Gift Overview",
-      subtitle: "Buy 2 full price pair and get a chance to draw a mystery envelope | Jun 28 – Jul 5 2026 | All collection | All Independent Store VIVAIA",
-      rows: [
-        { key: "plaza_senayan", qty: 22, trx: 11, gmv: 2590, upt: 2.0, atv: 235, periodGmv: 35, contribution: 7.3, priorGmv: 37, growth: -6.3 },
-        { key: "plaza_indonesia", qty: 16, trx: 8, gmv: 1925, upt: 2.0, atv: 241, periodGmv: 21, contribution: 9.1, priorGmv: 24, growth: -18.4 },
-        { key: "aeon_bsd", qty: 18, trx: 9, gmv: 1751, upt: 2.0, atv: 195, periodGmv: 19, contribution: 9.0, priorGmv: 20, growth: -5.7 },
-        { key: "tsm_cibubur", qty: 4, trx: 2, gmv: 426, upt: 2.0, atv: 213, periodGmv: 5, contribution: 8.2, priorGmv: 6, growth: 22.1 },
-        { key: "tsm_bandung", qty: 12, trx: 6, gmv: 1732, upt: 2.0, atv: 289, periodGmv: 16, contribution: 10.8, priorGmv: 23, growth: -14.8 },
-        { key: "pakuwon_bekasi", qty: 8, trx: 4, gmv: 672, upt: 2.0, atv: 168, periodGmv: 13, contribution: 4.8, priorGmv: 11, growth: -5.9 },
-        { key: "kota_kasablanka", qty: 22, trx: 11, gmv: 2593, upt: 2.0, atv: 236, periodGmv: 32, contribution: 8.0, priorGmv: 34, growth: 2.5 },
-        { key: "tunjungan_plaza_6", qty: 34, trx: 17, gmv: 3381, upt: 2.0, atv: 199, periodGmv: 20, contribution: 16.8, priorGmv: 21, growth: -22.1 },
-        { key: "pim2", qty: 46, trx: 23, gmv: 5584, upt: 2.0, atv: 243, periodGmv: 50, contribution: 11.1, priorGmv: 49, growth: -30.7 },
-        { key: "dp_mall_semarang", qty: 6, trx: 3, gmv: 862, upt: 2.0, atv: 287, periodGmv: 19, contribution: 4.5, priorGmv: 23, growth: -4.1 },
-      ],
-      total: { qty: 188, trx: 94, gmv: 21516, upt: 2.0, atv: 229, periodGmv: 233, contribution: 9.2, priorGmv: 252, growth: -7.6 },
-      gmvUnit: "USD",
-      insight: "The \"chance to win\" element may create less perceived value than a guaranteed reward. Customers have to purchase two full-price pairs without knowing exactly what they will receive, which can make the incentive less compelling than a straight discount or guaranteed free product.",
-    },
-  },
+   overview: {
+    title: "Q2 Promotion Overview",
+    subtitle: "All Independent Store VIVAIA",
+
+    rows: [
+      {
+        promotion: "Buy 2 pairs: 15% OFF",
+        period: "JUN 4–14",
+        gmv: 46,
+        atv: 245,
+        totalGmv: 903,
+        contribution: 5.2,
+        priorGmv: 266,
+        growth: 25.2
+      },
+      {
+        promotion: "Buy 3 pairs: 20% OFF",
+        period: "JUN 4–14",
+        gmv: 12,
+        atv: 334,
+        totalGmv: 903,
+        contribution: 1.4,
+        priorGmv: 266,
+        growth: 25.2
+      },
+      {
+        promotion: "Buy 4+ pairs: 25% OFF",
+        period: "JUN 4–14",
+        gmv: 10,
+        atv: 444,
+        totalGmv: 903,
+        contribution: 1.2,
+        priorGmv: 266,
+        growth: 25.2
+      },
+      {
+        promotion: "Anniversary Clearance",
+        period: "JUN 4–28",
+        gmv: 61,
+        atv: 72,
+        totalGmv: 903,
+        contribution: 6.8,
+        priorGmv: 614,
+        growth: 15.6
+      },
+      {
+        promotion: "Buy 3 FP shoes get 1 selected shoes",
+        period: "JUN 27–28",
+        gmv: 1,
+        atv: 393,
+        totalGmv: 903,
+        contribution: 0.2,
+        priorGmv: 26,
+        growth: 12.1
+      },
+      {
+        promotion: "Envelope Mystery Gift (Buy 2 FP shoes get mystery envelope)",
+        period: "JUN 28 – JUL 5",
+        gmv: 21,
+        atv: 229,
+        totalGmv: 903,
+        contribution: 2.4,
+        priorGmv: 252,
+        growth: -7.6
+      }
+    ],
+
+    insights: [
+      "Multi-Pair promo delivered +25.2% GMV growth with 2.35 UPT, indicating this mechanic successfully encouraged customers to purchase multiple items.",
+      "Clearance was the most successful campaign in the Anniversary campaign.",
+      "Buy 3 FP shoes promotion successfully encouraged high-basket purchases, as customers who participated were willing to commit to the 3-pair, making this mechanic more effective for basket building than broad customer acquisition. This campaign only ran in two participating stores, PIM and PS.",
+      "Envelope campaign appears more effective as a supporting engagement mechanic than a direct sales driver. Customers who already intended to purchase two pairs participated, but the incentive did not appear strong enough to consistently convert additional customers."
+    ],
+
+    footnote: "GMV figures shown in USD K, as reported in the source deck."
+  }
+}, 
 
   notIncluded: {
     marketing: "Marketing",
@@ -548,8 +555,5 @@ const PRESENTATION_ORDER = [
   { route: "#/merchandise/slow-movers", label: "Slow Movers" },
   { route: "#/merchandise/size-analysis", label: "Size Analysis" },
   { route: "#/merchandise/mso", label: "Missing Sales Opportunity" },
-  { route: "#/promotions/multi-pair", label: "Multi-Pair Discount" },
-  { route: "#/promotions/anniversary", label: "Anniversary Clearance" },
-  { route: "#/promotions/buy3get1", label: "Buy 3 Get 1" },
-  { route: "#/promotions/envelope", label: "Envelope Mystery Gift" },
+  { route: "#/promotions/overview", label: "Q2 Promotion Overview" },
 ];
