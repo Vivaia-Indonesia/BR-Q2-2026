@@ -991,7 +991,7 @@ function initMsoCharts(){
    PROMOTIONS
 ============================================================================ */
 
-function renderPromotions(){
+function renderPromoOverview(){
   const d = DATA.promotions.overview;
 
   return `
