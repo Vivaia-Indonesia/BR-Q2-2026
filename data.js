@@ -105,7 +105,7 @@ const DATA = {
       { level: "good", title: "Stable Macro Base", text: "GDP growth ~5.2% (ADB). Inflation at 3.08% — above target but manageable. BI easing cycle intact. Urban upper-middle and aspirational class remain resilient = VIVAIA's sweet spot." },
     ],
     holidays: {
-      title: "Q2 Public Holiday on weekdays",
+      title: "Q2 Public Holiday", text: "Weekdays only",
       items: [
         { date: "3 Apr (Fri)", name: "Good Friday"},
         { date: "1 May (Fri)", name: "May Day", note: "→ Long weekend May 1–3" },
