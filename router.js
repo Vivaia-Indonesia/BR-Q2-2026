@@ -46,7 +46,7 @@ const SIDEBAR_HTML = `
 `;
 
 const ROUTES = {
-  "#/overview": { render: renderOverview, init: initOverviewCharts},
+  "#/overview": {  render: renderOverview,  init: () => {    initOverviewCharts();    initBusinessShareChart();  }},
   "#/business/economy": { render: renderEconomy, init: initEconomyCharts, group: "navBusiness" },
   "#/business/independent-stores": { render: renderIndependentStores, init: ()=>initChannelTrendChart("independent"), group: "navBusiness" },
   "#/business/department-stores": { render: renderDepartmentStores, init: ()=>initChannelTrendChart("department"), group: "navBusiness" },
