@@ -529,7 +529,7 @@ const DATA = {
       "Envelope campaign appears more effective as a supporting engagement mechanic than a direct sales driver. Customers who already intended to purchase two pairs participated, but the incentive did not appear strong enough to consistently convert additional customers."
     ],
 
-    footnote: "GMV figures shown in USD K, as reported in the source deck."
+    footnote: "GMV figures shown in USD K."
   }
 }, 
 
