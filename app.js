@@ -1050,7 +1050,7 @@ function renderPromoOverview(){
       <div class="chart-header">
         <div>
           <h3>Promotion Contribution</h3>
-          <p>Contribution of each promotion to total store GMV</p>
+          <p>Contribution of each promotion to total GMV Jun 4–Jul 5</p>
         </div>
       </div>
 
@@ -1061,21 +1061,18 @@ function renderPromoOverview(){
     </div>         
   `;
 }
-function initPromoOverviewChart(){
+function initPromoOverviewChart() {
   const d = DATA.promotions.overview;
-
-  killChart("promoContribution");
-
   const canvas = document.getElementById("promoContributionChart");
 
   if (!canvas) return;
 
+  killChart("promoContribution");
+
   charts.promoContribution = new Chart(canvas, {
     type: "pie",
-
     data: {
       labels: d.contributionChart.map(item => item.label),
-
       datasets: [{
         data: d.contributionChart.map(item => item.value),
         backgroundColor: [
@@ -1090,23 +1087,13 @@ function initPromoOverviewChart(){
         borderColor: "#FFFFFF"
       }]
     },
-
     options: {
       responsive: true,
       maintainAspectRatio: false,
-
       plugins: {
         legend: {
-          position: "right",
-          labels: {
-            boxWidth: 12,
-            padding: 14,
-            font: {
-              size: 11
-            }
-          }
+          position: "right"
         },
-
         tooltip: {
           callbacks: {
             label: (c) => `${c.label}: ${c.parsed}%`
