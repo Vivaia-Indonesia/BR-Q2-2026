@@ -170,7 +170,7 @@ function exploreCard(title, text, route){
 }
 
 function initBusinessShareChart() {
-  const d = DATA.business.overview;
+  const d = DATA;
 
   const canvas = document.getElementById("businessShareChart");
 
