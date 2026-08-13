@@ -46,7 +46,7 @@ const SIDEBAR_HTML = `
 `;
 
 const ROUTES = {
-  "#/overview": {  render: renderOverview,  init: initBusinessShareChart, group: null },
+  "#/overview": {  render: renderOverview,  init: initBusinessShareChart },
   "#/business/economy": { render: renderEconomy, init: initEconomyCharts, group: "navBusiness" },
   "#/business/independent-stores": { render: renderIndependentStores, init: ()=>initChannelTrendChart("independent"), group: "navBusiness" },
   "#/business/department-stores": { render: renderDepartmentStores, init: ()=>initChannelTrendChart("department"), group: "navBusiness" },
@@ -57,7 +57,6 @@ const ROUTES = {
   "#/merchandise/best-sellers": { render: renderBestSellers, init: null, group: "navMerch" },
   "#/merchandise/slow-movers": { render: renderSlowMovers, init: null, group: "navMerch" },
   "#/merchandise/size-analysis": { render: renderSizeAnalysis, init: initSizeChart, group: "navMerch" },
-  "#/merchandise/mso": { render: renderMSO, init: initMsoCharts, group: "navMerch" },
   "#/business/promotion-overview": { render: renderPromoOverview, init: initPromoOverviewChart, group: "navBusiness" }, 
   "#/marketing": { render: () => renderEmpty("Marketing"), init: null },
   "#/social": { render: () => renderEmpty("Social Media Insights"), init: null },

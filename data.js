@@ -18,7 +18,6 @@
 // are listed in the Table of Contents but have no slides in this file —
 // left as empty states. The CECILY product photo for the "No
 // Stock Across All Stores" callout is now sourced directly from this deck's
-// MSO Details slide (VIVAIA's own cutout), matching the treatment already
 // used for Silvie and Margot Mary-Jane.
 // ============================================================================
 
@@ -374,92 +373,6 @@ businessShareChart: [
       { tier: "LOW", range: "<5%", sizes: "EU35, EU35.5, EU40.5, EU41, EU41.5, EU42, EU43", note: "0.5× order. Minimal commitment only.", color: "low" },
     ],
   },
-
-  mso: {
-    period: "Q2 2026",
-    totalLostValue: 102242,
-    totalPctOfGmv: 4.6,
-    totalCust: 724,
-    projectNote: "MSO Project started in the last week of April 2026, rolled out throughout our independent stores.",
-    storeOrder: ["plaza_senayan", "plaza_indonesia", "aeon_bsd", "tsm_cibubur", "tsm_bandung", "pakuwon_bekasi", "kota_kasablanka", "tunjungan_plaza_6", "pim2"],
-    byStore: {
-      plaza_senayan:     { gmv: 383149, lostValue: 9132, pct: 2.4, cust: 70 },
-      plaza_indonesia:   { gmv: 224785, lostValue: 14139, pct: 6.3, cust: 99 },
-      aeon_bsd:          { gmv: 213964, lostValue: 19727, pct: 9.2, cust: 136 },
-      tsm_cibubur:       { gmv: 61052, lostValue: 10409, pct: 17.0, cust: 74 },
-      tsm_bandung:       { gmv: 206191, lostValue: 6704, pct: 3.3, cust: 46 },
-      pakuwon_bekasi:    { gmv: 128415, lostValue: 2604, pct: 2.0, cust: 18 },
-      kota_kasablanka:   { gmv: 300791, lostValue: 8786, pct: 2.9, cust: 63 },
-      tunjungan_plaza_6: { gmv: 200090, lostValue: 11747, pct: 5.9, cust: 83 },
-      pim2:              { gmv: 482143, lostValue: 18994, pct: 3.9, cust: 135 },
-    },
-    reasons: [
-      {
-        key: "oos_store", name: "Out of Stock at this store", pct: 40.3, cust: 287, lostValue: 41221,
-        byStore: { plaza_senayan: {cust:10,lost:1456}, plaza_indonesia:{cust:48,lost:7012}, aeon_bsd:{cust:67,lost:9907}, tsm_cibubur:{cust:35,lost:4863}, tsm_bandung:{cust:25,lost:3644}, pakuwon_bekasi:{cust:15,lost:2149}, kota_kasablanka:{cust:23,lost:3199}, tunjungan_plaza_6:{cust:30,lost:4149}, pim2:{cust:34,lost:4842} },
-      },
-      {
-        key: "oos_all", name: "0 Stock All Stores", pct: 30.6, cust: 226, lostValue: 31294,
-        byStore: { plaza_senayan: {cust:47,lost:6052}, plaza_indonesia:{cust:34,lost:4714}, aeon_bsd:{cust:17,lost:2426}, tsm_cibubur:{cust:13,lost:1851}, tsm_bandung:{cust:6,lost:980}, pakuwon_bekasi:{cust:1,lost:148}, kota_kasablanka:{cust:21,lost:2961}, tunjungan_plaza_6:{cust:6,lost:852}, pim2:{cust:81,lost:11310} },
-      },
-      {
-        key: "promo", name: "Waiting for Promotion", pct: 8.5, cust: 59, lostValue: 8640,
-        byStore: { plaza_senayan: {cust:1,lost:158}, plaza_indonesia:{cust:5,lost:773}, aeon_bsd:{cust:26,lost:3835}, tsm_cibubur:{cust:15,lost:2170}, tsm_bandung:{cust:5,lost:694}, pakuwon_bekasi:{cust:2,lost:307}, kota_kasablanka:{cust:2,lost:297}, tunjungan_plaza_6:{cust:2,lost:278}, pim2:{cust:1,lost:129} },
-      },
-      { key: "installment", name: "Installment Program Required", pct: null, cust: 0, lostValue: 0, byStore: {} },
-      {
-        key: "size", name: "Requested Size Unavailable", pct: 6.1, cust: 43, lostValue: 6261,
-        byStore: { plaza_senayan: {cust:1,lost:169}, tsm_bandung:{cust:2,lost:287}, kota_kasablanka:{cust:2,lost:278}, tunjungan_plaza_6:{cust:37,lost:5389}, pim2:{cust:1,lost:139} },
-      },
-      {
-        key: "unavailable_instore", name: "Items Unavailable In-Store", pct: 8.5, cust: 64, lostValue: 8725,
-        byStore: { plaza_senayan: {cust:10,lost:1139}, plaza_indonesia:{cust:9,lost:1307}, tsm_cibubur:{cust:4,lost:575}, tsm_bandung:{cust:6,lost:812}, kota_kasablanka:{cust:12,lost:1634}, tunjungan_plaza_6:{cust:6,lost:812}, pim2:{cust:17,lost:2446} },
-      },
-      {
-        key: "unsuitable", name: "Model Unsuitable", pct: 1.8, cust: 13, lostValue: 1843,
-        byStore: { aeon_bsd: {cust:9,lost:1288}, tsm_cibubur:{cust:3,lost:416}, tunjungan_plaza_6:{cust:1,lost:139} },
-      },
-      { key: "membership", name: "Membership Inquiry", pct: null, cust: 0, lostValue: 0, byStore: {} },
-      {
-        key: "others", name: "Others", pct: 4.2, cust: 32, lostValue: 4258,
-        byStore: { plaza_senayan: {cust:1,lost:158}, plaza_indonesia:{cust:3,lost:333}, aeon_bsd:{cust:17,lost:2271}, tsm_cibubur:{cust:4,lost:535}, tsm_bandung:{cust:2,lost:307}, kota_kasablanka:{cust:2,lost:297}, tunjungan_plaza_6:{cust:1,lost:129}, pim2:{cust:1,lost:129} },
-      },
-    ],
-    keyHighlights: [
-      "MSO Project started in the last week of April 2026, rolled out throughout our independent stores.",
-      "Total MSO in Q2 2026 = 4.6% of total sales, equivalent to USD 102K.",
-      "No stock in that store (but probably available in other stores) is the main reason for MSO — 40.3% or USD 41K.",
-      "No stock across all stores is reason #2, with total loss of USD 31K or 30.6%.",
-    ],
-    noStockBySize: [
-      { size: "EU35", pct: 4.1 }, { size: "EU35.5", pct: 2.5 }, { size: "EU36", pct: 7.3 },
-      { size: "EU36.5", pct: 5.2 }, { size: "EU37", pct: 9.3 }, { size: "EU37.5", pct: 7.5 },
-      { size: "EU38", pct: 15.9 }, { size: "EU38.5", pct: 6.2 }, { size: "EU39", pct: 12.6 },
-      { size: "EU39.5", pct: 4.1 }, { size: "EU40", pct: 9.9 }, { size: "EU40.5", pct: 2.3 },
-      { size: "EU41", pct: 5.4 }, { size: "EU41.5", pct: 1.7 }, { size: "EU42", pct: 2.3 }, { size: "EU43", pct: 2.9 },
-    ],
-    noStockByArticle: [
-      { name: "Silvie", pct: 13.0 }, { name: "Margot Mary-Jane", pct: 10.6 }, { name: "Cecily", pct: 7.5 },
-      { name: "Audrey", pct: 6.6 }, { name: "Maura", pct: 4.0 }, { name: "Addison", pct: 3.7 },
-      { name: "Derorice", pct: 3.6 }, { name: "Francesca", pct: 2.9 }, { name: "Allday", pct: 2.3 }, { name: "Sally Pro", pct: 1.9 },
-    ],
-    focusAction: [
-      "Focusing on no-stock issues (both all-stores and store-specific) will solve > 70% of MSO.",
-      "No stock issue: further analysis on each SKU. Size 38 contributes 15.9% of MSO while actual sales share of size 38 is 12.2% — this might suggest a bigger buy allocation for size 38.",
-      "No stock in the store issue: improving our omni-channel strategy to optimize sales and improve customer satisfaction.",
-    ],
-    unavailableAcrossAll: {
-      top3: ["Silvie (13.0%)", "Margot Mary-Jane (10.6%)", "Cecily (7.5%)"],
-      text: "These styles were unavailable across all stores, resulting in lost GMV opportunities.",
-      images: {
-        silvie: "image/Silvie.png",
-        margot_mary_jane: "image/Margot.png",
-        cecily: "image/Cecily.png",
-      },
-      cecilyNote: null,
-    },
-  },
-
   promotions: {
    overview: {
     title: "Q2 Promotion Overview",
@@ -553,7 +466,6 @@ businessShareChart: [
 const PRESENTATION_ORDER = [
   { route: "#/overview", label: "Overview" },
   { route: "#/business/economy", label: "Economic Context" },
-  { route: "#/business/channel-mix", label: "Channel Mix" },
   { route: "#/business/independent-stores", label: "Independent Stores" },
   { route: "#/business/department-stores", label: "Department Stores" },
   { route: "#/business/q2-vs-q1", label: "Q2 vs Q1" },
@@ -563,6 +475,5 @@ const PRESENTATION_ORDER = [
   { route: "#/merchandise/best-sellers", label: "Best Sellers" },
   { route: "#/merchandise/slow-movers", label: "Slow Movers" },
   { route: "#/merchandise/size-analysis", label: "Size Analysis" },
-  { route: "#/merchandise/mso", label: "Missing Sales Opportunity" },
   { route: "#/promotions/overview", label: "Q2 Promotion Overview" },
 ];

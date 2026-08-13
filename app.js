@@ -48,7 +48,6 @@ const NAV_TREE = {
   "#/merchandise/best-sellers": { label: "Best Sellers", parent: "Merchandise" },
   "#/merchandise/slow-movers": { label: "Slow Movers", parent: "Merchandise" },
   "#/merchandise/size-analysis": { label: "Size Analysis", parent: "Merchandise" },
-  "#/merchandise/mso": { label: "Missing Sales Opportunity", parent: "Merchandise" },
   "#/promotions/overview": { label: "Q2 Promotion Overview", parent: "Promotions" },
   "#/marketing": { label: "Marketing" },
   "#/social": { label: "Social Media Insights" },
@@ -70,7 +69,6 @@ const MERCH_TABS = [
   ["#/merchandise/best-sellers", "Best Sellers"],
   ["#/merchandise/slow-movers", "Slow Movers"],
   ["#/merchandise/size-analysis", "Size Analysis"],
-  ["#/merchandise/mso", "Missing Sales Opportunity"],
 ];
 const PROMO_TABS = [
   ["#/promotions/overview", "Promotion Overview"],
@@ -139,7 +137,7 @@ function renderOverview(){
       <div class="section-label">Explore</div>
       <div class="insight-grid" style="grid-template-columns:repeat(4,1fr);">
         ${exploreCard("Business Overview","Economy, channel mix, independent vs. department store performance and diagnosis.","#/business/economy")}
-        ${exploreCard("Merchandise","Best sellers, slow movers, size analysis and missing sales opportunity.","#/merchandise/overview")}
+        ${exploreCard("Merchandise","Best sellers, slow movers, and size analysis.","#/merchandise/overview")}
         ${exploreCard("Promotions","Multi-pair, anniversary clearance, buy 3 get 1, and mystery gift results.","#/promotions/multi-pair")}
         ${exploreCard("Present","Step through the full review in presentation mode.","__present__")}
       </div>
@@ -413,7 +411,6 @@ function renderStoreDetail(key){
   const ytd = DATA.monthlyGmv.ytdTotal[key];
   const q1 = DATA.q2vsQ1.independent.concat(DATA.q2vsQ1.department).find(r=>r.key===key);
   const ly = DATA.q2vsQ2ly.independent.concat(DATA.q2vsQ2ly.department).find(r=>r.key===key);
-  const mso = DATA.mso.byStore[key];
   const sameStore = DATA.sameStore.rows.find(r=>r.key===key);
 
   let kpiHtml = "";
@@ -464,16 +461,6 @@ function renderStoreDetail(key){
           <tr><td>UPT</td><td>${sameStore.uptQ2}</td>${cellGrowth(sameStore.uptGrowth)}</tr>
         </tbody>
       </table></div>
-    </div>` : ``}
-
-    ${mso ? `
-    <div class="card">
-      <div class="card-title">Missing Sales Opportunity</div>
-      <div class="card-note">Q2 2026</div>
-      <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
-        <div class="tag-card"><div class="t-label">Lost Value</div><div class="t-value" style="font-size:20px;">${fmtUSD(mso.lostValue)}</div><div class="t-compare">${mso.pct}% of store GMV</div></div>
-        <div class="tag-card"><div class="t-label">Affected Customers</div><div class="t-value" style="font-size:20px;">${fmtNum(mso.cust)}</div></div>
-      </div>
     </div>` : ``}
   `;
 }
@@ -800,21 +787,6 @@ function renderSizeAnalysis(){
         </tbody>
       </table></div>
     </div>
-
-    <div class="section-block">
-      <div class="section-label">No Stock in All Stores — Where the Gaps Are</div>
-      <p class="page-sub" style="margin-bottom:16px;">From the Missing Sales Opportunity detail — inventory gaps concentrated by size and by article.</p>
-      <div class="two-col">
-        <div class="card">
-          <div class="card-title">No Stock in All Stores — by Size</div>
-          <div class="chart-wrap short"><canvas id="chartSizeNoStockSize"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title">No Stock in All Stores — by Article</div>
-          <div class="chart-wrap short"><canvas id="chartSizeNoStockArticle"></canvas></div>
-        </div>
-      </div>
-    </div>
   `;
 }
 function initSizeChart(){
@@ -830,175 +802,7 @@ function initSizeChart(){
     options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{position:"bottom", labels:{boxWidth:10,font:{size:11}}}},
       scales:{ y:{ grid:{color:CLINE} }, x:{ grid:{display:false}, ticks:{font:{size:10}} } } }
   });
-  killChart("sizeNoStockSize");
-  charts.sizeNoStockSize = new Chart(document.getElementById("chartSizeNoStockSize"), {
-    type:"bar",
-    data:{ labels: DATA.mso.noStockBySize.map(s=>s.size), datasets:[{ data: DATA.mso.noStockBySize.map(s=>s.pct), backgroundColor:CBRAND }]},
-    options:{ indexAxis:"y", responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}}},
-      scales:{ x:{ grid:{color:CLINE}, ticks:{callback:(v)=>v+'%'} }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } }
-  });
-  killChart("sizeNoStockArticle");
-  charts.sizeNoStockArticle = new Chart(document.getElementById("chartSizeNoStockArticle"), {
-    type:"bar",
-    data:{ labels: DATA.mso.noStockByArticle.map(s=>s.name), datasets:[{ data: DATA.mso.noStockByArticle.map(s=>s.pct), backgroundColor:CGOLD }]},
-    options:{ indexAxis:"y", responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}}},
-      scales:{ x:{ grid:{color:CLINE}, ticks:{callback:(v)=>v+'%'} }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } }
-  });
 }
-
-/* ============================================================================
-   MISSING SALES OPPORTUNITY (with No Stock Across All Stores image callout)
-============================================================================ */
-function renderMSO(){
-  const d = DATA.mso;
-  const maxReason = Math.max(...d.reasons.map(r=>r.lostValue||0));
-  const totalStoreGmv = Object.values(d.byStore).reduce((s,x)=>s+x.gmv,0);
-  const nsImg = d.unavailableAcrossAll.images;
-
-  return `
-    <div class="page-head">
-      <div class="eyebrow">Merchandise</div>
-      <h1 class="page-title">Missing Sales Opportunity</h1>
-      <p class="page-sub">${d.period} · ${d.projectNote}</p>
-    </div>
-    ${tabRowHTML(MERCH_TABS, "#/merchandise/mso")}
-
-    <div class="mso-hero">
-      <div class="big">${fmtUSD(d.totalLostValue)}</div>
-      <div class="meta">${d.totalPctOfGmv}% of total sales lost across ${fmtNum(d.totalCust)} affected customers, Q2 2026.</div>
-    </div>
-
-    <div class="section-block">
-      <div class="section-label">By Reason</div>
-      <div class="reason-list">
-        ${d.reasons.map(r=>{
-          const disabled = !r.pct;
-          const w = maxReason ? Math.max(2, Math.round((r.lostValue||0)/maxReason*100)) : 0;
-          return `<div class="reason-row ${disabled?'disabled':''}" ${disabled?'':`data-panel="reason" data-key="${r.key}"`}>
-            <div class="pct">${r.pct?r.pct+'%':'–'}</div>
-            <div>${r.name}</div>
-            <div class="bar-wrap"><div class="bar-fill" style="width:${w}%"></div></div>
-            <div class="val">${fmtNum(r.cust)} cust · ${fmtUSD(r.lostValue)}</div>
-            <div class="chev">${disabled?'':'›'}</div>
-          </div>`;
-        }).join("")}
-      </div>
-    </div>
-
-    <div class="section-block">
-      <div class="section-label">By Store</div>
-      <div class="table-wrap"><table class="data">
-        <thead><tr><th>Store</th><th>GMV Q2'26</th><th>Lost Value</th><th>Lost % of GMV</th><th>Affected Cust.</th></tr></thead>
-        <tbody>
-          ${d.storeOrder.map(k=>{
-            const s = d.byStore[k];
-            return `<tr class="clickable" data-panel="store" data-key="${k}"><td>${storeName(k)}</td><td>${fmtUSD(s.gmv)}</td><td>${fmtUSD(s.lostValue)}</td><td class="${s.pct>8?'neg':''}">${s.pct}%</td><td>${fmtNum(s.cust)}</td></tr>`;
-          }).join("")}
-          <tr class="total-row"><td>Total</td><td>${fmtUSD(totalStoreGmv)}</td><td>${fmtUSD(d.totalLostValue)}</td><td>${d.totalPctOfGmv}%</td><td>${fmtNum(d.totalCust)}</td></tr>
-        </tbody>
-      </table></div>
-    </div>
-
-    <div class="section-block">
-      <div class="section-label">No Stock Across All Stores — Top Styles</div>
-      <div class="nostock-grid">
-        <div class="nostock-card">
-          <div class="thumb"><img src="${nsImg.silvie}" alt="Silvie"></div>
-          <div class="rank">#1 unavailable style</div>
-          <div class="name">Silvie</div>
-          <div class="pct">13.0%</div>
-        </div>
-        <div class="nostock-card">
-          <div class="thumb"><img src="${nsImg.margot_mary_jane}" alt="Margot Mary-Jane"></div>
-          <div class="rank">#2 unavailable style</div>
-          <div class="name">Margot Mary-Jane</div>
-          <div class="pct">10.6%</div>
-        </div>
-        <div class="nostock-card">
-          ${nsImg.cecily
-            ? `<div class="thumb"><img src="${nsImg.cecily}" alt="Cecily"></div>`
-            : `<div class="thumb missing">Image not available — see note below</div>`}
-          <div class="rank">#3 unavailable style</div>
-          <div class="name">Cecily</div>
-          <div class="pct">7.5%</div>
-        </div>
-      </div>
-      ${d.unavailableAcrossAll.cecilyNote ? `<div class="flag-callout" style="margin-top:14px;">⚠ ${d.unavailableAcrossAll.cecilyNote}</div>` : ""}
-    </div>
-
-    <div class="two-col section-block">
-      <div class="card">
-        <div class="card-title">No Stock in All Stores — by Size</div>
-        <div class="chart-wrap short"><canvas id="chartMsoSize"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="card-title">No Stock in All Stores — by Article</div>
-        <div class="chart-wrap short"><canvas id="chartMsoArticle"></canvas></div>
-      </div>
-    </div>
-
-    <div class="section-block">
-      <div class="two-col">
-        <div>
-          <div class="section-label">Key Highlights</div>
-          <ul class="bullet-list">${d.keyHighlights.map(t=>`<li>${t}</li>`).join("")}</ul>
-        </div>
-        <div>
-          <div class="section-label">Focus & Action Plan</div>
-          <ul class="bullet-list">${d.focusAction.map(t=>`<li>${t}</li>`).join("")}</ul>
-        </div>
-      </div>
-      <div class="callout brand" style="margin-top:20px;">
-        <strong>⚠ Unavailable Items Across All Stores</strong><br/>
-        Top 3: ${d.unavailableAcrossAll.top3.join(" · ")}<br/>
-        ${d.unavailableAcrossAll.text}
-      </div>
-    </div>
-  `;
-}
-function renderReasonDetail(key){
-  const r = DATA.mso.reasons.find(x=>x.key===key);
-  if (!r) return `<div class="callout">Not found.</div>`;
-  const storeKeys = Object.keys(r.byStore);
-  return `
-    <button class="panel-back" data-panel-back="1">‹ Back</button>
-    <div class="panel-eyebrow">Missing Sales Opportunity · ${r.pct}% of total</div>
-    <h2 class="panel-title">${r.name}</h2>
-    <div class="panel-kpis">
-      <div class="tag-card"><div class="t-label">Lost Value</div><div class="t-value" style="font-size:24px;">${fmtUSD(r.lostValue)}</div></div>
-      <div class="tag-card"><div class="t-label">Affected Customers</div><div class="t-value" style="font-size:24px;">${fmtNum(r.cust)}</div></div>
-    </div>
-    <div class="card">
-      <div class="card-title">By Store</div>
-      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
-        <thead><tr><th>Store</th><th>Cust.</th><th>Lost Value</th></tr></thead>
-        <tbody>
-          ${storeKeys.map(k=>`<tr><td>${storeName(k)}</td><td>${r.byStore[k].cust}</td><td>${fmtUSD(r.byStore[k].lost)}</td></tr>`).join("")}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-}
-function initMsoCharts(){
-  killChart("msoSize");
-  charts.msoSize = new Chart(document.getElementById("chartMsoSize"), {
-    type:"bar",
-    data:{ labels: DATA.mso.noStockBySize.map(s=>s.size), datasets:[{ data: DATA.mso.noStockBySize.map(s=>s.pct), backgroundColor:CBRAND }]},
-    options:{ indexAxis:"y", responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}}},
-      scales:{ x:{ grid:{color:CLINE}, ticks:{callback:(v)=>v+'%'} }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } }
-  });
-  killChart("msoArticle");
-  charts.msoArticle = new Chart(document.getElementById("chartMsoArticle"), {
-    type:"bar",
-    data:{ labels: DATA.mso.noStockByArticle.map(s=>s.name), datasets:[{ data: DATA.mso.noStockByArticle.map(s=>s.pct), backgroundColor:CGOLD }]},
-    options:{ indexAxis:"y", responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>c.parsed.x+'%'}}},
-      scales:{ x:{ grid:{color:CLINE}, ticks:{callback:(v)=>v+'%'} }, y:{ grid:{display:false}, ticks:{font:{size:10}} } } }
-  });
-}
-
-/* ============================================================================
-   PROMOTIONS (new section)
-============================================================================ */
 /* ============================================================================
    PROMOTIONS
 ============================================================================ */
