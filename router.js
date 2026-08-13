@@ -4,7 +4,9 @@
 
 const SIDEBAR_HTML = `
   <div class="sidebar-brand">
-    <div class="wordmark">VIVAIA</div>
+    <div class="wordmark">
+      <img src="image/Logo.png" alt="VIVAIA">
+    </div>
     <div class="sub">Indonesia · Q2 2026</div>
   </div>
   <nav class="sidebar-nav">
