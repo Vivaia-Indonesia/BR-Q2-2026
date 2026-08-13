@@ -369,6 +369,12 @@ button{ font-family:inherit; cursor:pointer; }
 .legend-name{ flex:1; color:var(--ink); }
 .legend-val{ font-weight:700; color:var(--brand-deep); font-variant-numeric: tabular-nums; }
 
+/* pie chart */
+.promo-pie-container {
+  height: 320px;
+  position: relative;
+}
+
 /* ---------------------------------------------------------------------------
    Store performance ranking
 --------------------------------------------------------------------------- */
