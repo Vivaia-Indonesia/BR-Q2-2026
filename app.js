@@ -144,6 +144,22 @@ function renderOverview(){
         ${exploreCard("Present","Step through the full review in presentation mode.","__present__")}
       </div>
     </div>
+
+    <div class="section-block">
+      <div class="chart-card">
+
+        <div class="chart-header">
+          <div>
+            <h3>Share of Business</h3>
+          </div>
+        </div>
+
+        <div class="chart-container business-share-container">
+          <canvas id="businessShareChart"></canvas>
+        </div>
+
+      </div>
+    </div>
   `;
 }
 function exploreCard(title, text, route){
@@ -212,6 +228,7 @@ function initBusinessShareChart() {
           }
         }
       }
+      
     }
   });
 }
