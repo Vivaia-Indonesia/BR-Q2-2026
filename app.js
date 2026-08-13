@@ -58,7 +58,6 @@ const NAV_TREE = {
 
 const BUSINESS_TABS = [
   ["#/business/economy", "Economic Overview"],
-  ["#/business/channel-mix", "Channel Mix"],
   ["#/business/independent-stores", "Independent Stores"],
   ["#/business/department-stores", "Department Stores"],
   ["#/business/q2-vs-q1", "Q2 vs Q1"],
@@ -154,6 +153,85 @@ function exploreCard(title, text, route){
   </div>`;
 }
 
+function initBusinessShareChart() {
+  const d = DATA.business.overview;
+
+  const canvas = document.getElementById("businessShareChart");
+
+  if (!canvas) return;
+
+  killChart("businessShare");
+
+  charts.businessShare = new Chart(canvas, {
+    type: "pie",
+
+    plugins: [ChartDataLabels],
+
+    data: {
+      labels: d.businessShareChart.map(item => item.label),
+
+      datasets: [{
+        data: d.businessShareChart.map(item => item.value),
+
+        backgroundColor: [
+          CBRAND,
+          CGOLD
+        ],
+
+        borderWidth: 2,
+        borderColor: "#FFFFFF"
+      }]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        datalabels: {
+          color: "#FFFFFF",
+
+          font: {
+            size: 13,
+            weight: "bold"
+          },
+
+          textStrokeColor: "#000000",
+          textStrokeWidth: 2,
+
+          formatter: (value) => `${value}%`
+        },
+
+        tooltip: {
+          callbacks: {
+            label: (c) => `${c.label}: ${c.parsed}%`
+          }
+        }
+      }
+    }
+  });
+}
+
+<div class="section-block">
+  <div class="chart-card">
+
+    <div class="chart-header">
+      <div>
+        <h3>Share of Business</h3>
+      </div>
+    </div>
+
+    <div class="chart-container business-share-container">
+      <canvas id="businessShareChart"></canvas>
+    </div>
+
+  </div>
+</div>
+
 /* ============================================================================
    BUSINESS / ECONOMY (unchanged from prior deck)
 ============================================================================ */
@@ -231,74 +309,6 @@ function initEconomyCharts(){
         backgroundColor: e.consumerConfidence.points.map((p,i)=> i===e.consumerConfidence.points.length-1 ? CNEG : CNAVY) }]},
     options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
       scales:{ y:{ min:115, max:130, beginAtZero:false, grid:{color:CLINE} }, x:{ grid:{display:false} } } }
-  });
-}
-
-/* ============================================================================
-   BUSINESS / CHANNEL MIX (channel-level share & trend — GMV headline KPIs
-   live only on the Executive Overview; no duplicate GMV Overview page)
-============================================================================ */
-function renderChannelMix(){
-  const mix = DATA.channelMix;
-  return `
-    <div class="page-head">
-      <div class="eyebrow">Business Overview</div>
-      <h1 class="page-title">Channel Mix</h1>
-      <p class="page-sub">Independent vs. Department Store share of business, Q2 2026.</p>
-    </div>
-    ${tabRowHTML(BUSINESS_TABS, "#/business/channel-mix")}
-
-    <div class="two-col section-block">
-      <div class="card">
-        <div class="card-title">Share of Business</div>
-        <div class="card-note">Independent vs Department Store, Q2 2026</div>
-        <div class="chart-wrap"><canvas id="chartMix"></canvas></div>
-        <ul class="legend-list">
-          ${mix.map((m,i)=>`<li><span class="legend-dot" style="background:${i===0?CBRAND:CGOLD}"></span><span class="legend-name">${m.name}</span><span class="legend-val">${m.pct}%</span></li>`).join("")}
-        </ul>
-      </div>
-      <div class="card">
-        <div class="card-title">Monthly GMV by Channel</div>
-        <div class="card-note">Jan – Jun 2026 (USD K) · <a data-nav="#/business/independent-stores" style="color:var(--brand);text-decoration:underline;cursor:pointer;">See per-store detail →</a></div>
-        <div class="chart-wrap"><canvas id="chartMonthlyChannel"></canvas></div>
-      </div>
-    </div>
-
-    <div class="section-block">
-      <div class="callout">${DATA.execInsights[0].text}</div>
-    </div>
-
-    <div class="section-block">
-      <div class="two-col">
-        <div>
-          <div class="section-label">Highlights — Independent Store</div>
-          <ul class="bullet-list">${DATA.monthlyGmv.highlightsIndependent.map(t=>`<li>${t}</li>`).join("")}</ul>
-        </div>
-        <div>
-          <div class="section-label">Highlights — Department Store</div>
-          <ul class="bullet-list">${DATA.monthlyGmv.highlightsDepartment.map(t=>`<li>${t}</li>`).join("")}</ul>
-        </div>
-      </div>
-    </div>
-  `;
-}
-function initChannelMixCharts(){
-  killChart("mix");
-  charts.mix = new Chart(document.getElementById("chartMix"), {
-    type:"doughnut",
-    data:{ labels: DATA.channelMix.map(m=>m.name), datasets:[{ data: DATA.channelMix.map(m=>m.pct), backgroundColor:[CBRAND, CGOLD], borderWidth:0 }]},
-    options:{ responsive:true, maintainAspectRatio:false, cutout:"68%", plugins:{ legend:{display:false}, tooltip:{callbacks:{label:(c)=>`${c.label}: ${c.parsed}%`}} } }
-  });
-  killChart("monthlyChannel");
-  charts.monthlyChannel = new Chart(document.getElementById("chartMonthlyChannel"), {
-    type:"bar",
-    data:{ labels: DATA.monthlyGmv.months,
-      datasets:[
-        { label:"Independent", data: DATA.monthlyGmv.totals.independent, backgroundColor:CBRAND, stack:"s" },
-        { label:"Department", data: DATA.monthlyGmv.totals.department, backgroundColor:CGOLD, stack:"s" },
-      ]},
-    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{position:"bottom", labels:{boxWidth:10, font:{size:11}}}, tooltip:{callbacks:{label:(c)=>`${c.dataset.label}: USD ${c.parsed.y}K`}}},
-      scales:{ y:{ grid:{color:CLINE} }, x:{ grid:{display:false} } } }
   });
 }
 

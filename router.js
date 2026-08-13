@@ -46,9 +46,8 @@ const SIDEBAR_HTML = `
 `;
 
 const ROUTES = {
-  "#/overview": { render: renderOverview, init: null },
+  "#/overview": { render: renderOverview, init: initOverviewCharts},
   "#/business/economy": { render: renderEconomy, init: initEconomyCharts, group: "navBusiness" },
-  "#/business/channel-mix": { render: renderChannelMix, init: initChannelMixCharts, group: "navBusiness" },
   "#/business/independent-stores": { render: renderIndependentStores, init: ()=>initChannelTrendChart("independent"), group: "navBusiness" },
   "#/business/department-stores": { render: renderDepartmentStores, init: ()=>initChannelTrendChart("department"), group: "navBusiness" },
   "#/business/q2-vs-q1": { render: renderQ2vsQ1, init: null, group: "navBusiness" },

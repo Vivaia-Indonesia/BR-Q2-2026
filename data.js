@@ -61,9 +61,15 @@ const DATA = {
     },
   ],
 
-  channelMix: [
-    { name: "Independent Store", pct: 87.6 },
-    { name: "Department Store", pct: 12.4 },
+businessShareChart: [
+  {
+    label: "Independent Store",
+    value: 87.6
+  },
+  {
+    label: "Department Store",
+    value: 12.4
+  }
   ],
 
   economy: {
