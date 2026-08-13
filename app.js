@@ -64,6 +64,7 @@ const BUSINESS_TABS = [
   ["#/business/q2-vs-q1", "Q2 vs Q1"],
   ["#/business/q2-vs-q2ly", "Q2 vs Q2 LY"],
   ["#/business/same-store", "Same-Store Performance"],
+  ["#/business/promotion-overview", "Promotion Overview"],
 ];
 const MERCH_TABS = [
   ["#/merchandise/overview", "Q2 Performance"],
@@ -1063,16 +1064,21 @@ function renderPromoOverview(){
 }
 function initPromoOverviewChart() {
   const d = DATA.promotions.overview;
+
+  killChart("promoContribution");
+
   const canvas = document.getElementById("promoContributionChart");
 
   if (!canvas) return;
 
-  killChart("promoContribution");
-
   charts.promoContribution = new Chart(canvas, {
     type: "pie",
+
+    plugins: [ChartDataLabels],
+
     data: {
       labels: d.contributionChart.map(item => item.label),
+
       datasets: [{
         data: d.contributionChart.map(item => item.value),
         backgroundColor: [
@@ -1087,13 +1093,23 @@ function initPromoOverviewChart() {
         borderColor: "#FFFFFF"
       }]
     },
+
     options: {
       responsive: true,
       maintainAspectRatio: false,
+
       plugins: {
         legend: {
-          position: "right"
+          position: "right",
+          labels: {
+            boxWidth: 12,
+            padding: 14,
+            font: {
+              size: 11
+            }
+          }
         },
+
         tooltip: {
           callbacks: {
             label: (c) => `${c.label}: ${c.parsed}%`

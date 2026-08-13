@@ -27,14 +27,6 @@ const SIDEBAR_HTML = `
         ${MERCH_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
       </div>
     </div>
-    <div class="nav-group" id="navPromo">
-      <button class="nav-item" data-toggle-group="navPromo">
-        <span>Promotions</span><span class="nav-caret">▸</span>
-      </button>
-      <div class="nav-sub">
-        ${PROMO_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
-      </div>
-    </div>
     <div class="nav-group">
       <button class="nav-item" data-nav="#/marketing">Marketing <span class="nav-empty-dot" title="Not in source deck"></span></button>
     </div>
@@ -67,7 +59,7 @@ const ROUTES = {
   "#/merchandise/slow-movers": { render: renderSlowMovers, init: null, group: "navMerch" },
   "#/merchandise/size-analysis": { render: renderSizeAnalysis, init: initSizeChart, group: "navMerch" },
   "#/merchandise/mso": { render: renderMSO, init: initMsoCharts, group: "navMerch" },
-  "#/promotions/overview": { render: renderPromoOverview, init: initPromoOverviewChart, group: "navPromo" }, 
+  "#/business/promotion-overview": { render: renderPromoOverview, init: initPromoOverviewChart, group: "navBusiness" }, 
   "#/marketing": { render: () => renderEmpty("Marketing"), init: null },
   "#/social": { render: () => renderEmpty("Social Media Insights"), init: null },
   "#/hr": { render: () => renderEmpty("HR"), init: null },
