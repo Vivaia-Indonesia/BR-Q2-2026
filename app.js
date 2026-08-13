@@ -1110,6 +1110,20 @@ function initPromoOverviewChart() {
           }
         },
 
+      datalabels: {
+        color: "#FFFFFF",
+
+        font: {
+          size: 12,
+          weight: "bold"
+        },
+
+        textStrokeColor: "#000000",
+        textStrokeWidth: 2,
+
+        formatter: (value) => `${value}%`
+      },  
+
         tooltip: {
           callbacks: {
             label: (c) => `${c.label}: ${c.parsed}%`
