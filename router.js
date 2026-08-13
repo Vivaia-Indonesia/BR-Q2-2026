@@ -67,7 +67,7 @@ const ROUTES = {
   "#/merchandise/slow-movers": { render: renderSlowMovers, init: null, group: "navMerch" },
   "#/merchandise/size-analysis": { render: renderSizeAnalysis, init: initSizeChart, group: "navMerch" },
   "#/merchandise/mso": { render: renderMSO, init: initMsoCharts, group: "navMerch" },
-  "#/promotions/overview": { render: renderPromoOverview, init: null, group: "navPromo" }, 
+  "#/promotions/overview": { render: renderPromoOverview, init: initPromoOverviewChart, group: "navPromo" }, 
   "#/marketing": { render: () => renderEmpty("Marketing"), init: null },
   "#/social": { render: () => renderEmpty("Social Media Insights"), init: null },
   "#/hr": { render: () => renderEmpty("HR"), init: null },

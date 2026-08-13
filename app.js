@@ -1011,7 +1011,6 @@ function renderPromoOverview(){
               <th>GMV (USD K)</th>
               <th>ATV (USD)</th>
               <th>Total GMV Store<br>Jun 4–Jul 5 (USD K)</th>
-              <th>Contribution</th>
               <th>Total GMV Store<br>Prev. Period (USD K)</th>
               <th>GMV Growth</th>
             </tr>
@@ -1025,7 +1024,6 @@ function renderPromoOverview(){
                 <td>${r.gmv}</td>
                 <td>${r.atv}</td>
                 <td>${r.totalGmv}</td>
-                <td>${r.contribution}%</td>
                 <td>${r.priorGmv}</td>
                 <td class="${r.growth >= 0 ? 'pos' : 'neg'}">
                   ${r.growth >= 0 ? '+' : ''}${r.growth.toFixed(1)}%
@@ -1046,8 +1044,79 @@ function renderPromoOverview(){
         </ul>
       </div>
     </div>
+
+    <div class="chart-section">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <h3>Promotion Contribution</h3>
+          <p>Contribution of each promotion to total store GMV</p>
+        </div>
+      </div>
+
+      <div class="chart-container promo-pie-container">
+        <canvas id="promoContributionChart"></canvas>
+      </div>
+    </div>
+    </div>         
   `;
 }
+function initPromoOverviewChart(){
+  const d = DATA.promotions.overview;
+
+  killChart("promoContribution");
+
+  const canvas = document.getElementById("promoContributionChart");
+
+  if (!canvas) return;
+
+  charts.promoContribution = new Chart(canvas, {
+    type: "pie",
+
+    data: {
+      labels: d.contributionChart.map(item => item.label),
+
+      datasets: [{
+        data: d.contributionChart.map(item => item.value),
+        backgroundColor: [
+          CBRAND,
+          CGOLD,
+          CPOS,
+          CNEG,
+          CNAVY,
+          "#D8A48F"
+        ],
+        borderWidth: 2,
+        borderColor: "#FFFFFF"
+      }]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          position: "right",
+          labels: {
+            boxWidth: 12,
+            padding: 14,
+            font: {
+              size: 11
+            }
+          }
+        },
+
+        tooltip: {
+          callbacks: {
+            label: (c) => `${c.label}: ${c.parsed}%`
+          }
+        }
+      }
+    }
+  });
+}
+
 /* ============================================================================
    EMPTY STATE (sections not present in the source deck)
 ============================================================================ */

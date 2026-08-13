@@ -466,7 +466,6 @@ const DATA = {
         gmv: 46,
         atv: 245,
         totalGmv: 903,
-        contribution: 5.2,
         priorGmv: 266,
         growth: 25.2
       },
@@ -476,7 +475,6 @@ const DATA = {
         gmv: 12,
         atv: 334,
         totalGmv: 903,
-        contribution: 1.4,
         priorGmv: 266,
         growth: 25.2
       },
@@ -486,7 +484,6 @@ const DATA = {
         gmv: 10,
         atv: 444,
         totalGmv: 903,
-        contribution: 1.2,
         priorGmv: 266,
         growth: 25.2
       },
@@ -496,7 +493,6 @@ const DATA = {
         gmv: 61,
         atv: 72,
         totalGmv: 903,
-        contribution: 6.8,
         priorGmv: 614,
         growth: 15.6
       },
@@ -506,7 +502,6 @@ const DATA = {
         gmv: 1,
         atv: 393,
         totalGmv: 903,
-        contribution: 0.2,
         priorGmv: 26,
         growth: 12.1
       },
@@ -516,10 +511,18 @@ const DATA = {
         gmv: 21,
         atv: 229,
         totalGmv: 903,
-        contribution: 2.4,
         priorGmv: 252,
         growth: -7.6
       }
+    ],
+
+    contributionChart: [
+      { label: "Buy 2", value: 5.2 },
+      { label: "Buy 3", value: 1.4 },
+      { label: "Buy 4+", value: 1.2 },
+      { label: "Clearance", value: 6.8 },
+      { label: "Buy 3 Get 1", value: 0.2 },
+      { label: "Envelope Mystery Gift", value: 2.4 }
     ],
 
     insights: [
