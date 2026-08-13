@@ -274,8 +274,8 @@ businessShareChart: [
   },
 
   sameStore: {
-    stores: ["plaza_senayan", "plaza_indonesia", "aeon_bsd", "tsm_cibubur", "tsm_bandung"],
-    subtitle: "Plaza Senayan · Plaza Indonesia · AEON Mall BSD · TSM Cibubur · TSM Bandung | Q2 2026 vs Q2 2025",
+    stores: ["plaza_senayan", "plaza_indonesia", "aeon_bsd", "tsm_cibubur"],
+    subtitle: "Plaza Senayan · Plaza Indonesia · AEON Mall BSD · TSM Cibubur | Q2 2026 vs Q2 2025",
     headline: "Basket quality remained healthy, with stable AOV and improving UPT",
     aspUnitNote: null,
     rows: [
@@ -283,10 +283,8 @@ businessShareChart: [
       { key: "plaza_indonesia", trxQ2: 1410, trxLY: 1811, trxGrowth: -22.1, aovQ2: 159, aovLY: 153, aovGrowth: 4.3, aspQ2: 130, aspLY: 133, aspGrowth: -2.5, uptQ2: 1.23, uptLY: 1.15, uptGrowth: 7.0 },
       { key: "aeon_bsd", trxQ2: 1428, trxLY: 1710, trxGrowth: -16.5, aovQ2: 150, aovLY: 141, aovGrowth: 6.0, aspQ2: 125, aspLY: 129, aspGrowth: -2.9, uptQ2: 1.20, uptLY: 1.10, uptGrowth: 9.2 },
       { key: "tsm_cibubur", trxQ2: 428, trxLY: 415, trxGrowth: 3.1, aovQ2: 143, aovLY: 148, aovGrowth: -3.9, aspQ2: 117, aspLY: 132, aspGrowth: -11.1, uptQ2: 1.22, uptLY: 1.13, uptGrowth: 8.2 },
-      { key: "tsm_bandung", trxQ2: 1298, trxLY: null, trxGrowth: null, aovQ2: 159, aovLY: null, aovGrowth: null, aspQ2: 124, aspLY: 134, aspGrowth: -8.1, uptQ2: 1.29, uptLY: null, uptGrowth: null },
     ],
     total: { trxQ2: 6937, trxLY: 7487, trxGrowth: -7.3, aovQ2: 157, aovLY: 156, aovGrowth: 0.4, aspQ2: 127, aspLY: 133, aspGrowth: -4.2, uptQ2: 1.23, uptLY: 1.18, uptGrowth: 4.7 },
-    footnote: "Total KPI calculations exclude TSM Bandung due to unavailable transaction data.",
     cards: [
       {
         title: "Footfall issue",

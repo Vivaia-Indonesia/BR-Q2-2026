@@ -43,7 +43,7 @@ const NAV_TREE = {
   "#/business/department-stores": { label: "Department Stores", parent: "Business Overview" },
   "#/business/q2-vs-q1": { label: "Q2 vs Q1", parent: "Business Overview" },
   "#/business/q2-vs-q2ly": { label: "Q2 vs Q2 LY", parent: "Business Overview" },
-  "#/business/same-store": { label: "Same-Store Performance", parent: "Business Overview" },
+  "#/business/same-store": { label: "Same-Store Growth", parent: "Business Overview" },
   "#/merchandise/overview": { label: "Q2 Performance", parent: "Merchandise" },
   "#/merchandise/best-sellers": { label: "Best Sellers", parent: "Merchandise" },
   "#/merchandise/slow-movers": { label: "Slow Movers", parent: "Merchandise" },
@@ -61,7 +61,7 @@ const BUSINESS_TABS = [
   ["#/business/department-stores", "Department Stores"],
   ["#/business/q2-vs-q1", "Q2 vs Q1"],
   ["#/business/q2-vs-q2ly", "Q2 vs Q2 LY"],
-  ["#/business/same-store", "Same-Store Performance"],
+  ["#/business/same-store", "Same-Store Growth"],
   ["#/business/promotion-overview", "Promotion Overview"],
 ];
 const MERCH_TABS = [
@@ -566,7 +566,6 @@ function renderQ2vsQ2LY(){
       <div class="callout" style="margin-top:14px;"><strong>${d.departmentInsight.title}.</strong>
         <ul class="bullet-list" style="margin-top:8px;">${d.departmentInsight.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
-      <div class="footnote">*${d.footnote}</div>
     </div>
   `;
 }
@@ -579,7 +578,7 @@ function renderSameStore(){
   return `
     <div class="page-head">
       <div class="eyebrow">Business Overview</div>
-      <h1 class="page-title">Same-Store Growth Deep Dive</h1>
+      <h1 class="page-title">Same-Store Growth</h1>
       <p class="page-sub">${d.subtitle}</p>
     </div>
     ${tabRowHTML(BUSINESS_TABS, "#/business/same-store")}
@@ -606,7 +605,6 @@ function renderSameStore(){
           </tr>
         </tbody>
       </table></div>
-      <div class="footnote">*${d.footnote}</div>
       ${d.aspUnitNote ? `<div class="flag-callout" style="margin-top:14px;">⚠ <strong>Source-deck note:</strong> ${d.aspUnitNote}</div>` : ""}
     </div>
 
