@@ -73,6 +73,23 @@ const MERCH_TABS = [
 const PROMO_TABS = [
   ["#/promotions/overview", "Promotion Overview"],
 ];
+const MARKETING_TABS = [
+  ["#/marketing/campaigns/feel-the-comfort", "Feel The Comfort"],
+  ["#/marketing/campaigns/mothers-day", "Mother's Day Campaign"],
+  ["#/marketing/campaigns/sixth-anniversary", "6th Anniversary Campaign"],
+  ["#/marketing/events/pim2-opening", "PIM 2 Grand Opening"],
+  ["#/marketing/events/semarang-opening", "Semarang Grand Opening"],
+  ["#/marketing/printed-media", "Printed Media"],
+  ["#/marketing/roi", "ROI"],
+];
+
+const SOCIAL_TABS = [
+  ["#/social/summary", "Q2 Social Media Summary"],
+  ["#/social/instagram-growth", "Instagram Growth"],
+  ["#/social/instagram-posts", "Instagram Top Posts"],
+  ["#/social/tiktok-growth", "TikTok Growth"],
+  ["#/social/tiktok-posts", "TikTok Top Posts"],
+];
 
 function tabRowHTML(tabs, current){
   return `<div class="tabrow">${tabs.map(([route,label])=>
