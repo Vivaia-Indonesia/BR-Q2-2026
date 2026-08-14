@@ -459,25 +459,24 @@ marketing: {
         description: "For the Feel The Comfort campaign, VIVAIA Indonesia strategically sent 6 PR Boxes to selected Indonesian KOLs and artists, creating authentic product exposure through relevant fashion and lifestyle voices. The activation generated 1,266,700 total impressions, 23,077 social engagements, and achieved a strong 5.3% KOL engagement rate, demonstrating meaningful audience interaction and strong resonance with the campaign content.",
         kpis: [
           { label: "PR Boxes Sent", value: "6" },
-          { label: "Total Impressions", value: "1,266,700" },
-          { label: "Social Engagements", value: "23,077" },
+          { label: "Total Impressions", value: "1,200K" },
+          { label: "Social Engagements", value: "23K" },
           { label: "KOL Engagement Rate", value: "5.3%" },
         ],
         kols: [
-          { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: null, link: "https://www.instagram.com/reel/DBIqrqjh7oL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
-          { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: null },
-          { name: "Valerie Thomas", followers: "1.4M", profession: "Model/Actress", image: null },
-          { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: null },
-          { name: "Anissa Aziza", followers: "1.4M", profession: "Influencer", image: null },
-          { name: "Shannon Dorothea", followers: "253K", profession: "Fashion/Beauty Creator", image: null },
+          { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: "image/Wilona.png", link: "https://www.instagram.com/reel/DBIqrqjh7oL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+          { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: "image/Elina.png" },
+          { name: "Valerie Thomas", followers: "1.4M", profession: "Model/Actress", image: "image/Valerie.png" },
+          { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: "image/Agatha.png" },
+          { name: "Anissa Aziza", followers: "1.4M", profession: "Influencer", image: "image/Anissa.png" },
+          { name: "Shannon Dorothea", followers: "253K", profession: "Fashion/Beauty Creator", image: "image/Shannon.png" },
         ],
-        kolImageNote: "Natasha Wilona's post is the only KOL card with a hyperlink in the source deck (an Instagram reel) — the other five KOL screenshots have no embedded link.",
         globalCampaign: {
           title: "Global Spring 2026 Campaign — Nayeon (TWICE)",
           text: "Nayeon TWICE led our global Spring 2026 campaign. With a mere $5,833 spend, we generated a Media Value of $34,649, proving a highly profitable 5.94x Media ROI. We successfully reached over 18.5 million audiences.",
           stats: [
-            { label: "Spend", value: "$5,833" },
-            { label: "Media Value (MIV)", value: "$34,649" },
+            { label: "Spend", value: "USD 5K" },
+            { label: "Media Value (MIV)", value: "USD 34K" },
             { label: "Media ROI", value: "5.94x" },
             { label: "Reach", value: "18.5M" },
             { label: "Impressions", value: "284K" },
@@ -498,7 +497,7 @@ marketing: {
         mechanic: "Buy 2 pairs and receive a FREE bouquet",
         period: "May 1 – 10",
         sales: { idr: "Rp 6,116,870,000", usd: "approx. $382,300 USD" },
-        heroImage: null,
+        heroImage: "image/WBH.png",
       },
  
       sixthAnniversary: {
@@ -508,7 +507,7 @@ marketing: {
           { label: "KOL Envelope Wall", text: "Engaged 15 store-visit influencers in 3 cities, optimizing conversions." },
           { label: "Mystery Gift Activation", text: "High engagement clearance events and exclusive mystery gift envelope draws driving record basket sizes." },
         ],
-        heroImage: null,
+        heroImage: "image/Annive.png",
       },
     },
  
@@ -521,34 +520,31 @@ marketing: {
           { label: "High-Profile Attendance", text: "The event drew 70 VIP guests, 15 top-tier fashion editors, and 30 selected KOLs, headlined by Mega KOL Nagita Slavina." },
           { label: "Tactical Success", text: "Our targeted voucher program (Min. Spend $175 / Rp 3M) was a massive hit, driving $7,745 (approx. Rp 137,470,000) in direct sales conversion from the quota slots." },
         ],
-        galleryImages: [null, null, null, null],
+        galleryImages: ["image/PIM1.png", "image/PIM2.png", "image/PIM3.png", "image/PIM4.png"],
         nagitaActivation: {
           title: "PIM 2 — KOL Highlight (Nagita Slavina)",
           text: "Driving High-Impact Visibility for VIVAIA's Grand Opening. Featuring Nagita Slavina, the most-followed public figures in Indonesia with 75 Million Followers, the Grand Opening of VIVAIA Pondok Indah Mall 2 achieved strong digital impact with 2.9M views, 73.4K likes, further amplified by 101K views on YouTube. More importantly, the campaign successfully reached a highly relevant target audience, with 96.1% of viewers based in Indonesia and 87.4% female — closely aligned with VIVAIA's core consumer profile. A strong combination of scale, engagement, and audience relevance, strengthening VIVAIA's visibility and brand presence in the Indonesian market.",
           stats: [
-            { label: "Followers", value: "75M" },
             { label: "Instagram Views", value: "2.9M" },
             { label: "Instagram Likes", value: "73.4K" },
             { label: "YouTube Views", value: "101K" },
-            { label: "Audience in Indonesia", value: "96.1%" },
-            { label: "Female Audience", value: "87.4%" },
-          ],
+            { label: "Audience in Indonesia", value: "96.1%" },          ],
           instagramLink: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
           youtubeLink: "https://youtu.be/YYcb2GPq88Y?si=FNjZa7EqDojngj40",
-          instagramLinkLabel: "Instagram Post Link is here",
-          youtubeLinkLabel: "Youtube Link is here",
-          image: null,
+          instagramLinkLabel: "Instagram Post Link",
+          youtubeLinkLabel: "Youtube Link",
+          image: "image/PIM5.png",
         },
         kolHighlight: {
           title: "PIM 2 — KOL Highlight",
-          text: "28 KOLs Mega and Macro — fashion influencers, TV & movie actresses, and presenters — joined VIVAIA's Grand Opening at Pondok Indah Mall 2, strategically selected from South Jakarta and surrounding areas. With an estimated media value of IDR 1.01B (~USD 56K), the KOL activation delivered strong local visibility and meaningful exposure across fashion, entertainment, and lifestyle audiences. The activation generated a total social media audience of 3.2M views and contributed to nearly 2K new followers within the first week, demonstrating strong momentum beyond the event itself.",
+          text: "28 KOLs Mega and Macro — fashion influencers, TV & movie actresses, and presenters — joined VIVAIA's Grand Opening at Pondok Indah Mall 2, strategically selected from South Jakarta and surrounding areas. With an estimated media value of USD 56K, the KOL activation delivered strong local visibility and meaningful exposure across fashion, entertainment, and lifestyle audiences. The activation generated a total social media audience of 3.2M views and contributed to nearly 2K new followers within the first week, demonstrating strong momentum beyond the event itself.",
           stats: [
             { label: "Mega/Macro KOLs", value: "28" },
-            { label: "Estimated Media Value", value: "IDR 1.01B (~USD 56K)" },
+            { label: "Estimated Media Value", value: "USD 56K" },
             { label: "Social Media Views", value: "3.2M" },
-            { label: "New Followers (Week 1)", value: "~2K" },
+            { label: "New Followers (Week 1)", value: "2K" },
           ],
-          galleryImages: [null, null, null, null, null, null],
+          galleryImages: ["image/PIMKOL1.png", "image/PIMKOL2.png", "image/PIMKOL3.png", "image/PIMKOL4.png", "image/PIMKOL5.png"],
         },
         media: {
           title: "PIM 2 — Media",
@@ -564,7 +560,7 @@ marketing: {
             { tier: "5 Local Fashion & Lifestyle Media", outlets: ["Dewi Magazine", "Elmedia", "Skincapedia", "Wolipop", "Popbela"] },
             { tier: "4 Mass / Business Media", outlets: ["Curated Magazine", "Kompas", "Fimela.com", "Suara.com"] },
           ],
-          images: [null, null, null],
+          images: ["image/PIMMD1.png", "image/PIMMD2.png", "image/PIMMD3.png"],
         },
       },
  
@@ -573,11 +569,10 @@ marketing: {
         items: [
           { label: "Strategic Expansion", text: "VIVAIA officially arrived in Central Java with a new store at DP Mall Semarang, opening on May 30th." },
           { label: "Pre-Launch Hype", text: "Generated massive local anticipation through a \"Journey to Semarang\" content series and an exclusive Luncheon at SPIEGEL with 10 selected KOLs." },
-          { label: "Sales Impact", text: "The Soft Opening weekend alone (May 30–31) brought in Rp $11,018.60 in sales." },
+          { label: "Sales Impact", text: "The Soft Opening weekend alone (May 30–31) brought in USD 11,018.60 in sales." },
           { label: "Pre-Heat Strategy", text: "The pre heat strategy successfully captured strong local demand, with 60% of attendees being first-time buyers." },
         ],
-        salesNote: "The source deck displays the Soft Opening weekend figure exactly as \"Rp $11,018.60\" — the currency prefix is ambiguous in the original slide (it is not clear whether this is a Rupiah or USD figure). Transcribed exactly as printed rather than reinterpreted.",
-        galleryImages: [null, null, null, null, null, null],
+        galleryImages: ["image/DP1.png", "image/DP2.png", "image/DP3.png", "image/DP4.png", "image/DP5.png", "image/DP6.png"],
       },
     },
  
@@ -591,16 +586,14 @@ marketing: {
           { label: "MIV", value: "$3K", text: "Generated an estimated Media Impact Value of ~$3K through premium print editorial exposure." },
           { label: "Premium Editorial Exposure", value: "", text: "Elevated VIVAIA's fashion credibility through a feature in Her World Indonesia, showcasing the Resort 2026 collection." },
         ],
-        linkNote: "No hyperlink for this placement was found in the source PPTX — none is included.",
-        coverImage: null,
-        spreadImage: null,
+        coverImage: "image/HW11.png",
+        spreadImage: "image/HW2.png",
       },
     },
  
     roi: {
       title: "ROI",
       subtitle: "Marketing spend return, by month",
-      note: "Figures and formatting transcribed exactly as displayed in the source deck's ROI table.",
       rows: [
         { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "17,526x", salesPerUnit: "$17,526 per $1" },
         { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "43,409x", salesPerUnit: "$43,409 per $1" },
@@ -644,7 +637,7 @@ marketing: {
  
     instagramGrowth: {
       title: "Instagram Growth — Q1 vs Q2 2026",
-      subtitle: "By Social Media Specialist · Comparison of average performance between Q1 2026 (Jan–Mar) and Q2 2026 (Apr–Jun)",
+      subtitle: "Comparison of average performance between Q1 2026 (Jan–Mar) and Q2 2026 (Apr–Jun)",
       rows: [
         { metric: "Average Impressions (Views)", q1: "944,333", q2: "1,750,471", change: "806,138", pctChange: 85.36 },
         { metric: "Average Account Reach", q1: "252,590", q2: "504,670", change: "252,080", pctChange: 99.79 },
@@ -662,17 +655,16 @@ marketing: {
       title: "Instagram Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: null, link: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
-        { name: "Sohee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: null, link: null },
-        { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: null, link: null },
+        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+        { name: "Han So Hee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: "image/SOHEE.png", link: null },
+        { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: "image/KOL.png", link: null },
       ],
       linkNote: "Only \"Nagita at GO PIM\" has a confirmed hyperlink in the source deck (the same Instagram post link used on the PIM 2 KOL Highlight slide). No links were found for the other two posts.",
     },
  
     tiktokGrowth: {
       title: "TikTok Q2 2026 Overview",
-      subtitle: "By Social Media Specialist · Apr – Jun 2026 averages",
-      note: "The source deck does not include a Q1-vs-Q2 TikTok comparison table (unlike Instagram) — only this Q2 average overview. No Q1 TikTok baseline is shown, so none is implied here.",
+      subtitle: "Apr – Jun 2026 averages",
       rows: [
         { metric: "Average Post Views", value: "88,033" },
         { metric: "Average Profile Views", value: "4,525" },
@@ -690,11 +682,10 @@ marketing: {
       title: "TikTok Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "The product VS", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: null, link: null },
-        { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: null, link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576?lang=en" },
-        { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: null, link: null },
+        { name: "The product", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: null },
+        { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: "image/TT2.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576?lang=en" },
+        { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: "image/TT3.png", link: null },
       ],
-      linkNote: "Only \"Summer Sandals\" has a confirmed TikTok hyperlink in the source deck. No links were found for the other two posts.",
     },
   },
  
