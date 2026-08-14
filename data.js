@@ -270,7 +270,6 @@ businessShareChart: [
       ],
     },
     grandTotal: { gmvQ2: 2645, gmvLY: 2014, gmvGrowth: 31.3, qtyQ2: 20635, qtyLY: 15211, qtyGrowth: 35.7, trxGrowth: 27.4, aovGrowth: 3.1, aspGrowth: -3.2, uptGrowth: 6.5 },
-    footnote: "Total KPI calculations exclude TSM Bandung due to unavailable transaction data.",
   },
 
   sameStore: {
@@ -453,9 +452,253 @@ businessShareChart: [
   }
 }, 
 
+marketing: {
+    campaigns: {
+      feelTheComfort: {
+        title: "Feel The Comfort",
+        description: "For the Feel The Comfort campaign, VIVAIA Indonesia strategically sent 6 PR Boxes to selected Indonesian KOLs and artists, creating authentic product exposure through relevant fashion and lifestyle voices. The activation generated 1,266,700 total impressions, 23,077 social engagements, and achieved a strong 5.3% KOL engagement rate, demonstrating meaningful audience interaction and strong resonance with the campaign content.",
+        kpis: [
+          { label: "PR Boxes Sent", value: "6" },
+          { label: "Total Impressions", value: "1,266,700" },
+          { label: "Social Engagements", value: "23,077" },
+          { label: "KOL Engagement Rate", value: "5.3%" },
+        ],
+        kols: [
+          { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: null, link: "https://www.instagram.com/reel/DBIqrqjh7oL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+          { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: null },
+          { name: "Valerie Thomas", followers: "1.4M", profession: "Model/Actress", image: null },
+          { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: null },
+          { name: "Anissa Aziza", followers: "1.4M", profession: "Influencer", image: null },
+          { name: "Shannon Dorothea", followers: "253K", profession: "Fashion/Beauty Creator", image: null },
+        ],
+        kolImageNote: "Natasha Wilona's post is the only KOL card with a hyperlink in the source deck (an Instagram reel) — the other five KOL screenshots have no embedded link.",
+        globalCampaign: {
+          title: "Global Spring 2026 Campaign — Nayeon (TWICE)",
+          text: "Nayeon TWICE led our global Spring 2026 campaign. With a mere $5,833 spend, we generated a Media Value of $34,649, proving a highly profitable 5.94x Media ROI. We successfully reached over 18.5 million audiences.",
+          stats: [
+            { label: "Spend", value: "$5,833" },
+            { label: "Media Value (MIV)", value: "$34,649" },
+            { label: "Media ROI", value: "5.94x" },
+            { label: "Reach", value: "18.5M" },
+            { label: "Impressions", value: "284K" },
+            { label: "Clippings", value: "20" },
+          ],
+          media: [
+            { tier: "3 Major Fashion & Luxury Media", outlets: ["DEWI", "HerWorld Indonesia", "The Luxury Report"] },
+            { tier: "4 Local Fashion & Lifestyle Media", outlets: ["The Editors Club", "Clozette", "Sugar & Cream", "CLARA Indonesia"] },
+            { tier: "1 Mass / Business Media", outlets: ["Beautynesia"] },
+          ],
+        },
+        heroImage: null,
+      },
+ 
+      mothersDay: {
+        title: "Mother's Day Campaign — \"Walk Beside Her\"",
+        text: "A strategic move to drive multi-pair sales by positioning VIVAIA as the ultimate Mother's Day gift. Customers buying 2 pairs received a complimentary, premium flower bouquet, enhancing brand affinity. This emotional engagement strategy paid off massively, generating Rp 6,116,870,000 (approx. $382,300 USD) in sales across independent stores between May 1 – 10.",
+        mechanic: "Buy 2 pairs and receive a FREE bouquet",
+        period: "May 1 – 10",
+        sales: { idr: "Rp 6,116,870,000", usd: "approx. $382,300 USD" },
+        heroImage: null,
+      },
+ 
+      sixthAnniversary: {
+        title: "6th Anniversary Campaign",
+        items: [
+          { label: "Multi-Pair Promotions", text: "Rolled out tier discounts (15% to 25% off) across all independent stores including Plaza Indonesia, Kota Kasablanka, and TSM Bandung." },
+          { label: "KOL Envelope Wall", text: "Engaged 15 store-visit influencers in 3 cities, optimizing conversions." },
+          { label: "Mystery Gift Activation", text: "High engagement clearance events and exclusive mystery gift envelope draws driving record basket sizes." },
+        ],
+        heroImage: null,
+      },
+    },
+ 
+    events: {
+      pim2GrandOpening: {
+        title: "PIM 2 Flagship Store Launch",
+        subtitle: "VIVAIA's largest flagship store as a key retail destination in Jakarta, strengthening brand presence, driving customer engagement, and creating greater visibility for the brand.",
+        highlights: [
+          { label: "Exclusive Launch", text: "Stunning debut of the \"Healing Garden\" collection, a brilliant collaboration with French artist Léo Morichen." },
+          { label: "High-Profile Attendance", text: "The event drew 70 VIP guests, 15 top-tier fashion editors, and 30 selected KOLs, headlined by Mega KOL Nagita Slavina." },
+          { label: "Tactical Success", text: "Our targeted voucher program (Min. Spend $175 / Rp 3M) was a massive hit, driving $7,745 (approx. Rp 137,470,000) in direct sales conversion from the quota slots." },
+        ],
+        galleryImages: [null, null, null, null],
+        nagitaActivation: {
+          title: "PIM 2 — KOL Highlight (Nagita Slavina)",
+          text: "Driving High-Impact Visibility for VIVAIA's Grand Opening. Featuring Nagita Slavina, the most-followed public figures in Indonesia with 75 Million Followers, the Grand Opening of VIVAIA Pondok Indah Mall 2 achieved strong digital impact with 2.9M views, 73.4K likes, further amplified by 101K views on YouTube. More importantly, the campaign successfully reached a highly relevant target audience, with 96.1% of viewers based in Indonesia and 87.4% female — closely aligned with VIVAIA's core consumer profile. A strong combination of scale, engagement, and audience relevance, strengthening VIVAIA's visibility and brand presence in the Indonesian market.",
+          stats: [
+            { label: "Followers", value: "75M" },
+            { label: "Instagram Views", value: "2.9M" },
+            { label: "Instagram Likes", value: "73.4K" },
+            { label: "YouTube Views", value: "101K" },
+            { label: "Audience in Indonesia", value: "96.1%" },
+            { label: "Female Audience", value: "87.4%" },
+          ],
+          instagramLink: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+          youtubeLink: "https://youtu.be/YYcb2GPq88Y?si=FNjZa7EqDojngj40",
+          instagramLinkLabel: "Instagram Post Link is here",
+          youtubeLinkLabel: "Youtube Link is here",
+          image: null,
+        },
+        kolHighlight: {
+          title: "PIM 2 — KOL Highlight",
+          text: "28 KOLs Mega and Macro — fashion influencers, TV & movie actresses, and presenters — joined VIVAIA's Grand Opening at Pondok Indah Mall 2, strategically selected from South Jakarta and surrounding areas. With an estimated media value of IDR 1.01B (~USD 56K), the KOL activation delivered strong local visibility and meaningful exposure across fashion, entertainment, and lifestyle audiences. The activation generated a total social media audience of 3.2M views and contributed to nearly 2K new followers within the first week, demonstrating strong momentum beyond the event itself.",
+          stats: [
+            { label: "Mega/Macro KOLs", value: "28" },
+            { label: "Estimated Media Value", value: "IDR 1.01B (~USD 56K)" },
+            { label: "Social Media Views", value: "3.2M" },
+            { label: "New Followers (Week 1)", value: "~2K" },
+          ],
+          galleryImages: [null, null, null, null, null, null],
+        },
+        media: {
+          title: "PIM 2 — Media",
+          stats: [
+            { label: "Clipping", value: "16" },
+            { label: "Reach", value: "59.1M" },
+            { label: "MIV", value: "$131K", detail: "Generated an extraordinary Media Impact Value (MIV) of $131,985 from a lean PR cost of just $8,000." },
+            { label: "Impressions", value: "964K" },
+          ],
+          prCost: "$8,000",
+          tiers: [
+            { tier: "5 Major Fashion & Luxury Media", outlets: ["Cosmopolitan Indonesia", "The Luxury Reports", "Femina", "Female Daily Network", "Beauty Journal"] },
+            { tier: "5 Local Fashion & Lifestyle Media", outlets: ["Dewi Magazine", "Elmedia", "Skincapedia", "Wolipop", "Popbela"] },
+            { tier: "4 Mass / Business Media", outlets: ["Curated Magazine", "Kompas", "Fimela.com", "Suara.com"] },
+          ],
+          images: [null, null, null],
+        },
+      },
+ 
+      semarangGrandOpening: {
+        title: "Semarang Grand Opening",
+        items: [
+          { label: "Strategic Expansion", text: "VIVAIA officially arrived in Central Java with a new store at DP Mall Semarang, opening on May 30th." },
+          { label: "Pre-Launch Hype", text: "Generated massive local anticipation through a \"Journey to Semarang\" content series and an exclusive Luncheon at SPIEGEL with 10 selected KOLs." },
+          { label: "Sales Impact", text: "The Soft Opening weekend alone (May 30–31) brought in Rp $11,018.60 in sales." },
+          { label: "Pre-Heat Strategy", text: "The pre heat strategy successfully captured strong local demand, with 60% of attendees being first-time buyers." },
+        ],
+        salesNote: "The source deck displays the Soft Opening weekend figure exactly as \"Rp $11,018.60\" — the currency prefix is ambiguous in the original slide (it is not clear whether this is a Rupiah or USD figure). Transcribed exactly as printed rather than reinterpreted.",
+        galleryImages: [null, null, null, null, null, null],
+      },
+    },
+ 
+    printedMedia: {
+      herWorld: {
+        title: "Her World Indonesia | Print Feature",
+        text: "VIVAIA Resort 2026 featured in Her World Indonesia Vol. 02/2026, securing premium editorial exposure within a leading fashion & lifestyle publication.",
+        stats: [
+          { label: "Print Feature", value: "1", text: "Secured premium editorial placement in Her World Indonesia Vol. 02/2026, featuring VIVAIA's Resort 2026 collection." },
+          { label: "Reach", value: "35K", text: "Reached a targeted fashion & lifestyle audience, strengthening VIVAIA's premium brand visibility." },
+          { label: "MIV", value: "$3K", text: "Generated an estimated Media Impact Value of ~$3K through premium print editorial exposure." },
+          { label: "Premium Editorial Exposure", value: "", text: "Elevated VIVAIA's fashion credibility through a feature in Her World Indonesia, showcasing the Resort 2026 collection." },
+        ],
+        linkNote: "No hyperlink for this placement was found in the source PPTX — none is included.",
+        coverImage: null,
+        spreadImage: null,
+      },
+    },
+ 
+    roi: {
+      title: "ROI",
+      subtitle: "Marketing spend return, by month",
+      note: "Figures and formatting transcribed exactly as displayed in the source deck's ROI table.",
+      rows: [
+        { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "17,526x", salesPerUnit: "$17,526 per $1" },
+        { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "43,409x", salesPerUnit: "$43,409 per $1" },
+        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "17,056x", salesPerUnit: "$17,056 per $1" },
+      ],
+    },
+  },
+ 
+  // ==========================================================================
+  // SOCIAL MEDIA — from the same Marketing/Social deck
+  // ==========================================================================
+  socialMedia: {
+    q2Summary: {
+      title: "Q2 Social Media Summary",
+      instagram: {
+        avgImpressions: "1,750,471",
+        avgAccountReach: "504,670",
+        avgTotalFollowers: "54,396",
+        topPosts: [
+          { post: "Nagita at GO PIM", totalViews: "2.9M", totalEngagement: "76,587", er: "5%" },
+          { post: "Sohee wearing VIVAIA", totalViews: "20K", totalEngagement: "1,237", er: "12%" },
+          { post: "Jennifer Collab Anniv Campaign", totalViews: "107K", totalEngagement: "1,300", er: "4.58%" },
+        ],
+      },
+      tiktok: {
+        avgPostViews: "88,033",
+        avgProfileViews: "4,525",
+        avgTotalFollowers: "14,070",
+        topPosts: [
+          { content: "The product vs on me", totalViews: "1,246", likes: "29", share: "3", er: "2.97%" },
+          { content: "Summer Sandals", totalViews: "1.2K", likes: "30", share: "1", er: "2.92%" },
+          { content: "GO Semarang", totalViews: "850", likes: "18", share: "4", er: "2.82%" },
+        ],
+      },
+      learnings: [
+        "Instagram & TikTok saw performance improvement in Q2 driven by exciting events and campaigns.",
+        "Content featuring well-known influencers has a significant impact on driving high engagement.",
+        "Relatable content performs well and delivers strong insights on TikTok, while overly \"branded\" or cinematic-style content tends to be less favored on the platform.",
+      ],
+    },
+ 
+    instagramGrowth: {
+      title: "Instagram Growth — Q1 vs Q2 2026",
+      subtitle: "By Social Media Specialist · Comparison of average performance between Q1 2026 (Jan–Mar) and Q2 2026 (Apr–Jun)",
+      rows: [
+        { metric: "Average Impressions (Views)", q1: "944,333", q2: "1,750,471", change: "806,138", pctChange: 85.36 },
+        { metric: "Average Account Reach", q1: "252,590", q2: "504,670", change: "252,080", pctChange: 99.79 },
+        { metric: "Average Total Followers", q1: "50,000", q2: "54,396", change: "4,396", pctChange: 8.79 },
+      ],
+      highlights: [
+        "All three metrics increased in Q2 2026, driven by strong performance from the Grand Opening PIM event in April and the Grand Opening Semarang & Semarang Luncheon events in May.",
+        "The highest performing content reached 2.8M views in April on the Nagita Slavina - Grand Opening PIM store content.",
+        "The highest followers growth occurred in April with 1,880 net followers.",
+        "The highest account reach also occurred in April, reaching 1,112,219.",
+      ],
+    },
+ 
+    instagramTopPosts: {
+      title: "Instagram Q2 — Highest Performing Posts",
+      subtitle: "By Social Media Specialist",
+      posts: [
+        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: null, link: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+        { name: "Sohee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: null, link: null },
+        { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: null, link: null },
+      ],
+      linkNote: "Only \"Nagita at GO PIM\" has a confirmed hyperlink in the source deck (the same Instagram post link used on the PIM 2 KOL Highlight slide). No links were found for the other two posts.",
+    },
+ 
+    tiktokGrowth: {
+      title: "TikTok Q2 2026 Overview",
+      subtitle: "By Social Media Specialist · Apr – Jun 2026 averages",
+      note: "The source deck does not include a Q1-vs-Q2 TikTok comparison table (unlike Instagram) — only this Q2 average overview. No Q1 TikTok baseline is shown, so none is implied here.",
+      rows: [
+        { metric: "Average Post Views", value: "88,033" },
+        { metric: "Average Profile Views", value: "4,525" },
+        { metric: "Average Total Followers", value: "14,070" },
+      ],
+      highlights: [
+        "The highest post views occurred in May, reaching 108,000.",
+        "The highest profile views also occurred in May, reaching 6,620.",
+        "Top performing content in Q2 was in May, including always-on (relatable content) and Resort Collection content.",
+        "Grand Opening Semarang content also achieved an engagement rate (ER) of more than 2%.",
+      ],
+    },
+ 
+    tiktokTopPosts: {
+      title: "TikTok Q2 — Highest Performing Posts",
+      subtitle: "By Social Media Specialist",
+      posts: [
+        { name: "The product VS", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: null, link: null },
+        { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: null, link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576?lang=en" },
+        { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: null, link: null },
+      ],
+      linkNote: "Only \"Summer Sandals\" has a confirmed TikTok hyperlink in the source deck. No links were found for the other two posts.",
+    },
+  },
+ 
   notIncluded: {
-    marketing: "Marketing",
-    social: "Social Media Insights",
     hr: "HR",
     q3Overview: "Q3 Overview",
   },
@@ -474,4 +717,16 @@ const PRESENTATION_ORDER = [
   { route: "#/merchandise/slow-movers", label: "Slow Movers" },
   { route: "#/merchandise/size-analysis", label: "Size Analysis" },
   { route: "#/promotions/overview", label: "Q2 Promotion Overview" },
+  { route: "#/marketing/campaigns/feel-the-comfort", label: "Feel The Comfort" },
+  { route: "#/marketing/campaigns/mothers-day", label: "Mother's Day Campaign" },
+  { route: "#/marketing/campaigns/sixth-anniversary", label: "6th Anniversary Campaign" },
+  { route: "#/marketing/events/pim2-opening", label: "PIM 2 Grand Opening" },
+  { route: "#/marketing/events/semarang-opening", label: "Semarang Grand Opening" },
+  { route: "#/marketing/printed-media", label: "Printed Media" },
+  { route: "#/marketing/roi", label: "Marketing ROI" },
+  { route: "#/social/summary", label: "Q2 Social Media Summary" },
+  { route: "#/social/instagram-growth", label: "Instagram Growth" },
+  { route: "#/social/instagram-posts", label: "Instagram Top Posts" },
+  { route: "#/social/tiktok-growth", label: "TikTok Overview" },
+  { route: "#/social/tiktok-posts", label: "TikTok Top Posts" },
 ];

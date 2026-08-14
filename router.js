@@ -29,23 +29,34 @@ const SIDEBAR_HTML = `
         ${MERCH_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
       </div>
     </div>
-    <div class="nav-group">
-      <button class="nav-item" data-nav="#/marketing">Marketing <span class="nav-empty-dot" title="Not in source deck"></span></button>
+   <div class="nav-group" id="navMarketing">
+      <button class="nav-item" data-toggle-group="navMarketing">
+        <span>Marketing</span><span class="nav-caret">▸</span>
+      </button>
+      <div class="nav-sub">
+        ${MARKETING_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+      </div>
+      </div>
+      <div class="nav-group" id="navSocial">
+        <button class="nav-item" data-toggle-group="navSocial">
+          <span>Social Media</span><span class="nav-caret">▸</span>
+        </button>
+        <div class="nav-sub">
+          ${SOCIAL_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-item" data-nav="#/hr">HR <span class="nav-empty-dot" title="Not in source deck"></span></button>
+      </div>
+      <div class="nav-group">
+        <button class="nav-item" data-nav="#/q3-overview">Q3 Overview <span class="nav-empty-dot" title="Not in source deck"></span></button>
+      </div>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn-present" id="btnPresent">▶ Present</button>
     </div>
-    <div class="nav-group">
-      <button class="nav-item" data-nav="#/social">Social Media <span class="nav-empty-dot" title="Not in source deck"></span></button>
-    </div>
-    <div class="nav-group">
-      <button class="nav-item" data-nav="#/hr">HR <span class="nav-empty-dot" title="Not in source deck"></span></button>
-    </div>
-    <div class="nav-group">
-      <button class="nav-item" data-nav="#/q3-overview">Q3 Overview <span class="nav-empty-dot" title="Not in source deck"></span></button>
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    <button class="btn-present" id="btnPresent">▶ Present</button>
-  </div>
-`;
+  `;
 
 const ROUTES = {
   "#/overview": {  render: renderOverview,  init: initBusinessShareChart },
@@ -60,8 +71,18 @@ const ROUTES = {
   "#/merchandise/slow-movers": { render: renderSlowMovers, init: null, group: "navMerch" },
   "#/merchandise/size-analysis": { render: renderSizeAnalysis, init: initSizeChart, group: "navMerch" },
   "#/business/promotion-overview": { render: renderPromoOverview, init: initPromoOverviewChart, group: "navBusiness" }, 
-  "#/marketing": { render: () => renderEmpty("Marketing"), init: null },
-  "#/social": { render: () => renderEmpty("Social Media Insights"), init: null },
+  "#/marketing/campaigns/feel-the-comfort": { render: renderFeelTheComfort, init: null, group: "navMarketing" },
+  "#/marketing/campaigns/mothers-day": { render: renderMothersDay, init: null, group: "navMarketing" },
+  "#/marketing/campaigns/sixth-anniversary": { render: renderSixthAnniversary, init: null, group: "navMarketing" },
+  "#/marketing/events/pim2-opening": { render: renderPim2Opening, init: null, group: "navMarketing" },
+  "#/marketing/events/semarang-opening": { render: renderSemarangOpening, init: null, group: "navMarketing" },
+  "#/marketing/printed-media": { render: renderPrintedMedia, init: null, group: "navMarketing" },
+  "#/marketing/roi": { render: renderMarketingRoi, init: initMarketingRoiChart, group: "navMarketing" },
+  "#/social/summary": { render: renderSocialSummary, init: null, group: "navSocial" },
+  "#/social/instagram-growth": { render: renderInstagramGrowth, init: null, group: "navSocial" },
+  "#/social/instagram-posts": { render: renderInstagramPosts, init: null, group: "navSocial" },
+  "#/social/tiktok-growth": { render: renderTiktokGrowth, init: null, group: "navSocial" },
+  "#/social/tiktok-posts": { render: renderTiktokPosts, init: null, group: "navSocial" },
   "#/hr": { render: () => renderEmpty("HR"), init: null },
   "#/q3-overview": { render: () => renderEmpty("Q3 Overview"), init: null },
 };
@@ -86,6 +107,26 @@ function setActiveNav(route){
   }
 }
 
+let presentMode = false;
+let presentIndex = 0;
+ 
+function currentRoute(){
+  const h = location.hash || "#/overview";
+  return h.split("?")[0];
+}
+ 
+function setActiveNav(route){
+  document.querySelectorAll(".nav-item[data-nav]").forEach(el=>{
+    el.classList.toggle("active", el.getAttribute("data-nav") === route);
+  });
+  const meta = ROUTES[route];
+  if (meta && meta.group){
+    document.querySelectorAll(".nav-group").forEach(g=>g.classList.remove("open"));
+    const g = document.getElementById(meta.group);
+    if (g) g.classList.add("open");
+  }
+}
+ 
 function renderRoute(){
   const route = currentRoute();
   const meta = ROUTES[route] || ROUTES["#/overview"];
@@ -99,7 +140,7 @@ function renderRoute(){
   window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
   if (presentMode) renderPresentChrome();
 }
-
+ 
 /* ------------------------------ Panel (drill-down) ------------------------- */
 function openPanel(kind, key){
   const overlay = document.getElementById("panelOverlay");
@@ -119,7 +160,7 @@ function closePanel(){
   overlay.classList.remove("open");
   panel.classList.remove("open");
 }
-
+ 
 /* ------------------------------ Presentation mode --------------------------- */
 function enterPresent(){
   presentMode = true;
@@ -157,7 +198,7 @@ function renderPresentChrome(){
   document.getElementById("presentNext").onclick = () => goPresent(1);
   document.getElementById("presentExit").onclick = () => { exitPresent(); };
 }
-
+ 
 /* ------------------------------ Event delegation ---------------------------- */
 document.addEventListener("click", (e)=>{
   const nav = e.target.closest("[data-nav]");
@@ -173,7 +214,7 @@ document.addEventListener("click", (e)=>{
   }
   const present = e.target.closest("[data-present]");
   if (present){ enterPresent(); return; }
-
+ 
   const panelTrigger = e.target.closest("[data-panel]");
   if (panelTrigger){
     openPanel(panelTrigger.getAttribute("data-panel"), panelTrigger.getAttribute("data-key"));
@@ -181,11 +222,11 @@ document.addEventListener("click", (e)=>{
   }
   const panelBack = e.target.closest("[data-panel-back]");
   if (panelBack){ closePanel(); return; }
-
+ 
   if (e.target.id === "panelOverlay"){ closePanel(); return; }
   if (e.target.id === "btnPresent"){ enterPresent(); return; }
 });
-
+ 
 document.addEventListener("keydown", (e)=>{
   if (document.getElementById("panel").classList.contains("open") && e.key === "Escape"){
     closePanel(); return;
@@ -195,9 +236,9 @@ document.addEventListener("keydown", (e)=>{
   else if (e.key === "ArrowLeft"){ goPresent(-1); }
   else if (e.key === "Escape"){ exitPresent(); }
 });
-
+ 
 window.addEventListener("hashchange", renderRoute);
-
+ 
 /* ------------------------------ Boot ----------------------------------------- */
 function boot(){
   document.getElementById("sidebar").innerHTML = SIDEBAR_HTML;

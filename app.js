@@ -947,6 +947,458 @@ function initPromoOverviewChart() {
   });
 }
 
+function imgOrPending(src, alt, cls){
+  if (src) return `<img src="${src}" alt="${esc(alt)}" loading="lazy">`;
+  return `<div class="media-pending">Image pending upload</div>`;
+}
+function statCardsHTML(stats){
+  return `<div class="kpi-grid" style="grid-template-columns:repeat(${Math.min(stats.length,4)},1fr);">
+    ${stats.map(s => `
+      <div class="tag-card">
+        <div class="t-label">${s.label}</div>
+        <div class="t-value" style="font-size:${s.value.length>7?'20px':'26px'};">${s.value}</div>
+        ${s.detail ? `<div class="t-compare">${s.detail}</div>` : (s.text ? `<div class="t-compare">${s.text}</div>` : "")}
+      </div>`).join("")}
+  </div>`;
+}
+function mediaTiersHTML(tiers){
+  return `<div class="media-tier-grid">
+    ${tiers.map(t => `
+      <div class="media-tier-card">
+        <div class="media-tier-title">${t.tier}</div>
+        <ul class="media-tier-list">${t.outlets.map(o=>`<li>${o}</li>`).join("")}</ul>
+      </div>`).join("")}
+  </div>`;
+}
+function kolGridHTML(kols){
+  return `<div class="kol-grid">
+    ${kols.map(k => `
+      <div class="kol-card">
+        <div class="kol-photo">${imgOrPending(k.image, k.name)}</div>
+        <div class="kol-name">${k.name}</div>
+        <div class="kol-followers">${k.followers} followers</div>
+        <div class="kol-profession">${k.profession}</div>
+        ${k.link ? `<a class="link-btn" href="${k.link}" target="_blank" rel="noopener noreferrer">View post ↗</a>` : ""}
+      </div>`).join("")}
+  </div>`;
+}
+function linkButtonsHTML(links){
+  // links: [{label, url}]
+  return `<div class="link-btn-row">${links.filter(l=>l.url).map(l=>
+    `<a class="link-btn" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`
+  ).join("")}</div>`;
+}
+function galleryHTML(images, altPrefix){
+  return `<div class="gallery-grid">
+    ${images.map((src,i) => `<div class="gallery-cell">${imgOrPending(src, `${altPrefix} ${i+1}`)}</div>`).join("")}
+  </div>`;
+}
+ 
+/* ============================================================================
+   MARKETING — CAMPAIGNS
+============================================================================ */
+function renderFeelTheComfort(){
+  const d = DATA.marketing.campaigns.feelTheComfort;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Campaigns</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.description}</p>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/campaigns/feel-the-comfort")}
+ 
+    <div class="section-block">
+      <div class="hero-media">${imgOrPending(d.heroImage, d.title)}</div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">Campaign KPIs</div>
+      ${statCardsHTML(d.kpis)}
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">KOL Highlight</div>
+      ${kolGridHTML(d.kols)}
+      <div class="footnote">${d.kolImageNote}</div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="card">
+        <div class="card-title">${d.globalCampaign.title}</div>
+        <p style="font-size:13.5px;line-height:1.6;margin:8px 0 16px;">${d.globalCampaign.text}</p>
+        ${statCardsHTML(d.globalCampaign.stats)}
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">Media Coverage</div>
+      ${mediaTiersHTML(d.globalCampaign.media)}
+    </div>
+  `;
+}
+ 
+function renderMothersDay(){
+  const d = DATA.marketing.campaigns.mothersDay;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Campaigns</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.text}</p>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/campaigns/mothers-day")}
+ 
+    <div class="two-col section-block">
+      <div class="hero-media">${imgOrPending(d.heroImage, d.title)}</div>
+      <div class="card">
+        <div class="card-title">Campaign Mechanic</div>
+        <p style="font-size:14px;font-weight:600;margin:8px 0 14px;">${d.mechanic}</p>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="tag-card"><div class="t-label">Campaign Period</div><div class="t-value" style="font-size:20px;">${d.period}</div></div>
+          <div class="tag-card"><div class="t-label">Independent-Store Sales</div><div class="t-value" style="font-size:18px;">${d.sales.idr}</div><div class="t-compare">${d.sales.usd}</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+ 
+function renderSixthAnniversary(){
+  const d = DATA.marketing.campaigns.sixthAnniversary;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Campaigns</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/campaigns/sixth-anniversary")}
+ 
+    <div class="two-col section-block">
+      <div class="hero-media">${imgOrPending(d.heroImage, d.title)}</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        ${d.items.map(i => `
+          <div class="callout"><strong>${i.label}:</strong> ${i.text}</div>`).join("")}
+      </div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   MARKETING — EVENTS
+============================================================================ */
+function renderPim2Opening(){
+  const d = DATA.marketing.events.pim2GrandOpening;
+  const nag = d.nagitaActivation;
+  const kol = d.kolHighlight;
+  const med = d.media;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Events</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/events/pim2-opening")}
+ 
+    <div class="section-block">
+      ${galleryHTML(d.galleryImages, "PIM 2 Grand Opening")}
+    </div>
+ 
+    <div class="section-block">
+      <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">
+        ${d.highlights.map(h=>`
+          <div class="insight-card">
+            <div class="tag">${h.label}</div>
+            <p>${h.text}</p>
+          </div>`).join("")}
+      </div>
+    </div>
+ 
+    <div class="hairline"></div>
+ 
+    <div class="section-block">
+      <div class="section-label">${nag.title}</div>
+      <div class="two-col">
+        <div class="hero-media">${imgOrPending(nag.image, "Nagita Slavina KOL activation")}</div>
+        <div>
+          <p style="font-size:13.5px;line-height:1.65;margin-bottom:14px;">${nag.text}</p>
+          ${statCardsHTML(nag.stats)}
+        </div>
+      </div>
+      ${linkButtonsHTML([
+        { label: nag.instagramLinkLabel, url: nag.instagramLink },
+        { label: nag.youtubeLinkLabel, url: nag.youtubeLink },
+      ])}
+    </div>
+ 
+    <div class="hairline"></div>
+ 
+    <div class="section-block">
+      <div class="section-label">${kol.title}</div>
+      <p style="font-size:13.5px;line-height:1.65;margin-bottom:14px;">${kol.text}</p>
+      ${statCardsHTML(kol.stats)}
+      <div style="margin-top:16px;">${galleryHTML(kol.galleryImages, "PIM 2 KOL post")}</div>
+    </div>
+ 
+    <div class="hairline"></div>
+ 
+    <div class="section-block">
+      <div class="section-label">${med.title}</div>
+      ${galleryHTML(med.images, "PIM 2 media coverage")}
+      <div style="margin-top:16px;">${statCardsHTML(med.stats)}</div>
+      <div class="footnote">PR cost: ${med.prCost}</div>
+      <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
+    </div>
+  `;
+}
+ 
+function renderSemarangOpening(){
+  const d = DATA.marketing.events.semarangGrandOpening;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Events</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/events/semarang-opening")}
+ 
+    <div class="section-block">
+      ${galleryHTML(d.galleryImages, "Semarang Grand Opening")}
+    </div>
+ 
+    <div class="section-block">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        ${d.items.map(i => `<div class="callout"><strong>${i.label}:</strong> ${i.text}</div>`).join("")}
+      </div>
+      <div class="flag-callout" style="margin-top:14px;">ℹ ${d.salesNote}</div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   MARKETING — PRINTED MEDIA
+============================================================================ */
+function renderPrintedMedia(){
+  const d = DATA.marketing.printedMedia.herWorld;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing · Printed Media</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.text}</p>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/printed-media")}
+ 
+    <div class="two-col section-block">
+      <div class="hero-media">${imgOrPending(d.coverImage, "Her World Indonesia cover")}</div>
+      <div class="hero-media">${imgOrPending(d.spreadImage, "Her World Indonesia editorial spread")}</div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="insight-grid" style="grid-template-columns:repeat(2,1fr);">
+        ${d.stats.map(s=>`
+          <div class="insight-card">
+            <div class="tag">${s.label}${s.value ? " — "+s.value : ""}</div>
+            <p>${s.text}</p>
+          </div>`).join("")}
+      </div>
+      <div class="footnote">${d.linkNote}</div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   MARKETING — ROI
+============================================================================ */
+function renderMarketingRoi(){
+  const d = DATA.marketing.roi;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Marketing</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(MARKETING_TABS, "#/marketing/roi")}
+ 
+    <div class="section-block">
+      <div class="table-wrap"><table class="data">
+        <thead><tr><th>Period</th><th>Total Sales</th><th>Reported ROI</th><th>Sales per $1 Spent</th></tr></thead>
+        <tbody>
+          ${d.rows.map(r=>`<tr><td>${r.period}</td><td>${r.totalSales}</td><td style="font-weight:700;color:var(--brand-deep);">${r.reportedRoi}</td><td>${r.salesPerUnit}</td></tr>`).join("")}
+        </tbody>
+      </table></div>
+      <div class="footnote">${d.note}</div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="card">
+        <div class="card-title">Total Sales by Month</div>
+        <div class="chart-wrap short"><canvas id="chartMarketingRoi"></canvas></div>
+      </div>
+    </div>
+  `;
+}
+function initMarketingRoiChart(){
+  killChart("marketingRoi");
+  const d = DATA.marketing.roi;
+  const nums = d.rows.map(r => parseFloat(r.totalSales.replace(/[^0-9.]/g, "")));
+  charts.marketingRoi = new Chart(document.getElementById("chartMarketingRoi"), {
+    type: "bar",
+    data: { labels: d.rows.map(r=>r.period), datasets: [{ data: nums, backgroundColor: CBRAND }] },
+    options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}, tooltip:{callbacks:{label:(c)=>`Total Sales: $${c.parsed.y}`}}},
+      scales:{ y:{ grid:{color:CLINE} }, x:{ grid:{display:false} } } }
+  });
+}
+ 
+/* ============================================================================
+   SOCIAL MEDIA
+============================================================================ */
+function postCardsHTML(posts, opts={}){
+  // opts.metricKeys: array of {key,label}
+  return `<div class="post-card-grid">
+    ${posts.map(p => `
+      <div class="post-card">
+        <div class="post-card-media">${imgOrPending(p.image, p.name || p.content)}</div>
+        <div class="post-card-name">${p.name || p.content}</div>
+        <div class="post-card-metrics">
+          ${opts.metricKeys.map(m => `<div class="pcm"><span class="pcm-label">${m.label}</span><span class="pcm-val">${p[m.key]}</span></div>`).join("")}
+        </div>
+        ${p.link ? `<a class="link-btn" href="${p.link}" target="_blank" rel="noopener noreferrer">View post ↗</a>` : ""}
+      </div>`).join("")}
+  </div>`;
+}
+ 
+function renderSocialSummary(){
+  const d = DATA.socialMedia.q2Summary;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Social Media</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+    ${tabRowHTML(SOCIAL_TABS, "#/social/summary")}
+ 
+    <div class="two-col section-block">
+      <div class="card">
+        <div class="card-title">Instagram</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
+          <div class="tag-card"><div class="t-label">Avg Impressions</div><div class="t-value" style="font-size:18px;">${d.instagram.avgImpressions}</div></div>
+          <div class="tag-card"><div class="t-label">Avg Account Reach</div><div class="t-value" style="font-size:18px;">${d.instagram.avgAccountReach}</div></div>
+          <div class="tag-card"><div class="t-label">Avg Total Followers</div><div class="t-value" style="font-size:18px;">${d.instagram.avgTotalFollowers}</div></div>
+        </div>
+        <div class="section-label" style="margin-bottom:8px;">Top Performing Instagram Posts</div>
+        <div class="table-wrap"><table class="data" style="min-width:0;">
+          <thead><tr><th>Post</th><th>Total Views</th><th>Total Engagement</th><th>ER</th></tr></thead>
+          <tbody>${d.instagram.topPosts.map(p=>`<tr><td>${p.post}</td><td>${p.totalViews}</td><td>${p.totalEngagement}</td><td>${p.er}</td></tr>`).join("")}</tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <div class="card-title">TikTok</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
+          <div class="tag-card"><div class="t-label">Avg Post Views</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgPostViews}</div></div>
+          <div class="tag-card"><div class="t-label">Avg Profile Views</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgProfileViews}</div></div>
+          <div class="tag-card"><div class="t-label">Avg Total Followers</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgTotalFollowers}</div></div>
+        </div>
+        <div class="section-label" style="margin-bottom:8px;">Top Performing TikTok Posts</div>
+        <div class="table-wrap"><table class="data" style="min-width:0;">
+          <thead><tr><th>Content</th><th>Total Views</th><th>Likes</th><th>Share</th><th>ER</th></tr></thead>
+          <tbody>${d.tiktok.topPosts.map(p=>`<tr><td>${p.content}</td><td>${p.totalViews}</td><td>${p.likes}</td><td>${p.share}</td><td>${p.er}</td></tr>`).join("")}</tbody>
+        </table></div>
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="callout brand"><strong>Social Media Learning</strong><ul class="bullet-list" style="margin-top:10px;color:#F5E6E1;">${d.learnings.map(l=>`<li style="color:#F5E6E1;">${l}</li>`).join("")}</ul></div>
+    </div>
+  `;
+}
+ 
+function renderInstagramGrowth(){
+  const d = DATA.socialMedia.instagramGrowth;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Social Media</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(SOCIAL_TABS, "#/social/instagram-growth")}
+ 
+    <div class="section-block">
+      <div class="table-wrap"><table class="data">
+        <thead><tr><th>Metric</th><th>Q1 2026 (Jan–Mar)</th><th>Q2 2026 (Apr–Jun)</th><th>Change</th><th>% Change</th></tr></thead>
+        <tbody>
+          ${d.rows.map(r=>`<tr><td>${r.metric}</td><td>${r.q1}</td><td>${r.q2}</td><td>▲ ${r.change}</td>${cellGrowth(r.pctChange)}</tr>`).join("")}
+        </tbody>
+      </table></div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="callout"><strong>Highlights</strong><ul class="bullet-list" style="margin-top:10px;">${d.highlights.map(h=>`<li>${h}</li>`).join("")}</ul></div>
+    </div>
+  `;
+}
+ 
+function renderInstagramPosts(){
+  const d = DATA.socialMedia.instagramTopPosts;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Social Media</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(SOCIAL_TABS, "#/social/instagram-posts")}
+ 
+    <div class="section-block">
+      ${postCardsHTML(d.posts, { metricKeys: [
+        { key: "totalViews", label: "Total Views" },
+        { key: "totalEngagement", label: "Total Engagement" },
+        { key: "er", label: "ER" },
+      ]})}
+      <div class="footnote">${d.linkNote}</div>
+    </div>
+  `;
+}
+ 
+function renderTiktokGrowth(){
+  const d = DATA.socialMedia.tiktokGrowth;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Social Media</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(SOCIAL_TABS, "#/social/tiktok-growth")}
+ 
+    <div class="flag-callout section-block">ℹ ${d.note}</div>
+ 
+    <div class="section-block">
+      <div class="table-wrap"><table class="data" style="min-width:0;">
+        <thead><tr><th>Metric</th><th>Average, Q2 2026 (Apr–Jun)</th></tr></thead>
+        <tbody>${d.rows.map(r=>`<tr><td>${r.metric}</td><td style="font-weight:700;color:var(--brand-deep);">${r.value}</td></tr>`).join("")}</tbody>
+      </table></div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="callout"><strong>Highlights</strong><ul class="bullet-list" style="margin-top:10px;">${d.highlights.map(h=>`<li>${h}</li>`).join("")}</ul></div>
+    </div>
+  `;
+}
+ 
+function renderTiktokPosts(){
+  const d = DATA.socialMedia.tiktokTopPosts;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Social Media</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(SOCIAL_TABS, "#/social/tiktok-posts")}
+ 
+    <div class="section-block">
+      ${postCardsHTML(d.posts, { metricKeys: [
+        { key: "totalViews", label: "Total Views" },
+        { key: "likes", label: "Likes" },
+        { key: "share", label: "Share" },
+        { key: "er", label: "ER" },
+      ]})}
+      <div class="footnote">${d.linkNote}</div>
+    </div>
+  `;
+}
+
 /* ============================================================================
    EMPTY STATE (sections not present in the source deck)
 ============================================================================ */
