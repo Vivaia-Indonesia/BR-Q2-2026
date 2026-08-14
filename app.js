@@ -1167,14 +1167,14 @@ function renderPim2Opening(){
       <div class="section-label">${kol.title}</div>
       <p style="font-size:13.5px;line-height:1.65;margin-bottom:14px;">${kol.text}</p>
       ${statCardsHTML(kol.stats)}
-      <div style="margin-top:16px;">${galleryHTML(kol.galleryImages, "PIM 2 KOL post")}</div>
+      <div style="margin-top:16px;">${linkedGalleryHTML(d.kolHighlight.gallery, "PIM 2 KOL post")}</div>
     </div>
  
     <div class="hairline"></div>
  
     <div class="section-block">
       <div class="section-label">${med.title}</div>
-      ${galleryHTML(med.images, "PIM 2 media coverage")}
+      ${linkedGalleryHTML(d.media.images)}
       <div style="margin-top:16px;">${statCardsHTML(med.stats)}</div>
       <div class="footnote">PR cost: ${med.prCost}</div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
@@ -1200,6 +1200,47 @@ function renderSemarangOpening(){
         ${d.items.map(i => `<div class="callout"><strong>${i.label}:</strong> ${i.text}</div>`).join("")}
       </div>
     </div>
+      
+    <div class="section-block semarang-kol-highlight">
+
+      <div class="page-head" style="margin-bottom:20px;">
+        <div class="eyebrow">KOL Highlight</div>
+        <h2 class="section-title">${d.kolHighlight.title}</h2>
+        <p class="page-sub">${d.kolHighlight.subtitle}</p>
+      </div>
+
+      <div class="semarang-kol-layout">
+
+        <div class="semarang-kol-copy">
+
+          <div class="semarang-kol-story">
+            <div class="section-label">${d.kolHighlight.preEvent.title}</div>
+            <p>${d.kolHighlight.preEvent.text}</p>
+          </div>
+
+          <div class="semarang-kol-story">
+            <div class="section-label">${d.kolHighlight.grandOpening.title}</div>
+            <p>${d.kolHighlight.grandOpening.text}</p>
+          </div>
+
+          <div class="semarang-kol-story result">
+            <div class="section-label">${d.kolHighlight.result.title}</div>
+            <p>${d.kolHighlight.result.text}</p>
+          </div>
+
+        </div>
+
+        <div class="semarang-kol-images">
+          ${d.kolHighlight.images.map(img => `
+            <div class="semarang-kol-image">
+              <img src="${img}" alt="Semarang Grand Opening KOL Highlight" loading="lazy">
+            </div>
+          `).join("")}
+        </div>
+
+      </div>
+
+    </div>  
   `;
 }
  

@@ -464,7 +464,7 @@ marketing: {
           { label: "KOL Engagement Rate", value: "5.3%" },
         ],
         kols: [
-          { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: "image/Wilona.png", link: "https://www.instagram.com/reel/DBIqrqjh7oL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+          { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: "image/Wilona.png", link: "https://www.instagram.com/reel/DXf4SeIkU3p/?igsh=MWJuanl6eXQ0ams3eQ==" },
           { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: "image/Elina.png", link: "https://www.instagram.com/reel/DXZA-13iXNN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
           { name: "Valerie Thomas", followers: "1.4M", profession: "Model/Actress", image: "image/Valerie.png" },
           { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: "image/Agatha.png", link: "https://www.instagram.com/reel/DXOsilNj7jN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
@@ -543,7 +543,24 @@ marketing: {
             { label: "Social Media Views", value: "3.2M" },
             { label: "New Followers (Week 1)", value: "2K" },
           ],
-          galleryImages: ["image/PIMKOL1.png", "image/PIMKOL2.png", "image/PIMKOL3.png", "image/PIMKOL4.png"],
+          gallery: [
+           {
+              image: "image/PIMKOL1.png",
+              link: "https://www.instagram.com/p/DXoRpQZAbiV/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            },
+            {
+              image: "image/PIMKOL2.png",
+              link: "https://www.instagram.com/p/DXyf44IFBul/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            },
+            {
+             image: "image/PIMKOL3.png",
+              link: "https://www.instagram.com/p/DXlMf00AQi4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            },
+            {
+              image: "image/PIMKOL4.png",
+              link: "https://www.instagram.com/reel/DXvciJ-xEbo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+            },
+          ],
         },
         media: {
           title: "PIM 2 — Media",
@@ -559,10 +576,22 @@ marketing: {
             { tier: "5 Local Fashion & Lifestyle Media", outlets: ["Dewi Magazine", "Elmedia", "Skincapedia", "Wolipop", "Popbela"] },
             { tier: "4 Mass / Business Media", outlets: ["Curated Magazine", "Kompas", "Fimela.com", "Suara.com"] },
           ],
-          images: ["image/PIMMD1.png", "image/PIMMD2.png", "image/PIMMD3.png"],
+          images: [
+            {
+              image: "image/PIMMD1.png",
+              link: "YOUR_MEDIA_LINK_1",
+            },
+            {
+              image: "image/PIMMD2.png",
+              link: "YOUR_MEDIA_LINK_2",
+            },
+            {
+              image: "image/PIMMD3.png",
+              link: "YOUR_MEDIA_LINK_3",
+            },
+          ],
         },
       },
- 
       semarangGrandOpening: {
         title: "Semarang Grand Opening",
         items: [
@@ -571,7 +600,34 @@ marketing: {
           { label: "Sales Impact", text: "The Soft Opening weekend alone (May 30–31) brought in USD 11,018.60 in sales." },
           { label: "Pre-Heat Strategy", text: "The pre heat strategy successfully captured strong local demand, with 60% of attendees being first-time buyers." },
         ],
-        galleryImages: ["image/DP1.png", "image/DP2.png", "image/DP3.png", "image/DP4.png", "image/DP5.png", "image/DP6.png"],
+        galleryImages: ["image/DP1.png", "image/DP2.png", "image/DP4.png", "image/DP6.png"],
+       
+        kolHighlight: {
+          title: "Semarang Grand Opening (KOL Highlight)",
+          subtitle: "Creating Local Buzz Through a Two-Phase KOL Activation",
+
+          preEvent: {
+            title: "Pre-Event — Luncheon Experience",
+            text: "We invited 10 selected KOLs to an aesthetic luncheon at one of Semarang’s most Instagrammable cafés. The intimate gathering was designed to introduce VIVAIA to the local audience before the store officially opened, while creating high-quality and visually appealing lifestyle content."
+          },
+
+          grandOpening: {
+            title: "Grand Opening — Store Experience",
+            text: "For the official opening, we invited 15 different KOLs to visit and experience the new VIVAIA store firsthand. Through their content, we extended the conversation from pre-launch awareness into actual store discovery and brand experience."
+          },
+
+          result: {
+            title: "Campaign Result",
+            text: "The combined activation generated 2,200+ new followers during May–June 2026, helping VIVAIA establish stronger brand awareness and a growing local community in Semarang."
+          },
+
+          images: [
+            "image/DPM1.png",
+            "image/DPM2.png",
+            "image/DPM3.png",
+          "image/DPM4.png",
+          ]
+        },
       },
     },
  
