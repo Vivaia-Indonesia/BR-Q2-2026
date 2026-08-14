@@ -1010,6 +1010,21 @@ function galleryHTML(images, altPrefix){
     ${images.map((src,i) => `<div class="gallery-cell">${imgOrPending(src, `${altPrefix} ${i+1}`)}</div>`).join("")}
   </div>`;
 }
+function linkedGalleryHTML(items, altText = "Linked image") {
+  return `
+    <div class="gallery-grid">
+      ${items.map(item => `
+        <div class="gallery-item">
+          <img src="${item.image}" alt="${altText}" loading="lazy">
+          ${item.link && item.link !== "#" && !item.link.startsWith("YOUR_")
+            ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="gallery-link">View here</a>`
+            : ""
+          }
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
  
 /* ============================================================================
    MARKETING — CAMPAIGNS
