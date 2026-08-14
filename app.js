@@ -1025,10 +1025,6 @@ function renderFeelTheComfort(){
     ${tabRowHTML(MARKETING_TABS, "#/marketing/campaigns/feel-the-comfort")}
  
     <div class="section-block">
-      <div class="hero-media">${imgOrPending(d.heroImage, d.title)}</div>
-    </div>
- 
-    <div class="section-block">
       <div class="section-label">Campaign KPIs</div>
       ${statCardsHTML(d.kpis)}
     </div>
