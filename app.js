@@ -1012,12 +1012,14 @@ function galleryHTML(images, altPrefix){
 }
 function linkedGalleryHTML(items, altText = "Linked image") {
   return `
-    <div class="gallery-grid">
-      ${items.map(item => `
-        <div class="gallery-item">
-          <img src="${item.image}" alt="${altText}" loading="lazy">
-          ${item.link && item.link !== "#" && !item.link.startsWith("YOUR_")
-            ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="gallery-link">View here</a>`
+    <div class="linked-gallery-grid">
+      ${items.map((item, i) => `
+        <div class="linked-gallery-item">
+          <div class="linked-gallery-image">
+            <img src="${item.image}" alt="${altText} ${i + 1}" loading="lazy">
+          </div>
+          ${item.link && !item.link.startsWith("YOUR_")
+            ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer" class="link-btn">View here ↗</a>`
             : ""
           }
         </div>
