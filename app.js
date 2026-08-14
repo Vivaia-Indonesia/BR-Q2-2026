@@ -1032,7 +1032,6 @@ function renderFeelTheComfort(){
     <div class="section-block">
       <div class="section-label">KOL Highlight</div>
       ${kolGridHTML(d.kols)}
-      <div class="footnote">${d.kolImageNote}</div>
     </div>
  
     <div class="section-block">
@@ -1281,38 +1280,107 @@ function renderSocialSummary(){
     </div>
     ${tabRowHTML(SOCIAL_TABS, "#/social/summary")}
  
-    <div class="two-col section-block">
-      <div class="card">
-        <div class="card-title">Instagram</div>
-        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
-          <div class="tag-card"><div class="t-label">Avg Impressions</div><div class="t-value" style="font-size:18px;">${d.instagram.avgImpressions}</div></div>
-          <div class="tag-card"><div class="t-label">Avg Account Reach</div><div class="t-value" style="font-size:18px;">${d.instagram.avgAccountReach}</div></div>
-          <div class="tag-card"><div class="t-label">Avg Total Followers</div><div class="t-value" style="font-size:18px;">${d.instagram.avgTotalFollowers}</div></div>
-        </div>
-        <div class="section-label" style="margin-bottom:8px;">Top Performing Instagram Posts</div>
-        <div class="table-wrap"><table class="data" style="min-width:0;">
-          <thead><tr><th>Post</th><th>Total Views</th><th>Total Engagement</th><th>ER</th></tr></thead>
-          <tbody>${d.instagram.topPosts.map(p=>`<tr><td>${p.post}</td><td>${p.totalViews}</td><td>${p.totalEngagement}</td><td>${p.er}</td></tr>`).join("")}</tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <div class="card-title">TikTok</div>
-        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
-          <div class="tag-card"><div class="t-label">Avg Post Views</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgPostViews}</div></div>
-          <div class="tag-card"><div class="t-label">Avg Profile Views</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgProfileViews}</div></div>
-          <div class="tag-card"><div class="t-label">Avg Total Followers</div><div class="t-value" style="font-size:18px;">${d.tiktok.avgTotalFollowers}</div></div>
-        </div>
-        <div class="section-label" style="margin-bottom:8px;">Top Performing TikTok Posts</div>
-        <div class="table-wrap"><table class="data" style="min-width:0;">
-          <thead><tr><th>Content</th><th>Total Views</th><th>Likes</th><th>Share</th><th>ER</th></tr></thead>
-          <tbody>${d.tiktok.topPosts.map(p=>`<tr><td>${p.content}</td><td>${p.totalViews}</td><td>${p.likes}</td><td>${p.share}</td><td>${p.er}</td></tr>`).join("")}</tbody>
-        </table></div>
-      </div>
-    </div>
- 
     <div class="section-block">
-      <div class="callout brand"><strong>Social Media Learning</strong><ul class="bullet-list" style="margin-top:10px;color:#F5E6E1;">${d.learnings.map(l=>`<li style="color:#F5E6E1;">${l}</li>`).join("")}</ul></div>
+
+    <div class="card">
+     <div class="card-title">Instagram</div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
+        <div class="tag-card">
+          <div class="t-label">Avg Impressions</div>
+          <div class="t-value" style="font-size:18px;">${d.instagram.avgImpressions}</div>
+        </div>
+
+        <div class="tag-card">
+          <div class="t-label">Avg Account Reach</div>
+          <div class="t-value" style="font-size:18px;">${d.instagram.avgAccountReach}</div>
+        </div>
+
+        <div class="tag-card">
+          <div class="t-label">Avg Total Followers</div>
+          <div class="t-value" style="font-size:18px;">${d.instagram.avgTotalFollowers}</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-bottom:8px;">
+        Top Performing Instagram Posts
+      </div>
+
+      <div class="table-wrap">
+        <table class="data" style="min-width:0;">
+          <thead>
+            <tr>
+              <th>Post</th>
+              <th>Total Views</th>
+              <th>Total Engagement</th>
+              <th>ER</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${d.instagram.topPosts.map(p=>`
+              <tr>
+                <td>${p.post}</td>
+                <td>${p.totalViews}</td>
+                <td>${p.totalEngagement}</td>
+                <td>${p.er}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title">TikTok</div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:16px;">
+        <div class="tag-card">
+          <div class="t-label">Avg Post Views</div>
+          <div class="t-value" style="font-size:18px;">${d.tiktok.avgPostViews}</div>
+        </div>
+
+        <div class="tag-card">
+          <div class="t-label">Avg Profile Views</div>
+          <div class="t-value" style="font-size:18px;">${d.tiktok.avgProfileViews}</div>
+        </div>
+
+        <div class="tag-card">
+          <div class="t-label">Avg Total Followers</div>
+          <div class="t-value" style="font-size:18px;">${d.tiktok.avgTotalFollowers}</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-bottom:8px;">
+        Top Performing TikTok Posts
+      </div>
+
+      <div class="table-wrap">
+        <table class="data" style="min-width:0;">
+          <thead>
+            <tr>
+              <th>Content</th>
+              <th>Total Views</th>
+              <th>Likes</th>
+              <th>Share</th>
+              <th>ER</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${d.tiktok.topPosts.map(p=>`
+              <tr>
+                <td>${p.content}</td>
+                <td>${p.totalViews}</td>
+                <td>${p.likes}</td>
+                <td>${p.share}</td>
+                <td>${p.er}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
   `;
 }
  
@@ -1357,7 +1425,6 @@ function renderInstagramPosts(){
         { key: "totalEngagement", label: "Total Engagement" },
         { key: "er", label: "ER" },
       ]})}
-      <div class="footnote">${d.linkNote}</div>
     </div>
   `;
 }
@@ -1371,9 +1438,7 @@ function renderTiktokGrowth(){
       <p class="page-sub">${d.subtitle}</p>
     </div>
     ${tabRowHTML(SOCIAL_TABS, "#/social/tiktok-growth")}
- 
-    <div class="flag-callout section-block">ℹ ${d.note}</div>
- 
+  
     <div class="section-block">
       <div class="table-wrap"><table class="data" style="min-width:0;">
         <thead><tr><th>Metric</th><th>Average, Q2 2026 (Apr–Jun)</th></tr></thead>

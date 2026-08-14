@@ -543,7 +543,7 @@ marketing: {
             { label: "Social Media Views", value: "3.2M" },
             { label: "New Followers (Week 1)", value: "2K" },
           ],
-          galleryImages: ["image/PIMKOL1.png", "image/PIMKOL2.png", "image/PIMKOL3.png", "image/PIMKOL4.png", "image/PIMKOL5.png"],
+          galleryImages: ["image/PIMKOL1.png", "image/PIMKOL2.png", "image/PIMKOL3.png", "image/PIMKOL4.png"],
         },
         media: {
           title: "PIM 2 — Media",
@@ -659,7 +659,7 @@ marketing: {
         { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: "image/KOL.png", link: "https://www.instagram.com/reel/DZ_mtCwxClg/" },
       ],
     },
- 
+
     tiktokGrowth: {
       title: "TikTok Q2 2026 Overview",
       subtitle: "Apr – Jun 2026 averages",
