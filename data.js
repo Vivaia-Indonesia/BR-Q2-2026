@@ -465,22 +465,22 @@ marketing: {
         ],
         kols: [
           { name: "Natasha Wilona", followers: "42.8M", profession: "Actress", image: "image/Wilona.png", link: "https://www.instagram.com/reel/DBIqrqjh7oL/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
-          { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: "image/Elina.png" },
+          { name: "Elina Joerg", followers: "5.4M", profession: "Actress", image: "image/Elina.png", link: "https://www.instagram.com/reel/DXZA-13iXNN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
           { name: "Valerie Thomas", followers: "1.4M", profession: "Model/Actress", image: "image/Valerie.png" },
-          { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: "image/Agatha.png" },
-          { name: "Anissa Aziza", followers: "1.4M", profession: "Influencer", image: "image/Anissa.png" },
-          { name: "Shannon Dorothea", followers: "253K", profession: "Fashion/Beauty Creator", image: "image/Shannon.png" },
+          { name: "Agatha Chelsea", followers: "2M", profession: "Actress", image: "image/Agatha.png", link: "https://www.instagram.com/reel/DXOsilNj7jN/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+          { name: "Anissa Aziza", followers: "1.4M", profession: "Influencer", image: "image/Anissa.png", link: "https://www.instagram.com/reel/DXO33_HEYZE/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
+          { name: "Shannon Dorothea", followers: "253K", profession: "Fashion/Beauty Creator", image: "image/Shannon.png", link: "https://www.instagram.com/reel/DXnyLPHP6uG/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
         ],
         globalCampaign: {
           title: "Global Spring 2026 Campaign — Nayeon (TWICE)",
           text: "Nayeon TWICE led our global Spring 2026 campaign. With a mere $5,833 spend, we generated a Media Value of $34,649, proving a highly profitable 5.94x Media ROI. We successfully reached over 18.5 million audiences.",
           stats: [
             { label: "Spend", value: "USD 5K" },
+            { label: "Clippings", value: "20" },
             { label: "Media Value (MIV)", value: "USD 34K" },
             { label: "Media ROI", value: "5.94x" },
             { label: "Reach", value: "18.5M" },
             { label: "Impressions", value: "284K" },
-            { label: "Clippings", value: "20" },
           ],
           media: [
             { tier: "3 Major Fashion & Luxury Media", outlets: ["DEWI", "HerWorld Indonesia", "The Luxury Report"] },
@@ -612,9 +612,9 @@ marketing: {
         avgAccountReach: "504,670",
         avgTotalFollowers: "54,396",
         topPosts: [
-          { post: "Nagita at GO PIM", totalViews: "2.9M", totalEngagement: "76,587", er: "5%" },
-          { post: "Sohee wearing VIVAIA", totalViews: "20K", totalEngagement: "1,237", er: "12%" },
-          { post: "Jennifer Collab Anniv Campaign", totalViews: "107K", totalEngagement: "1,300", er: "4.58%" },
+          { post: "Nagita Slavina at GO PIM", totalViews: "2.9M", totalEngagement: "76,587", er: "5%" },
+          { post: "Han So Hee wearing VIVAIA", totalViews: "20K", totalEngagement: "1,237", er: "12%" },
+          { post: "Jennifer Collab Anniversary Campaign", totalViews: "107K", totalEngagement: "1,300", er: "4.58%" },
         ],
       },
       tiktok: {
@@ -654,7 +654,7 @@ marketing: {
       title: "Instagram Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?img_index=1" },
+        { name: "Nagita Slavina at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?img_index=1" },
         { name: "Han So Hee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: "image/SOHEE.png", link: "https://www.instagram.com/p/DXrBelME8zN/" },
         { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: "image/KOL.png", link: "https://www.instagram.com/reel/DZ_mtCwxClg/" },
       ],
@@ -680,7 +680,7 @@ marketing: {
       title: "TikTok Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "The product", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576" },
+        { name: "The product vs on me", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576" },
         { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: "image/TT2.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7654408815495908628" },
         { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: "image/TT3.png", link: "https://www.tiktok.com/@vivaiaindonesia/video/7649023499696114965" },
       ],

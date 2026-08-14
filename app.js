@@ -1037,8 +1037,30 @@ function renderFeelTheComfort(){
     <div class="section-block">
       <div class="card">
         <div class="card-title">${d.globalCampaign.title}</div>
-        <p style="font-size:13.5px;line-height:1.6;margin:8px 0 16px;">${d.globalCampaign.text}</p>
-        ${statCardsHTML(d.globalCampaign.stats)}
+
+        <p style="font-size:13.5px;line-height:1.6;margin:8px 0 16px;">
+          ${d.globalCampaign.text}
+        </p>
+
+        <div class="campaign-detail">
+
+          <div class="campaign-metrics">
+            ${d.globalCampaign.stats.map(s => `
+              <div class="metric-card">
+                <div class="t-label">${s.label}</div>
+                <div class="t-value">${s.value}</div>
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="campaign-image">
+            <img
+              src="image/Nayeon.png"
+              alt="Feel the Comfort Campaign"
+            >
+          </div>
+
+        </div>
       </div>
     </div>
  
@@ -1379,8 +1401,9 @@ function renderSocialSummary(){
         </table>
       </div>
     </div>
-
-  </div>
+     <div class="section-block">
+      <div class="callout brand"><strong>Social Media Learning</strong><ul class="bullet-list" style="margin-top:10px;color:#F5E6E1;">${d.learnings.map(l=>`<li style="color:#F5E6E1;">${l}</li>`).join("")}</ul></div>
+    </div>
   `;
 }
  
