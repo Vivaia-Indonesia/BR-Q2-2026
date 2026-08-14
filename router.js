@@ -87,9 +87,6 @@ const ROUTES = {
   "#/q3-overview": { render: () => renderEmpty("Q3 Overview"), init: null },
 };
 
-let presentMode = false;
-let presentIndex = 0;
-
 function currentRoute(){
   const h = location.hash || "#/overview";
   return h.split("?")[0];
