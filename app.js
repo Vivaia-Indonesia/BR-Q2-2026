@@ -1182,7 +1182,6 @@ function renderSemarangOpening(){
       <div style="display:flex;flex-direction:column;gap:12px;">
         ${d.items.map(i => `<div class="callout"><strong>${i.label}:</strong> ${i.text}</div>`).join("")}
       </div>
-      <div class="flag-callout" style="margin-top:14px;">ℹ ${d.salesNote}</div>
     </div>
   `;
 }
@@ -1213,7 +1212,6 @@ function renderPrintedMedia(){
             <p>${s.text}</p>
           </div>`).join("")}
       </div>
-      <div class="footnote">${d.linkNote}</div>
     </div>
   `;
 }
@@ -1238,7 +1236,6 @@ function renderMarketingRoi(){
           ${d.rows.map(r=>`<tr><td>${r.period}</td><td>${r.totalSales}</td><td style="font-weight:700;color:var(--brand-deep);">${r.reportedRoi}</td><td>${r.salesPerUnit}</td></tr>`).join("")}
         </tbody>
       </table></div>
-      <div class="footnote">${d.note}</div>
     </div>
  
     <div class="section-block">
@@ -1411,7 +1408,6 @@ function renderTiktokPosts(){
         { key: "share", label: "Share" },
         { key: "er", label: "ER" },
       ]})}
-      <div class="footnote">${d.linkNote}</div>
     </div>
   `;
 }

@@ -488,7 +488,6 @@ marketing: {
             { tier: "1 Mass / Business Media", outlets: ["Beautynesia"] },
           ],
         },
-        heroImage: null,
       },
  
       mothersDay: {
@@ -586,7 +585,7 @@ marketing: {
           { label: "MIV", value: "$3K", text: "Generated an estimated Media Impact Value of ~$3K through premium print editorial exposure." },
           { label: "Premium Editorial Exposure", value: "", text: "Elevated VIVAIA's fashion credibility through a feature in Her World Indonesia, showcasing the Resort 2026 collection." },
         ],
-        coverImage: "image/HW11.png",
+        coverImage: "image/HW1.png",
         spreadImage: "image/HW2.png",
       },
     },
