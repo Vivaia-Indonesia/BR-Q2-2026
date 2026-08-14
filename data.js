@@ -654,11 +654,10 @@ marketing: {
       title: "Instagram Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" },
-        { name: "Han So Hee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: "image/SOHEE.png", link: null },
-        { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: "image/KOL.png", link: null },
+        { name: "Nagita at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?img_index=1" },
+        { name: "Han So Hee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: "image/SOHEE.png", link: "https://www.instagram.com/p/DXrBelME8zN/" },
+        { name: "Jennifer Collab Anniv Campaign", totalEngagement: "1,300", totalViews: "107K", er: "4.58%", image: "image/KOL.png", link: "https://www.instagram.com/reel/DZ_mtCwxClg/" },
       ],
-      linkNote: "Only \"Nagita at GO PIM\" has a confirmed hyperlink in the source deck (the same Instagram post link used on the PIM 2 KOL Highlight slide). No links were found for the other two posts.",
     },
  
     tiktokGrowth: {
@@ -681,9 +680,9 @@ marketing: {
       title: "TikTok Q2 — Highest Performing Posts",
       subtitle: "By Social Media Specialist",
       posts: [
-        { name: "The product", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: null },
-        { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: "image/TT2.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576?lang=en" },
-        { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: "image/TT3.png", link: null },
+        { name: "The product", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576" },
+        { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: "image/TT2.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7654408815495908628" },
+        { name: "GO Semarang", likes: "18", share: "4", totalViews: "850", er: "2.82%", image: "image/TT3.png", link: "https://www.tiktok.com/@vivaiaindonesia/video/7649023499696114965" },
       ],
     },
   },
