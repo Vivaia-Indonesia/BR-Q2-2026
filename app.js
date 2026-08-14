@@ -1174,8 +1174,7 @@ function renderPim2Opening(){
  
     <div class="section-block">
       <div class="section-label">${med.title}</div>
-      ${linkedGalleryHTML(d.media.images)}
-      <div style="margin-top:16px;">${statCardsHTML(med.stats)}</div>
+      ${linkedGalleryHTML(d.media.images, "PIM 2 media coverage")}      <div style="margin-top:16px;">${statCardsHTML(med.stats)}</div>
       <div class="footnote">PR cost: ${med.prCost}</div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
     </div>

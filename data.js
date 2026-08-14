@@ -603,7 +603,7 @@ marketing: {
         galleryImages: ["image/DP1.png", "image/DP2.png", "image/DP4.png", "image/DP6.png"],
        
         kolHighlight: {
-          title: "Semarang Grand Opening (KOL Highlight)",
+          title: "KOL Highlight",
           subtitle: "Creating Local Buzz Through a Two-Phase KOL Activation",
 
           preEvent: {
@@ -623,9 +623,8 @@ marketing: {
 
           images: [
             "image/DPM1.png",
-            "image/DPM2.png",
+            "image/DPM4.png",
             "image/DPM3.png",
-          "image/DPM4.png",
           ]
         },
       },
