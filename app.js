@@ -1211,13 +1211,13 @@ function renderPim2Opening(){
       <div class="section-label">${med.title}</div>
       ${galleryHTML(d.media.images, "PIM 2 media coverage")}
       <div style="margin-top:18px;">
-      ${mediaNewsLinksHTML(med.newsLinks)}
-      </div>
-      <div style="margin-top:16px;">
       ${statCardsHTML(med.stats)}
       </div>
       <div class="footnote">PR cost: ${med.prCost}</div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
+      ${mediaNewsLinksHTML(med.newsLinks)}
+      </div>
+      <div style="margin-top:16px;">
     </div>
   `;
 }
@@ -1481,6 +1481,7 @@ function renderSocialSummary(){
         </table>
       </div>
     </div>
+    <div class="card" style="margin-top:20px;">
      <div class="section-block">
       <div class="callout brand"><strong>Social Media Learning</strong><ul class="bullet-list" style="margin-top:10px;color:#F5E6E1;">${d.learnings.map(l=>`<li style="color:#F5E6E1;">${l}</li>`).join("")}</ul></div>
     </div>
