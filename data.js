@@ -577,18 +577,16 @@ marketing: {
             { tier: "4 Mass / Business Media", outlets: ["Curated Magazine", "Kompas", "Fimela.com", "Suara.com"] },
           ],
           images: [
-            {
-              image: "image/PIMMD1.png",
-              link: "YOUR_MEDIA_LINK_1",
-            },
-            {
-              image: "image/PIMMD2.png",
-              link: "YOUR_MEDIA_LINK_2",
-            },
-            {
-              image: "image/PIMMD3.png",
-              link: "YOUR_MEDIA_LINK_3",
-            },
+              "image/PIMMD1.png",
+              "image/PIMMD2.png",
+              "image/PIMMD3.png",
+              "image/PIMMD4.png",
+          ],
+          newsLinks: [
+            {outlet: "Femina Magazine", url: "https://www.instagram.com/reel/DXloFKlFxvk/?hl=en",},
+            {outlet: "Popbela", url: "https://www.popbela.com/fashion/style-trends/vivaia-hadirkan-flagship-store-pertamanya-di-pondok-indah-mall-2-00-jfych-2pqzmk",},
+            {outlet: "Suara.com", url: "https://www.suara.com/lifestyle/2026/05/05/181046/fungsional-dan-eco-friendly-vivaia-hadirkan-koleksi-kolaborasi-dengan-seniman-prancis",},
+            {outlet: "Kompas", url: "https://lifestyle.kompas.com/read/2026/04/30/191605420/sentuhan-artistik-lea-morichon-warnai-koleksi-healing-garden-di-pembukaan",},
           ],
         },
       },
@@ -707,7 +705,6 @@ marketing: {
  
     instagramTopPosts: {
       title: "Instagram Q2 — Highest Performing Posts",
-      subtitle: "By Social Media Specialist",
       posts: [
         { name: "Nagita Slavina at GO PIM", totalEngagement: "76,587", totalViews: "2.9M", er: "5%", image: "image/GIGI.png", link: "https://www.instagram.com/p/DXk9IUak-OZ/?img_index=1" },
         { name: "Han So Hee wearing VIVAIA", totalEngagement: "1,237", totalViews: "20K", er: "12%", image: "image/SOHEE.png", link: "https://www.instagram.com/p/DXrBelME8zN/" },
@@ -733,7 +730,6 @@ marketing: {
  
     tiktokTopPosts: {
       title: "TikTok Q2 — Highest Performing Posts",
-      subtitle: "By Social Media Specialist",
       posts: [
         { name: "The product vs on me", likes: "29", share: "3", totalViews: "1,246", er: "2.97%", image: "image/TT1.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7645141821714189576" },
         { name: "Summer Sandals", likes: "30", share: "1", totalViews: "1.2K", er: "2.92%", image: "image/TT2.png", link: "https://www.tiktok.com/@vivaiaindonesia/photo/7654408815495908628" },

@@ -1131,3 +1131,39 @@ body.presenting .present-chrome{
 .view-link:hover{
   text-decoration:underline;
 }
+
+.media-news-links{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px 14px;
+}
+
+.media-news-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-s);
+  background:var(--card);
+  color:var(--ink);
+  text-decoration:none;
+  font-size:12.5px;
+}
+
+.media-news-link:hover{
+  background:var(--card-tint);
+}
+
+.media-news-link span:last-child{
+  color:var(--brand-deep);
+  font-weight:700;
+  white-space:nowrap;
+}
+
+@media (max-width:700px){
+  .media-news-links{
+    grid-template-columns:1fr;
+  }
+}

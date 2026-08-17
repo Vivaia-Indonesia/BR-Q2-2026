@@ -1028,6 +1028,24 @@ function linkedGalleryHTML(items, altText = "Linked image") {
   `;
 }
  
+function mediaNewsLinksHTML(links){
+  return `
+    <div class="media-news-links">
+      ${links.filter(x => x.url).map(x => `
+        <a
+          href="${x.url}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="media-news-link"
+        >
+          <span>${x.outlet}</span>
+          <span>View news here ↗</span>
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
+
 /* ============================================================================
    MARKETING — CAMPAIGNS
 ============================================================================ */
@@ -1191,7 +1209,13 @@ function renderPim2Opening(){
  
     <div class="section-block">
       <div class="section-label">${med.title}</div>
-      ${linkedGalleryHTML(d.media.images, "PIM 2 media coverage")}      <div style="margin-top:16px;">${statCardsHTML(med.stats)}</div>
+      ${galleryHTML(d.media.images, "PIM 2 media coverage")}
+      <div style="margin-top:18px;">
+      ${mediaNewsLinksHTML(med.newsLinks)}
+      </div>
+      <div style="margin-top:16px;">
+      ${statCardsHTML(med.stats)}
+      </div>
       <div class="footnote">PR cost: ${med.prCost}</div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
     </div>
@@ -1222,7 +1246,6 @@ function renderSemarangOpening(){
       <div class="page-head" style="margin-bottom:20px;">
         <div class="eyebrow">KOL Highlight</div>
         <h2 class="section-title">${d.kolHighlight.title}</h2>
-        <p class="page-sub">${d.kolHighlight.subtitle}</p>
       </div>
 
       <div class="semarang-kol-layout">
