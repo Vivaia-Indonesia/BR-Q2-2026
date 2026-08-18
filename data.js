@@ -596,22 +596,74 @@ marketing: {
             { label: "MIV", value: "$131K", detail: "Generated an extraordinary Media Impact Value (MIV) of $131,985 from a lean PR cost of just $8,000." },
             { label: "Impressions", value: "964K" },
           ],
-          tiers: [
-            { tier: "5 Major Fashion & Luxury Media", outlets: ["Cosmopolitan Indonesia", "The Luxury Reports", "Femina", "Female Daily Network", "Beauty Journal"] },
-            { tier: "5 Local Fashion & Lifestyle Media", outlets: ["Dewi Magazine", "Elmedia", "Skincapedia", "Wolipop", "Popbela"] },
-            { tier: "4 Mass / Business Media", outlets: ["Curated Magazine", "Kompas", "Fimela.com", "Suara.com"] },
-          ],
+        tiers: [
+          {
+            tier: "5 Major Fashion & Luxury Media",
+              outlets: [
+                {
+                  name: "Cosmopolitan Indonesia",
+                },
+                {
+                name: "The Luxury Reports",
+                },
+                {
+                name: "Femina",
+                link: "https://www.instagram.com/reel/DXloFKlFxvk/?hl=en"
+                },
+                {
+                name: "Female Daily Network",
+                },
+                {
+                name: "Beauty Journal",
+              }
+              ]
+          },
+          {
+            tier: "5 Local Fashion & Lifestyle Media",
+            outlets: [
+              {
+                name: "Dewi Magazine",
+              },
+              {
+                name: "Elmedia",
+              },
+              {
+                name: "Skincapedia",
+              },
+              {
+                name: "Wolipop",
+              },
+              {
+                name: "Popbela",
+                link: "https://www.popbela.com/fashion/style-trends/vivaia-hadirkan-flagship-store-pertamanya-di-pondok-indah-mall-2-00-jfych-2pqzmk"
+              }
+            ]
+          },
+          {
+            tier: "4 Mass / Business Media",
+            outlets: [
+              {
+                name: "Curated Magazine",
+              },
+              {
+                name: "Kompas",
+                link: "https://lifestyle.kompas.com/read/2026/04/30/191605420/sentuhan-artistik-lea-morichon-warnai-koleksi-healing-garden-di-pembukaan"
+              },
+              {
+                name: "Fimela.com",
+              },
+              {
+                name: "Suara.com",
+                link: "https://www.suara.com/lifestyle/2026/05/05/181046/fungsional-dan-eco-friendly-vivaia-hadirkan-koleksi-kolaborasi-dengan-seniman-prancis"
+              },
+            ],
+          },
+        ],
           images: [
               "image/PIMMD1.png",
               "image/PIMMD2.png",
               "image/PIMMD3.png",
               "image/PIMMD4.png",
-          ],
-          newsLinks: [
-            {outlet: "Femina Magazine", url: "https://www.instagram.com/reel/DXloFKlFxvk/?hl=en",},
-            {outlet: "Popbela", url: "https://www.popbela.com/fashion/style-trends/vivaia-hadirkan-flagship-store-pertamanya-di-pondok-indah-mall-2-00-jfych-2pqzmk",},
-            {outlet: "Suara.com", url: "https://www.suara.com/lifestyle/2026/05/05/181046/fungsional-dan-eco-friendly-vivaia-hadirkan-koleksi-kolaborasi-dengan-seniman-prancis",},
-            {outlet: "Kompas", url: "https://lifestyle.kompas.com/read/2026/04/30/191605420/sentuhan-artistik-lea-morichon-warnai-koleksi-healing-garden-di-pembukaan",},
           ],
         },
       },
