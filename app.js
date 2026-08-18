@@ -2294,13 +2294,6 @@ function renderWellnessActivation(){
           }
         }
       </div>
-
-      <div class="retreat-copy">
-        <p class="retreat-text">
-          ${rc.text}
-        </p>
-      </div>
-
     </div>
 
 </div>

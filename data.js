@@ -35,9 +35,9 @@ const DATA = {
     { key: "gmv", label: "GMV", value: "USD 2.64M", growth: 31.3, compareLabel: "vs USD 2.01M Q2 2025", positive: true },
     { key: "units", label: "Units Sold", value: "20,635", growth: 35.7, compareLabel: "vs 15,211 Q2 2025", positive: true },
     { key: "transactions", label: "Transactions", value: "16,866", growth: 27.4, compareLabel: "vs 13,238 Q2 2025", positive: true },
-    { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Jun 2025", positive: true },
-    { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Jun 2025", positive: true },
-    { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Jun 2025", positive: false },
+    { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Q2 2025", positive: true },
+    { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Q2 2025", positive: true },
+    { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Q2 2025", positive: false },
     { key: "ach", label: "ACH.", value: "88%", growth: 16, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
@@ -1077,7 +1077,7 @@ marketing: {
           type: "Local KOL × wellness lifestyle",
           metric: "4,500 likes",
           note: "Event recap with local KOLs · organic",
-          image: null,
+          image: "image/wellkol.png",
           link: "https://www.instagram.com/p/DbACEzyk_Hh/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
 
@@ -1085,7 +1085,7 @@ marketing: {
           type: "Local celebrity × new store opening",
           metric: "958 likes (post) · 119 (reel)",
           note: "Grand Opening PIM 2 — commercial content (post 958 + reel 119, co-post excluded) · organic",
-          image: null,
+          image: "image/wellpim.png",
           link: "https://www.instagram.com/p/DXoNa_nk6WX/"
         },
 
@@ -1093,7 +1093,7 @@ marketing: {
           type: "International celebrity seeding",
           metric: "138 likes",
           note: "Anne Hathaway post · organic",
-          image: null,
+          image: "image/wellanne.png",
           link: "https://www.instagram.com/p/DaPAQSFEzzO/"
         },
 
@@ -1101,16 +1101,10 @@ marketing: {
           type: "Standard product shots",
           metric: "13–25 likes (avg ~19)",
           note: "Product posts · organic",
-          image: null,
+          image: "image/wellshoes.png",
           link: "https://www.instagram.com/p/Db91GvSk0Dm/?img_index=1t"
         }
       ],
-    },
-    retreatRecap: {
-      eyebrow: "Watch the Recap",
-      title: "The retreat in one minute",
-      text: "Sunset yoga above the Jakarta skyline, the jamu bar, the bloom atelier, the floating sound bath — the official 2nd Anniversary recap, as the community lived it.",
-      video: "VIDEO.mov",
     },
   },
  
