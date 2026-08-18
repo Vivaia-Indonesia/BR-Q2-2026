@@ -1050,27 +1050,16 @@ function mediaTiersHTML(tiers){
     ${tiers.map(t => `
       <div class="media-tier-card">
         <div class="media-tier-title">${t.tier}</div>
-
         <ul class="media-tier-list">
           ${t.outlets.map(o => {
-            if (typeof o === "object" && o !== null) {
-              return `
-                <li>
-                  <a
-                    href="${o.link}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    ${o.name}
-                  </a>
-                </li>
-              `;
-            }
+            const name = typeof o === "string" ? o : o.name;
+            const link = typeof o === "string" ? null : o.link;
 
-            return `<li>${o}</li>`;
+            return link
+              ? `<li><a href="${link}" target="_blank" rel="noopener noreferrer">${name}</a></li>`
+              : `<li>${name}</li>`;
           }).join("")}
         </ul>
-
       </div>
     `).join("")}
   </div>`;
