@@ -466,11 +466,54 @@ marketing: {
             { label: "Impressions", value: "284K" },
           ],
           media: [
-            { tier: "3 Major Fashion & Luxury Media", outlets: ["DEWI", "HerWorld Indonesia", "The Luxury Report"] },
-            { tier: "4 Local Fashion & Lifestyle Media", outlets: ["The Editors Club", "Clozette", "Sugar & Cream", "CLARA Indonesia"] },
-            { tier: "1 Mass / Business Media", outlets: ["Beautynesia"] },
-          ],
-        },
+          {
+            tier: "3 Major Fashion & Luxury Media",
+            outlets: [
+              {
+                name: "DEWI",
+                link: "https://www.instagram.com/p/DWWF9MOEr_K/"
+              },
+              {
+                name: "HerWorld Indonesia",
+                link: "https://www.herworld.co.id/article/2026/4/36283-NAYEON-TWICE-Bintangi-Kampanye-VIVAIA-Spring-2026"
+              },
+              {
+                name: "The Luxury Report",
+              }
+            ]
+          },
+          {
+            tier: "4 Local Fashion & Lifestyle Media",
+            outlets: [
+              {
+                name: "The Editors Club",
+                link: "https://theeditors-club.com/nayeon-twice-bintangi-campaign-terbaru-vivaia/"
+              },
+              {
+                name: "Clozette",
+                link: "https://www.instagram.com/p/DWVVl3BlDpd/"
+              },
+              {
+                name: "Sugar & Cream",
+                link: "https://sugarandcream.co/twice-nayeon-fronts-vivaia-spring-2026-campaign-feel-the-comfort-vivaia-nayeon-twice-leamorichon-spring2026campaign-feelthecomfort-onlinemagazine-sugar-sugarandcream-interiormagazine/"
+              },
+              {
+                name: "CLARA Indonesia",
+                link: "https://www.instagram.com/p/DWjUNbTlGky/"
+              }
+            ]
+          },
+          {
+            tier: "1 Mass / Business Media",
+            outlets: [
+              {
+                name: "Beautynesia",
+                link: "https://www.beautynesia.id/fashion/intip-gaya-menawan-nayeon-twice-untuk-vivaia-spring-collection-2026/b-317176"
+              }
+            ]
+          }
+          ]
+        }
       },
  
       mothersDay: {

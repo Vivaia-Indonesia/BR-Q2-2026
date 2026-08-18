@@ -298,7 +298,7 @@ function renderEconomy(){
       <div class="callout brand">
         <strong>${e.holidays.title}</strong> — ${e.holidays.subtitle}<br/><br/>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 16px;">
-          ${e.holidays.items.map(h => `<div><div style="font-weight:700;">${h.date}</div><div>${h.name}</div><div style="opacity:.75;font-size:12px;">${h.note}</div></div>`).join("")}
+          ${e.holidays.items.map(h => `<div><div style="font-weight:700;">${h.date}</div><div>${h.name}</div><div style="opacity:.75;font-size:12px;">${h.note || ""}</div></div>`).join("")}
         </div>
         ${e.holidays.implication}
       </div>
