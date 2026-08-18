@@ -118,7 +118,6 @@ const ROUTES = {
   "#/q3-strategy/loyal-customer": { render: renderQ3LoyalCustomer, init: null, group: "navQ3Strategy" },
   "#/q3-strategy/luxury-experience": { render: renderQ3LuxuryExperience, init: null, group: "navQ3Strategy" },
   "#/q3-strategy/expansion-plan": { render: renderQ3ExpansionPlan, init: null, group: "navQ3Strategy" },
-  "#/q3-strategy/expansion-makassar": { render: renderQ3ExpansionMakassar, init: null, group: "navQ3Strategy" },
   "#/q3-strategy/luxury-brands": { render: renderQ3LuxuryBrands, init: null, group: "navQ3Strategy" },
   "#/q3-strategy/competitors": { render: renderQ3Competitors, init: null, group: "navQ3Strategy" },
   "#/q3-strategy/google-review": { render: renderQ3GoogleReview, init: null, group: "navQ3Strategy" },

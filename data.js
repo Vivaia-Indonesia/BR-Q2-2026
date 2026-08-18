@@ -978,19 +978,19 @@ marketing: {
         { area: "Makassar", count: 1, status: "Plan" },
         { area: "Bali", count: 1, status: "Plan" },
       ],
-    },
-    expansionMakassar: {
-      title: "Expansion Plan: TSM Makassar",
-      bullets: [
-        "Directly beside TUMI, same row as Onitsuka Tiger — only 2 tenants from Coach",
-        "Near the escalator & small atrium — high footfall capture",
-        "Across from Zara, Metro, Kate Spade, Michael Kors and Uniqlo",
-      ],
-      area: "119sqm",
-      targetOpening: "Jan 2027",
-      floorplanImage: null,
-    },
- 
+      expansionMakassar: {
+        title: "Expansion Plan: TSM Makassar",
+        bullets: [
+          "Directly beside TUMI, same row as Onitsuka Tiger — only 2 tenants from Coach",
+          "Near the escalator & small atrium — high footfall capture",
+          "Across from Zara, Metro, Kate Spade, Michael Kors and Uniqlo",
+        ],
+        area: "119sqm",
+        targetOpening: "Jan 2027",
+        floorplanImage: null,
+      },
+    }, 
+    
     luxuryBrands: {
       title: "Relevancy to Luxury Brands",
       subtitle: "Luxury Category",

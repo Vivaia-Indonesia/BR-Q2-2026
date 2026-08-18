@@ -2082,22 +2082,39 @@ function renderQ3ExpansionPlan(){
   `;
 }
  
-function renderQ3ExpansionMakassar(){
-  const d = DATA.q3Strategy.expansionMakassar;
+function renderQ3ExpansionPlan(){
+  const d = DATA.q3Strategy.expansionPlan;
+  const m = DATA.q3Strategy.expansionMakassar;
   return `
     <div class="page-head">
       <div class="eyebrow">Q3 Strategy & Plan</div>
       <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.text}</p>
     </div>
-    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-makassar")}
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-plan")}
  
     <div class="two-col section-block">
-      ${mediaSlot(d.floorplanImage, "TSM Makassar mall floor plan showing the VIVAIA unit location", {height:"auto"})}
-      <div>
-        <ul class="bullet-list">${d.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
-        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px;">
-          <div class="tag-card"><div class="t-label">Area</div><div class="t-value" style="font-size:22px;">${d.area}</div></div>
-          <div class="tag-card"><div class="t-label">Target Opening</div><div class="t-value" style="font-size:22px;">${d.targetOpening}</div></div>
+      ${mediaSlot(d.mapImage, "Indonesia expansion map — Open vs Plan stores", {height:"auto"})}
+      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
+        <thead><tr><th>Area</th><th>Stores</th><th>Status</th></tr></thead>
+        <tbody>
+          ${d.locations.map(l=>`<tr><td>${l.area}</td><td>${l.count}</td><td><span class="priority-pill ${l.status==='Open'?'low':'medium'}">${l.status}</span></td></tr>`).join("")}
+        </tbody>
+      </table></div>
+    </div>
+ 
+    <div class="hairline"></div>
+ 
+    <div class="section-block">
+      <div class="section-label">${m.title}</div>
+      <div class="two-col">
+        ${mediaSlot(m.floorplanImage, "TSM Makassar mall floor plan showing the VIVAIA unit location", {height:"auto"})}
+        <div>
+          <ul class="bullet-list">${m.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+          <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px;">
+            <div class="tag-card"><div class="t-label">Area</div><div class="t-value" style="font-size:22px;">${m.area}</div></div>
+            <div class="tag-card"><div class="t-label">Target Opening</div><div class="t-value" style="font-size:22px;">${m.targetOpening}</div></div>
+          </div>
         </div>
       </div>
     </div>
