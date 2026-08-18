@@ -322,24 +322,6 @@ businessShareChart: [
     total: { qtyQ2: 9794, gmvQ2: 1344, contribQ2: 50.8, qtyLY: 6351, growth: 58.0, gmvLY: 850, contribLY: 42.2 },
     insight: "Top 3 best sellers contribute 30.0% to total GMV. This shows high dependency on those styles.",
   },
-  slowMovers: {
-    subtitle: "Bottom 10 slow movers — units sold in June 2026 vs June 2025",
-    items: [
-      { rank: 1, name: "Skyler", image: "image/Skyler.png", qtyJun: 1, gmvJun: 0.13, isNew: true },
-      { rank: 2, name: "Aimee", image: "image/Aimee.png", qtyJun: 1, gmvJun: 0.13, isNew: true },
-      { rank: 3, name: "Kamber", image: "image/Kamber.png", qtyJun: 1, gmvJun: 0.13, isNew: true },
-      { rank: 4, name: "Liana", image: "image/Liana.png", qtyJun: 1, gmvJun: 0.14, qtyLY: 2, gmvLY: 0.24, growth: -41.5 },
-      { rank: 5, name: "Hatty", image: "image/Hatty.png", qtyJun: 1, gmvJun: 0.14, isNew: true },
-      { rank: 6, name: "Georgia", image: "image/Georgia.png", qtyJun: 2, gmvJun: 0.30, qtyLY: 11, gmvLY: 1.19, growth: -95.3 },
-      { rank: 7, name: "Tila", image: "image/Tila.png", qtyJun: 3, gmvJun: 0.31, isNew: true },
-      { rank: 8, name: "Ryan Slip-On", image: "image/Ryan.png", qtyJun: 3, gmvJun: 0.35, qtyLY: 43, gmvLY: 7.41, growth: -71.0 },
-      { rank: 9, name: "Natalie", image: "image/Natalie.png", qtyJun: 3, gmvJun: 0.40, isNew: true },
-      { rank: 10, name: "Aria Walker", image: "image/Aria.png", qtyJun: 4, gmvJun: 0.44, qtyLY: 8, gmvLY: 1.52, growth: -74.6 },
-    ],
-    total: { qtyJun: 20, gmvJun: 2.47, qtyLY: 64, gmvLY: 10.36, growth: -76.1 },
-    insight: "Bottom 10 are mostly new articles with only 1 unit sold — limited sell-through. Georgia (-95.3%) and Aria Walker (-74.6%) declining sharply.",
-    gmvUnit: "USD (not K)",
-  },
 
   sizeAnalysis: {
     subtitle: "EU size distribution (Q2'26 vs Q2'25) with sell-through velocity & strategic buying recommendations",

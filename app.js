@@ -47,7 +47,6 @@ const NAV_TREE = {
   "#/business/promotion-overview": { label: "Q2 Promotion Overview", parent: "Business Overview" },
   "#/merchandise/overview": { label: "Q2 Performance", parent: "Merchandise" },
   "#/merchandise/best-sellers": { label: "Best Sellers", parent: "Merchandise" },
-  "#/merchandise/slow-movers": { label: "Slow Movers", parent: "Merchandise" },
   "#/merchandise/size-analysis": { label: "Size Analysis", parent: "Merchandise" },
   "#/marketing": { label: "Marketing" },
   "#/social": { label: "Social Media Insights" },
@@ -68,7 +67,6 @@ const BUSINESS_TABS = [
 const MERCH_TABS = [
   ["#/merchandise/overview", "Q2 Performance"],
   ["#/merchandise/best-sellers", "Best Sellers"],
-  ["#/merchandise/slow-movers", "Slow Movers"],
   ["#/merchandise/size-analysis", "Size Analysis"],
 ];
 const PROMO_TABS = [
@@ -662,16 +660,13 @@ function productThumbHTML(item){
     ? `<div class="product-thumb"><img src="${item.image}" alt="${item.name}" loading="lazy"></div>`
     : `<div class="product-thumb empty">No image</div>`;
 }
-function productRow(item, isSlow){
-  const qty = isSlow ? item.qtyJun : item.qtyQ2;
-  const gmv = isSlow ? item.gmvJun : item.gmvQ2;
-  const gmvLabel = isSlow ? fmtUSDDec(gmv) : fmtM(gmv);
-  return `<div class="product-row" data-panel="product" data-key="${isSlow?'slow':'best'}-${item.rank}">
+function productRow(item){
+  return `<div class="product-row" data-panel="product" data-key="best-${item.rank}">
     <div class="rank">${item.rank}</div>
     ${productThumbHTML(item)}
     <div class="name">${item.name}</div>
-    <div class="num">${fmtNum(qty)}</div>
-    <div class="num">${gmvLabel}</div>
+    <div class="num">${fmtNum(item.qtyQ2)}</div>
+    <div class="num">${fmtM(item.gmvQ2)}</div>
     <div class="num">${item.isNew ? '<span class="pill">New</span>' : growthSpan(item.growth)}</div>
     <div class="num">${item.contribQ2 ? item.contribQ2+'%' : ''}</div>
     <div class="chev">›</div>
@@ -700,60 +695,82 @@ function renderBestSellers(){
     </div>
   `;
 }
-function renderSlowMovers(){
-  const d = DATA.slowMovers;
-  return `
-    <div class="page-head">
-      <div class="eyebrow">Merchandise</div>
-      <h1 class="page-title">Slow Movers</h1>
-      <p class="page-sub">${d.subtitle}</p>
-    </div>
-    ${tabRowHTML(MERCH_TABS, "#/merchandise/slow-movers")}
-
-    <div class="callout section-block">${d.insight}</div>
-
-    <div class="product-head"><span></span><span></span><span>Article</span><span>Qty Jun'26</span><span>GMV Jun'26 (USD)</span><span>YoY</span><span>Contrib.</span><span></span></div>
-    <div class="product-list">
-      ${d.items.map(i=>productRow(i, true)).join("")}
-      <div class="product-row" style="cursor:default;font-weight:700;background:var(--card-tint);">
-        <div class="rank"></div><div></div><div class="name">Bottom 10 Total</div>
-        <div class="num">${fmtNum(d.total.qtyJun)}</div><div class="num">${fmtUSDDec(d.total.gmvJun)}</div>
-        <div class="num">${growthSpan(d.total.growth)}</div><div class="num"></div><div class="chev"></div>
-      </div>
-    </div>
-  `;
-}
 function renderProductDetail(id){
-  const [kind, rankStr] = id.split("-");
-  const isSlow = kind === "slow";
-  const src = isSlow ? DATA.slowMovers : DATA.bestSellers;
+  const rankStr = id.replace("best-", "");
+  const src = DATA.bestSellers;
   const item = src.items.find(i => String(i.rank) === rankStr);
+
   if (!item) return `<div class="callout">Product not found.</div>`;
-  const qty = isSlow ? item.qtyJun : item.qtyQ2;
-  const gmv = isSlow ? item.gmvJun : item.gmvQ2;
-  const qtyLY = item.qtyLY, gmvLY = item.gmvLY;
-  const gmvFmt = isSlow ? fmtUSDDec : fmtM;
+
+  const qty = item.qtyQ2;
+  const gmv = item.gmvQ2;
+  const qtyLY = item.qtyLY;
+  const gmvLY = item.gmvLY;
+
   return `
     <button class="panel-back" data-panel-back="1">‹ Back</button>
-    <div class="panel-eyebrow">${isSlow ? "Slow mover" : "Best seller"} · Rank #${item.rank}</div>
+    <div class="panel-eyebrow">Best seller · Rank #${item.rank}</div>
     <h2 class="panel-title">${item.name}</h2>
+
     ${item.image ? `<div class="panel-product-image"><img src="${item.image}" alt="${item.name}"></div>` : ""}
+
     <div class="panel-kpis">
-      <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:24px;">${fmtNum(qty)}</div>${item.isNew?'<span class="pill">New article</span>':growthSpan(item.growth)}</div>
-      <div class="tag-card"><div class="t-label">GMV</div><div class="t-value" style="font-size:24px;">${gmvFmt(gmv)}</div>${item.contribQ2?`<div class="t-compare">${item.contribQ2}% of total GMV</div>`:''}</div>
+      <div class="tag-card">
+        <div class="t-label">Units Sold</div>
+        <div class="t-value" style="font-size:24px;">${fmtNum(qty)}</div>
+        ${item.isNew ? '<span class="pill">New article</span>' : growthSpan(item.growth)}
+      </div>
+
+      <div class="tag-card">
+        <div class="t-label">GMV</div>
+        <div class="t-value" style="font-size:24px;">${fmtM(gmv)}</div>
+        ${item.contribQ2 ? `<div class="t-compare">${item.contribQ2}% of total GMV</div>` : ""}
+      </div>
     </div>
+
     ${!item.isNew ? `
-    <div class="card">
-      <div class="card-title">Year-on-Year Comparison</div>
-      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
-        <thead><tr><th></th><th>${isSlow?"Jun 2026":"Q2 2026"}</th><th>${isSlow?"Jun 2025":"Q2 2025"}</th></tr></thead>
-        <tbody>
-          <tr><td>Units Sold</td><td>${fmtNum(qty)}</td><td>${fmtNum(qtyLY)}</td></tr>
-          <tr><td>GMV</td><td>${gmvFmt(gmv)}</td><td>${gmvFmt(gmvLY)}</td></tr>
-          ${item.contribQ2 !== undefined ? `<tr><td>Contribution to Total GMV</td><td>${item.contribQ2}%</td><td>${item.contribLY}%</td></tr>` : ``}
-        </tbody>
-      </table></div>
-    </div>` : `<div class="callout">New article in Q2 2026 — no Q2 2025 comparison available.</div>`}
+      <div class="card">
+        <div class="card-title">Year-on-Year Comparison</div>
+
+        <div class="table-wrap">
+          <table class="data" style="width:100%;min-width:0;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Q2 2026</th>
+                <th>Q2 2025</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Units Sold</td>
+                <td>${fmtNum(qty)}</td>
+                <td>${fmtNum(qtyLY)}</td>
+              </tr>
+
+              <tr>
+                <td>GMV</td>
+                <td>${fmtM(gmv)}</td>
+                <td>${fmtM(gmvLY)}</td>
+              </tr>
+
+              ${item.contribQ2 !== undefined ? `
+                <tr>
+                  <td>Contribution to Total GMV</td>
+                  <td>${item.contribQ2}%</td>
+                  <td>${item.contribLY}%</td>
+                </tr>
+              ` : ""}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ` : `
+      <div class="callout">
+        New article in Q2 2026 — no Q2 2025 comparison available.
+      </div>
+    `}
   `;
 }
 
