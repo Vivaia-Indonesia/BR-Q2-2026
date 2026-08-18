@@ -570,7 +570,6 @@ marketing: {
             { label: "MIV", value: "$131K", detail: "Generated an extraordinary Media Impact Value (MIV) of $131,985 from a lean PR cost of just $8,000." },
             { label: "Impressions", value: "964K" },
           ],
-          prCost: "$8,000",
           tiers: [
             { tier: "5 Major Fashion & Luxury Media", outlets: ["Cosmopolitan Indonesia", "The Luxury Reports", "Femina", "Female Daily Network", "Beauty Journal"] },
             { tier: "5 Local Fashion & Lifestyle Media", outlets: ["Dewi Magazine", "Elmedia", "Skincapedia", "Wolipop", "Popbela"] },

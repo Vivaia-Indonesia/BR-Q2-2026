@@ -57,6 +57,7 @@ const NAV_TREE = {
 
 const BUSINESS_TABS = [
   ["#/business/economy", "Economic Overview"],
+  ["#/business/sales-overview", "Sales Overview"],
   ["#/business/independent-stores", "Independent Stores"],
   ["#/business/department-stores", "Department Stores"],
   ["#/business/q2-vs-q1", "Q2 vs Q1"],
@@ -118,7 +119,7 @@ const CBRAND = "#8B4F42", CGOLD="#B8863E", CPOS="#4B7A5C", CNEG="#B2483A", CLINE
 /* ============================================================================
    OVERVIEW
 ============================================================================ */
-function renderOverview(){
+function renderSalesOverview(){
   const kpiCards = DATA.kpis.map(k => `
     <div class="tag-card">
       <div class="t-label">${k.label}</div>
@@ -135,9 +136,9 @@ function renderOverview(){
 
   return `
     <div class="page-head">
-      <div class="eyebrow">${DATA.meta.period} · Figures in ${DATA.meta.currency}</div>
-      <h1 class="page-title">VIVAIA Indonesia<br/>Q2 2026 Business Review</h1>
-      <p class="page-sub">${DATA.kpiHeadline}. A comprehensive look at Business Overview, Merchandise, and Promotions performance across VIVAIA's Indonesia store network.</p>
+      <div class="eyebrow">Business Overview</div>
+      <h1 class="page-title">Sales Overview</h1>
+      <p class="page-sub">Q2 2026 sales performance across VIVAIA's Indonesia store network.</p>
     </div>
 
     <div class="section-block">
@@ -148,16 +149,6 @@ function renderOverview(){
     <div class="section-block">
       <div class="section-label">Executive Insights</div>
       <div class="insight-grid">${insightCards}</div>
-    </div>
-
-    <div class="section-block">
-      <div class="section-label">Explore</div>
-      <div class="insight-grid" style="grid-template-columns:repeat(4,1fr);">
-        ${exploreCard("Business Overview","Economy, channel mix, independent vs. department store performance and diagnosis.","#/business/economy")}
-        ${exploreCard("Merchandise","Best sellers, slow movers, and size analysis.","#/merchandise/overview")}
-        ${exploreCard("Promotions","Multi-pair, anniversary clearance, buy 3 get 1, and mystery gift results.","#/promotions/multi-pair")}
-        ${exploreCard("Present","Step through the full review in presentation mode.","__present__")}
-      </div>
     </div>
 
     <div class="section-block">
@@ -1213,9 +1204,8 @@ function renderPim2Opening(){
       <div style="margin-top:18px;">
       ${statCardsHTML(med.stats)}
       </div>
-      <div class="footnote">PR cost: ${med.prCost}</div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
-      ${mediaNewsLinksHTML(med.newsLinks)}
+      <div style="margin-top:20px;">${mediaNewsLinksHTML(med.newsLinks)}
       </div>
       <div style="margin-top:16px;">
     </div>
@@ -1245,7 +1235,7 @@ function renderSemarangOpening(){
 
       <div class="page-head" style="margin-bottom:20px;">
         <div class="eyebrow">KOL Highlight</div>
-        <h2 class="section-title">${d.kolHighlight.title}</h2>
+        <p class="page-sub">${d.kolHighlight.subtitle}</p>
       </div>
 
       <div class="semarang-kol-layout">

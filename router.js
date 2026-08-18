@@ -59,8 +59,8 @@ const SIDEBAR_HTML = `
   `;
 
 const ROUTES = {
-  "#/overview": {  render: renderOverview,  init: initBusinessShareChart },
   "#/business/economy": { render: renderEconomy, init: initEconomyCharts, group: "navBusiness" },
+  "#/business/sales-overview": { render: renderSalesOverview, init: initBusinessShareChart, group: "navBusiness" },
   "#/business/independent-stores": { render: renderIndependentStores, init: ()=>initChannelTrendChart("independent"), group: "navBusiness" },
   "#/business/department-stores": { render: renderDepartmentStores, init: ()=>initChannelTrendChart("department"), group: "navBusiness" },
   "#/business/q2-vs-q1": { render: renderQ2vsQ1, init: null, group: "navBusiness" },
