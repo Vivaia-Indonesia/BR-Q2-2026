@@ -968,9 +968,36 @@ function initPromoOverviewChart() {
         },
 
         textStrokeColor: "#000000",
-        textStrokeWidth: 2,
+        textStrokeWidth: 1,
 
-        formatter: (value) => `${value}%`
+        formatter: (value) => `${value}%`,
+
+        anchor: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+          return value < 4 ? "end" : "center";
+        },
+
+        align: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+          return value < 4 ? "end" : "center";
+        },
+
+        offset: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+
+          if (value >= 4) return 0;
+
+          const index = context.dataIndex;
+          return 8 + (index % 3) * 6;
+        },
+
+        clamp: true,
+        clip: false,
+
+        display: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+          return value >= 0.5;
+        }
       },  
 
         tooltip: {
