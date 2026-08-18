@@ -42,11 +42,40 @@ const SIDEBAR_HTML = `
           ${SOCIAL_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
         </div>
       </div>
-      <div class="nav-group">
-        <button class="nav-item" data-nav="#/hr">HR <span class="nav-empty-dot" title="Not in source deck"></span></button>
+      <div class="nav-group" id="navVM">
+        <button class="nav-item" data-toggle-group="navVM">
+          <span>VM Update</span><span class="nav-caret">▸</span>
+        </button>
+        <div class="nav-sub">
+          ${VM_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+        </div>
+      </div>
+      <div class="nav-group" id="navOperational">
+        <button class="nav-item" data-toggle-group="navOperational">
+          <span>Operational Update</span><span class="nav-caret">▸</span>
+        </button>
+        <div class="nav-sub">
+          ${OPERATIONAL_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+        </div>
+      </div>
+      <div class="nav-group" id="navPeople">
+        <button class="nav-item" data-toggle-group="navPeople">
+          <span>People Update</span><span class="nav-caret">▸</span>
+        </button>
+        <div class="nav-sub">
+          ${PEOPLE_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+        </div>
+      </div>
+      <div class="nav-group" id="navQ3Strategy">
+        <button class="nav-item" data-toggle-group="navQ3Strategy">
+          <span>Q3 Strategy & Plan</span><span class="nav-caret">▸</span>
+        </button>
+        <div class="nav-sub">
+          ${Q3_STRATEGY_TABS.map(([r,l])=>`<button class="nav-item" data-nav="${r}">${l}</button>`).join("")}
+        </div>
       </div>
       <div class="nav-group">
-        <button class="nav-item" data-nav="#/q3-overview">Q3 Overview <span class="nav-empty-dot" title="Not in source deck"></span></button>
+        <button class="nav-item" data-nav="#/wellness/activation">Indonesia Wellness Activation</button>
       </div>
       </div>
     </nav>
@@ -79,8 +108,22 @@ const ROUTES = {
   "#/social/instagram-posts": { render: renderInstagramPosts, init: null, group: "navSocial" },
   "#/social/tiktok-growth": { render: renderTiktokGrowth, init: null, group: "navSocial" },
   "#/social/tiktok-posts": { render: renderTiktokPosts, init: null, group: "navSocial" },
-  "#/hr": { render: () => renderEmpty("HR"), init: null },
-  "#/q3-overview": { render: () => renderEmpty("Q3 Overview"), init: null },
+  "#/vm-update/training": { render: renderVMTraining, init: null, group: "navVM" },
+  "#/operational/key-highlights": { render: renderOperationalKeyHighlights, init: null, group: "navOperational" },
+  "#/operational/activities": { render: renderOperationalActivities, init: null, group: "navOperational" },
+  "#/people/manpower": { render: renderPeopleManpower, init: initManpowerChart, group: "navPeople" },
+  "#/people/pipeline": { render: renderPeoplePipeline, init: null, group: "navPeople" },
+  "#/q3-strategy/action-plan": { render: renderQ3ActionPlan, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/training-plan": { render: renderQ3TrainingPlan, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/loyal-customer": { render: renderQ3LoyalCustomer, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/luxury-experience": { render: renderQ3LuxuryExperience, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/expansion-plan": { render: renderQ3ExpansionPlan, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/expansion-makassar": { render: renderQ3ExpansionMakassar, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/luxury-brands": { render: renderQ3LuxuryBrands, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/competitors": { render: renderQ3Competitors, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/google-review": { render: renderQ3GoogleReview, init: null, group: "navQ3Strategy" },
+  "#/q3-strategy/public-figures": { render: renderQ3PublicFigures, init: null, group: "navQ3Strategy" },
+  "#/wellness/activation": { render: renderWellnessActivation, init: null },
 };
 
 let presentMode = false;

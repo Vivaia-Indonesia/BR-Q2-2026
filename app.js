@@ -48,10 +48,34 @@ const NAV_TREE = {
   "#/merchandise/overview": { label: "Q2 Performance", parent: "Merchandise" },
   "#/merchandise/best-sellers": { label: "Best Sellers", parent: "Merchandise" },
   "#/merchandise/size-analysis": { label: "Size Analysis", parent: "Merchandise" },
-  "#/marketing": { label: "Marketing" },
-  "#/social": { label: "Social Media Insights" },
-  "#/hr": { label: "HR" },
-  "#/q3-overview": { label: "Q3 Overview" },
+  "#/marketing/campaigns/feel-the-comfort": { label: "Feel The Comfort", parent: "Marketing" },
+  "#/marketing/campaigns/mothers-day": { label: "Mother's Day Campaign", parent: "Marketing" },
+  "#/marketing/campaigns/sixth-anniversary": { label: "6th Anniversary Campaign", parent: "Marketing" },
+  "#/marketing/events/pim2-opening": { label: "PIM 2 Grand Opening", parent: "Marketing" },
+  "#/marketing/events/semarang-opening": { label: "Semarang Grand Opening", parent: "Marketing" },
+  "#/marketing/printed-media": { label: "Printed Media", parent: "Marketing" },
+  "#/marketing/roi": { label: "Marketing ROI", parent: "Marketing" },
+  "#/social/summary": { label: "Q2 Social Media Summary", parent: "Social Media" },
+  "#/social/instagram-growth": { label: "Instagram Growth", parent: "Social Media" },
+  "#/social/instagram-posts": { label: "Instagram Top Posts", parent: "Social Media" },
+  "#/social/tiktok-growth": { label: "TikTok Growth", parent: "Social Media" },
+  "#/social/tiktok-posts": { label: "TikTok Top Posts", parent: "Social Media" },
+  "#/vm-update/training": { label: "VM Training", parent: "VM Update" },
+  "#/operational/key-highlights": { label: "Q2 Key Highlights", parent: "Operational Update" },
+  "#/operational/activities": { label: "Activities & Team Development", parent: "Operational Update" },
+  "#/people/manpower": { label: "Manpower — Q2 vs Q1", parent: "People Update" },
+  "#/people/pipeline": { label: "Pipeline — Q3", parent: "People Update" },
+  "#/q3-strategy/action-plan": { label: "Operational Action Plan", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/training-plan": { label: "People Training & Development", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/loyal-customer": { label: "Loyal Customer Deep Dive", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/luxury-experience": { label: "Elevating Luxury Experience", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/expansion-plan": { label: "Expansion Plan", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/expansion-makassar": { label: "Expansion Plan: TSM Makassar", parent: "Q3 Strategy & Plan" },
+  "#/q3-strategy/luxury-brands": { label: "Relevancy to Luxury Brands", parent: "Where Are We" },
+  "#/q3-strategy/competitors": { label: "Relevancy to Competitors", parent: "Where Are We" },
+  "#/q3-strategy/google-review": { label: "Google Review Enhancement", parent: "Where Are We" },
+  "#/q3-strategy/public-figures": { label: "Indonesia Public Figures in VIVAIA", parent: "Where Are We" },
+  "#/wellness/activation": { label: "Indonesia Wellness Activation" },
 };
 
 const BUSINESS_TABS = [
@@ -88,6 +112,30 @@ const SOCIAL_TABS = [
   ["#/social/instagram-posts", "Instagram Top Posts"],
   ["#/social/tiktok-growth", "TikTok Growth"],
   ["#/social/tiktok-posts", "TikTok Top Posts"],
+];
+
+const VM_TABS = [
+  ["#/vm-update/training", "VM Training"],
+];
+const OPERATIONAL_TABS = [
+  ["#/operational/key-highlights", "Q2 Key Highlights"],
+  ["#/operational/activities", "Activities & Team Development"],
+];
+const PEOPLE_TABS = [
+  ["#/people/manpower", "Manpower — Q2 vs Q1"],
+  ["#/people/pipeline", "Pipeline — Q3"],
+];
+const Q3_STRATEGY_TABS = [
+  ["#/q3-strategy/action-plan", "Operational Action Plan"],
+  ["#/q3-strategy/training-plan", "People Training & Development"],
+  ["#/q3-strategy/loyal-customer", "Loyal Customer Deep Dive"],
+  ["#/q3-strategy/luxury-experience", "Elevating Luxury Experience"],
+  ["#/q3-strategy/expansion-plan", "Expansion Plan"],
+  ["#/q3-strategy/expansion-makassar", "TSM Makassar"],
+  ["#/q3-strategy/luxury-brands", "Relevancy to Luxury Brands"],
+  ["#/q3-strategy/competitors", "Relevancy to Competitors"],
+  ["#/q3-strategy/google-review", "Google Review Enhancement"],
+  ["#/q3-strategy/public-figures", "Public Figures in VIVAIA"],
 ];
 
 function tabRowHTML(tabs, current){
@@ -1655,8 +1703,558 @@ function renderTiktokPosts(){
 }
 
 /* ============================================================================
-   EMPTY STATE (sections not present in the source deck)
+   MEDIA HELPERS — honest "pending upload" placeholder, never a fake path
 ============================================================================ */
+function mediaSlot(src, alt, opts={}){
+  const cls = opts.cls || "";
+  const h = opts.height ? `style="height:${opts.height};"` : "";
+  if (src) return `<div class="media-slot ${cls}" ${h}><img src="${src}" alt="${esc(alt)}" loading="lazy"></div>`;
+  return `<div class="media-slot placeholder ${cls}" ${h}><span>Image pending upload${alt ? ' — ' + esc(alt) : ''}</span></div>`;
+}
+ 
+/* ============================================================================
+   VM UPDATE
+============================================================================ */
+function renderVMTraining(){
+  const d = DATA.visualMerchandising.training;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">VM Update</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">From VM guideline refresh to hands-on store execution, closing the loop with a measurable scorecard result.</p>
+    </div>
+    ${tabRowHTML(VM_TABS, "#/vm-update/training")}
+ 
+    <div class="two-col section-block">
+      ${mediaSlot(d.image, d.imageAlt, {height:"auto"})}
+      <div class="vm-step-flow">
+        ${d.steps.map((s,i)=>`
+          <div class="vm-step-card">
+            <div class="vm-step-num">${s.step}</div>
+            <div>
+              <div class="vm-step-label">${s.label}</div>
+              <div class="vm-step-text">${s.text}</div>
+            </div>
+          </div>
+          ${i < d.steps.length-1 ? `<div class="vm-step-arrow">→</div>` : ``}
+        `).join("")}
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="vm-result-card">
+        <div class="vm-result-label">${d.result.label}</div>
+        <div class="vm-result-text">${d.result.text}</div>
+        <div class="vm-result-bars">
+          <div class="vm-result-bar-item">
+            <div class="vm-result-bar-track"><div class="vm-result-bar-fill june" style="width:${d.result.juneScore}%;"></div></div>
+            <div class="vm-result-bar-caption">June — ${d.result.juneScore}</div>
+          </div>
+          <div class="vm-result-bar-item">
+            <div class="vm-result-bar-track"><div class="vm-result-bar-fill july" style="width:${d.result.julyScore}%;"></div></div>
+            <div class="vm-result-bar-caption">July — ${d.result.julyScore} <span class="pos">▲ +${d.result.changePct}%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   OPERATIONAL UPDATE
+============================================================================ */
+function renderOperationalKeyHighlights(){
+  const d = DATA.operational.keyHighlights;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Operational Update</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(OPERATIONAL_TABS, "#/operational/key-highlights")}
+ 
+    <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${d.cards.map(c=>`
+        <div class="card">
+          <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px;">
+            <span style="font-family:var(--serif);font-size:22px;color:var(--label);font-weight:700;">${c.num}</span>
+            <div class="card-title" style="font-size:15px;">${c.title}</div>
+          </div>
+          <p style="font-size:13px;line-height:1.6;margin:0 0 12px;">${c.text}</p>
+          <div class="flag-callout" style="background:var(--card-tint);border-left-color:var(--positive);">
+            <strong>Impact:</strong> ${c.impact}
+          </div>
+        </div>`).join("")}
+    </div>
+ 
+    <div class="section-block">
+      <div class="callout brand"><strong>${d.summary}</strong></div>
+    </div>
+  `;
+}
+ 
+function renderOperationalActivities(){
+  const d = DATA.operational.activities;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Operational Update</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">Six workstreams Store Managers ran this quarter to lift team capability and store performance.</p>
+    </div>
+    ${tabRowHTML(OPERATIONAL_TABS, "#/operational/activities")}
+ 
+    <div class="two-col section-block">
+      <div class="milestone-list">
+        ${d.items.map(it=>`
+          <div class="milestone-card">
+            <div class="milestone-num">${it.num}</div>
+            <div>
+              <div class="milestone-title">${it.title}</div>
+              <div class="milestone-text">${it.text}</div>
+            </div>
+          </div>`).join("")}
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        ${mediaSlot(d.image, d.imageAlt, {height:"180px"})}
+        <div class="card">
+          <div class="card-title" style="font-size:15px;">Execution Model</div>
+          <p style="font-size:13px;line-height:1.6;margin:8px 0 0;">${d.executionModel}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   PEOPLE UPDATE (renamed from HR)
+============================================================================ */
+function renderPeopleManpower(){
+  const d = DATA.people.manpower;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">People Update</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(PEOPLE_TABS, "#/people/manpower")}
+ 
+    <div class="two-col section-block">
+      <div class="card">
+        <div class="card-title">Placement</div>
+        <div class="card-note">March vs June headcount</div>
+        <div class="chart-wrap"><canvas id="chartManpower"></canvas></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="tag-card"><div class="t-label">Total — March (Q1)</div><div class="t-value" style="font-size:26px;">${d.totalMarch}</div><div class="t-compare">Head Quarter + Store</div></div>
+          <div class="tag-card"><div class="t-label">Total — June (Q2)</div><div class="t-value" style="font-size:26px;">${d.totalJune}</div>${growthPillHTML(d.growthPct)}</div>
+        </div>
+        <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
+          <thead><tr><th>Placement</th><th>March</th><th>June</th></tr></thead>
+          <tbody>
+            ${d.categories.map(c=>`<tr><td>${c.label}</td><td>${c.march}</td><td>${c.june}</td></tr>`).join("")}
+            <tr class="total-row"><td>Total</td><td>${d.totalMarch}</td><td>${d.totalJune}</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout"><strong>+${d.growthPct}% headcount growth.</strong> ${d.summary}</div>
+      </div>
+    </div>
+  `;
+}
+function initManpowerChart(){
+  killChart("manpower");
+  const d = DATA.people.manpower;
+  const el = document.getElementById("chartManpower");
+  if (!el) return;
+  charts.manpower = new Chart(el, {
+    type: "bar",
+    data: {
+      labels: d.categories.map(c=>c.label),
+      datasets: [
+        { label: "March", data: d.categories.map(c=>c.march), backgroundColor: "#3D6B7D" },
+        { label: "June", data: d.categories.map(c=>c.june), backgroundColor: "#D08A4F" },
+      ],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 11 } } } },
+      scales: { y: { grid: { color: CLINE }, beginAtZero: true }, x: { grid: { display: false } } },
+    }
+  });
+}
+ 
+function pipelineCardHTML(card){
+  return `
+    <div class="pipeline-card">
+      <div class="pipeline-role">${card.role}${card.isNew ? '<span class="pill" style="margin-left:8px;">New</span>' : ''}</div>
+      ${card.detail ? `<div class="pipeline-detail">${card.detail}</div>` : ''}
+      ${card.timing ? `<div class="pipeline-timing">${card.timing}</div>` : ''}
+    </div>`;
+}
+function renderPeoplePipeline(){
+  const d = DATA.people.pipeline;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">People Update</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">Confirmed hires, upcoming pipeline, and team changes for Q3.</p>
+    </div>
+    ${tabRowHTML(PEOPLE_TABS, "#/people/pipeline")}
+ 
+    <div class="pipeline-grid">
+      <div class="pipeline-col">
+        <div class="pipeline-col-head onboard">
+          <div class="pipeline-col-title">${d.onBoard.label}</div>
+          <div class="pipeline-col-note">${d.onBoard.note}</div>
+        </div>
+        ${d.onBoard.cards.map(pipelineCardHTML).join("")}
+      </div>
+      <div class="pipeline-col">
+        <div class="pipeline-col-head pipeline">
+          <div class="pipeline-col-title">${d.pipeline.label}</div>
+          <div class="pipeline-col-note">${d.pipeline.note}</div>
+        </div>
+        ${d.pipeline.cards.map(pipelineCardHTML).join("")}
+      </div>
+      <div class="pipeline-col">
+        <div class="pipeline-col-head exit">
+          <div class="pipeline-col-title">${d.exit.label}</div>
+          <div class="pipeline-col-note">${d.exit.note}</div>
+        </div>
+        ${d.exit.cards.map(pipelineCardHTML).join("")}
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="insight-grid" style="grid-template-columns:1fr;">
+        <div class="insight-card">
+          <div class="tag">Q3 Focus</div>
+          <ul class="bullet-list" style="margin-top:6px;">${d.focusNotes.map(t=>`<li>${t}</li>`).join("")}</ul>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="callout brand"><strong>Brand pedigree joining VIVAIA:</strong> ${d.brandPedigree.join(" · ")}</div>
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   Q3 STRATEGY & PLAN
+============================================================================ */
+function priorityPill(p){
+  const cls = p === "High" ? "high" : p === "Medium" ? "medium" : "low";
+  return `<span class="priority-pill ${cls}">${p}</span>`;
+}
+ 
+function renderQ3ActionPlan(){
+  const d = DATA.q3Strategy.actionPlan;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/action-plan")}
+ 
+    <div class="table-wrap section-block"><table class="data">
+      <thead><tr><th>Priority</th><th>Pillar</th><th>Action</th><th>KPI Target</th><th>Owner</th><th>When</th></tr></thead>
+      <tbody>
+        ${d.rows.map(r=>`<tr>
+          <td>${priorityPill(r.priority)}</td>
+          <td style="text-align:left;font-weight:600;">${r.pillar}</td>
+          <td style="text-align:left;white-space:normal;max-width:320px;">${r.action}</td>
+          <td style="text-align:left;color:var(--positive);font-weight:600;white-space:normal;">${r.kpiTarget}</td>
+          <td>${r.owner}</td>
+          <td>${r.when}</td>
+        </tr>`).join("")}
+      </tbody>
+    </table></div>
+    <div class="callout brand" style="text-align:center;font-style:italic;">${d.footer}</div>
+  `;
+}
+ 
+function renderQ3TrainingPlan(){
+  const d = DATA.q3Strategy.trainingPlan;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/training-plan")}
+ 
+    <div class="table-wrap section-block"><table class="data">
+      <thead><tr><th>Priority</th><th>Training Module</th><th>Format, Audience & Cadence</th><th>Timing</th><th>How We Measure It</th></tr></thead>
+      <tbody>
+        ${d.rows.map(r=>`<tr>
+          <td>${priorityPill(r.priority)}</td>
+          <td style="text-align:left;white-space:normal;max-width:220px;"><strong>${r.module}</strong><br><span style="color:var(--gold);font-size:11.5px;">→ ${r.linkedPillar}</span></td>
+          <td style="text-align:left;white-space:normal;max-width:260px;">${r.format}<br><span style="color:var(--label);font-size:11.5px;font-style:italic;">${r.audience}</span></td>
+          <td style="text-align:left;white-space:normal;">${r.timing}</td>
+          <td style="text-align:left;color:var(--positive);font-weight:600;white-space:normal;max-width:260px;">${r.measure}</td>
+        </tr>`).join("")}
+      </tbody>
+    </table></div>
+    <div class="callout brand" style="text-align:center;font-style:italic;">${d.footer}</div>
+  `;
+}
+ 
+function renderQ3LoyalCustomer(){
+  const d = DATA.q3Strategy.loyalCustomer;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/loyal-customer")}
+ 
+    <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${d.cards.map(c=>`
+        <div class="card" style="border-left:3px solid ${c.color==='red'?'var(--negative)':c.color==='gold'?'var(--gold)':'var(--positive)'};">
+          <div class="card-title" style="font-size:14px;">${c.title}</div>
+          <p style="font-size:12.5px;line-height:1.6;margin:8px 0 0;">${c.text}</p>
+        </div>`).join("")}
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">Session Photos</div>
+      <div class="media-row">
+        ${d.images.map((img,i)=>mediaSlot(img, `Loyal Customer Event photo ${i+1}`, {height:"160px"})).join("")}
+      </div>
+    </div>
+  `;
+}
+ 
+function renderQ3LuxuryExperience(){
+  const d = DATA.q3Strategy.luxuryExperience;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/luxury-experience")}
+ 
+    <div class="section-block">
+      <div class="callout">
+        <strong>Objective:</strong>
+        <ul class="bullet-list" style="margin-top:8px;">${d.objectives.map(o=>`<li>${o}</li>`).join("")}</ul>
+      </div>
+    </div>
+ 
+    <div class="two-col section-block">
+      <div class="card">
+        <div class="card-title" style="font-size:15px;">${d.uniform.title}</div>
+        <div class="media-row" style="margin-top:12px;">
+          ${mediaSlot(d.uniform.beforeImage, "Staff uniform — before", {height:"200px"})}
+          ${mediaSlot(d.uniform.afterImage, "Staff uniform — after", {height:"200px"})}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="font-size:15px;">${d.hospitality.title}</div>
+        <div style="margin-top:12px;">${mediaSlot(d.hospitality.image, "Store hospitality amenity tray", {height:"200px"})}</div>
+      </div>
+    </div>
+  `;
+}
+ 
+function renderQ3ExpansionPlan(){
+  const d = DATA.q3Strategy.expansionPlan;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.text}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-plan")}
+ 
+    <div class="two-col section-block">
+      ${mediaSlot(d.mapImage, "Indonesia expansion map — Open vs Plan stores", {height:"auto"})}
+      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
+        <thead><tr><th>Area</th><th>Stores</th><th>Status</th></tr></thead>
+        <tbody>
+          ${d.locations.map(l=>`<tr><td>${l.area}</td><td>${l.count}</td><td><span class="priority-pill ${l.status==='Open'?'low':'medium'}">${l.status}</span></td></tr>`).join("")}
+        </tbody>
+      </table></div>
+    </div>
+  `;
+}
+ 
+function renderQ3ExpansionMakassar(){
+  const d = DATA.q3Strategy.expansionMakassar;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-makassar")}
+ 
+    <div class="two-col section-block">
+      ${mediaSlot(d.floorplanImage, "TSM Makassar mall floor plan showing the VIVAIA unit location", {height:"auto"})}
+      <div>
+        <ul class="bullet-list">${d.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px;">
+          <div class="tag-card"><div class="t-label">Area</div><div class="t-value" style="font-size:22px;">${d.area}</div></div>
+          <div class="tag-card"><div class="t-label">Target Opening</div><div class="t-value" style="font-size:22px;">${d.targetOpening}</div></div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+ 
+function renderQ3LuxuryBrands(){
+  const d = DATA.q3Strategy.luxuryBrands;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan · Where Are We</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/luxury-brands")}
+ 
+    <div class="section-block">
+      ${mediaSlot(d.trendsImage, d.trendsImageAlt, {height:"auto"})}
+    </div>
+    <div class="section-block">
+      <div class="callout brand">${d.text}</div>
+    </div>
+    <div class="footnote">Brands compared in the deck's Google Trends chart: ${d.brandsCompared.join(", ")}.</div>
+  `;
+}
+ 
+function renderQ3Competitors(){
+  const d = DATA.q3Strategy.competitors;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan · Where Are We</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/competitors")}
+ 
+    <div class="section-block">
+      ${mediaSlot(d.trendsImage, d.trendsImageAlt, {height:"auto"})}
+    </div>
+    <div class="section-block">
+      <div class="callout">${d.text}</div>
+    </div>
+ 
+    <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${d.brands.map(b=>`
+        <div class="card">
+          ${mediaSlot(b.image, b.name + " Q2 campaign visuals", {height:"140px"})}
+          <div class="card-title" style="font-size:15px;margin-top:10px;">${b.name}</div>
+          <p style="font-size:12.5px;line-height:1.6;margin:8px 0 0;">${b.text}</p>
+        </div>`).join("")}
+    </div>
+  `;
+}
+ 
+function renderQ3GoogleReview(){
+  const d = DATA.q3Strategy.googleReview;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan · Where Are We</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/google-review")}
+ 
+    <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">
+      ${d.pillars.map(p=>`
+        <div class="card">
+          <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px;">
+            <span style="font-family:var(--serif);font-size:18px;color:var(--label);font-weight:700;">${p.num}</span>
+            <div class="card-title" style="font-size:13.5px;">${p.title}</div>
+          </div>
+          <div style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;">${p.owner}</div>
+          <ul class="bullet-list" style="font-size:12px;">${p.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+        </div>`).join("")}
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">${d.result.label}</div>
+      <div class="table-wrap"><table class="data">
+        <thead><tr><th>Store</th><th>July 31 — Rating</th><th>July 31 — Reviews</th><th>Aug 15 — Rating</th><th>Aug 15 — Reviews</th></tr></thead>
+        <tbody>
+          ${d.result.stores.map(s=>`<tr><td style="text-align:left;">${s.store}</td><td>${s.julyRating}</td><td>${s.julyReviews}</td><td class="pos">${s.augRating}</td><td class="pos">${s.augReviews}</td></tr>`).join("")}
+        </tbody>
+      </table></div>
+      <div class="media-row" style="margin-top:16px;">
+        ${d.images.map((img,i)=>mediaSlot(img, `Google Maps listing screenshot ${i+1}`, {height:"140px"})).join("")}
+      </div>
+    </div>
+  `;
+}
+ 
+function renderQ3PublicFigures(){
+  const d = DATA.q3Strategy.publicFigures;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Q3 Strategy & Plan · Where Are We</div>
+      <h1 class="page-title">${d.title}</h1>
+      <p class="page-sub">${d.subtitle}</p>
+    </div>
+    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/public-figures")}
+ 
+    <div class="two-col section-block">
+      ${d.figures.map(f=>`
+        <div class="card">
+          <div class="media-row">
+            ${f.images.map((img,i)=>mediaSlot(img, f.name + " photo " + (i+1), {height:"160px"})).join("")}
+          </div>
+          <div class="card-title" style="margin-top:12px;font-size:17px;">${f.name}</div>
+          <div style="font-size:11px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:10px;">${f.tags}</div>
+          <p style="font-size:12.5px;line-height:1.6;margin:0 0 10px;">${f.bio}</p>
+          <div class="flag-callout" style="background:var(--card-tint);border-left-color:var(--brand);">
+            <strong>VIVAIA fit:</strong> ${f.fit}
+          </div>
+        </div>`).join("")}
+    </div>
+  `;
+}
+ 
+/* ============================================================================
+   INDONESIA WELLNESS ACTIVATION
+============================================================================ */
+function renderWellnessActivation(){
+  const d = DATA.indonesiaWellness;
+  const lr = d.localRelevance;
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Indonesia Wellness Activation</div>
+      <h1 class="page-title">${d.title}</h1>
+    </div>
+ 
+    <div class="kpi-grid section-block">
+      ${d.stats.map(s=>`
+        <div class="tag-card">
+          <div class="t-value" style="font-size:26px;">${s.value}</div>
+          <div class="t-compare" style="margin-top:6px;">${s.label}</div>
+        </div>`).join("")}
+    </div>
+ 
+    <div class="card section-block">
+      <div class="eyebrow" style="margin-bottom:4px;">${lr.subtitle}</div>
+      <div class="card-title">${lr.title}</div>
+      <p style="font-size:13px;line-height:1.6;margin:10px 0 18px;">${lr.text}</p>
+      <div class="wellness-bar-list">
+        ${lr.rows.map(r=>`
+          <div class="wellness-bar-row">
+            ${mediaSlot(r.image, r.type, {cls:"wellness-thumb"})}
+            <div style="flex:1;">
+              <div class="wellness-bar-title">${r.type}</div>
+              <div class="wellness-bar-note">${r.note}</div>
+            </div>
+            <div class="wellness-bar-metric">${r.metric}</div>
+          </div>`).join("")}
+      </div>
+    </div>
+  `;
+}
+ 
 function renderEmpty(label){
   return `
     <div class="page-head">

@@ -1167,3 +1167,115 @@ body.presenting .present-chrome{
     grid-template-columns:1fr;
   }
 }
+/* ============================================================================
+   MEDIA SLOT — honest "pending upload" placeholder shared across new sections
+============================================================================ */
+.media-slot{
+  border-radius:var(--radius-m); overflow:hidden; background:var(--card-tint);
+  min-height:180px; display:flex; align-items:center; justify-content:center;
+}
+.media-slot img{ width:100%; height:100%; object-fit:cover; display:block; }
+.media-slot.placeholder{
+  background-image:repeating-linear-gradient(45deg, var(--card-tint), var(--card-tint) 10px, #EFDCD6 10px, #EFDCD6 20px);
+  border:1px dashed var(--line);
+}
+.media-slot.placeholder span{
+  font-size:11.5px; color:var(--label); background:var(--ivory); padding:6px 12px;
+  border-radius:999px; text-align:center;
+}
+.media-row{ display:flex; gap:12px; flex-wrap:wrap; }
+.media-row .media-slot{ flex:1; min-width:140px; }
+.wellness-thumb{ flex:0 0 auto; width:64px; height:64px; min-height:0; }
+
+/* ============================================================================
+   VISUAL MERCHANDISING — VM training step flow + result scorecard
+============================================================================ */
+.vm-step-flow{ display:flex; flex-direction:column; gap:4px; }
+.vm-step-card{
+  display:flex; align-items:flex-start; gap:14px;
+  background:var(--card-tint); border-radius:var(--radius-m); padding:16px 18px;
+}
+.vm-step-num{
+  flex:0 0 auto; width:28px; height:28px; border-radius:50%;
+  background:var(--brand); color:#fff; font-weight:700; font-size:13px;
+  display:flex; align-items:center; justify-content:center;
+}
+.vm-step-label{ font-weight:700; font-size:13.5px; color:var(--brand-deep); margin-bottom:2px; }
+.vm-step-text{ font-size:12.5px; color:var(--ink-soft); line-height:1.5; }
+.vm-step-arrow{ text-align:center; color:var(--gold); font-size:16px; padding:2px 0; }
+
+.vm-result-card{
+  background:var(--brand-deep); color:#F5E6E1;
+  border-radius:var(--radius-m); padding:22px 26px;
+}
+.vm-result-label{ font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#D8B9AF; font-weight:700; margin-bottom:6px; }
+.vm-result-text{ font-family:var(--serif); font-size:20px; font-weight:600; margin-bottom:18px; }
+.vm-result-bars{ display:flex; flex-direction:column; gap:12px; }
+.vm-result-bar-item{ display:flex; align-items:center; gap:14px; }
+.vm-result-bar-track{ flex:1; height:10px; background:rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; }
+.vm-result-bar-fill{ height:100%; border-radius:6px; }
+.vm-result-bar-fill.june{ background:#C8A99E; }
+.vm-result-bar-fill.july{ background:#EAB870; }
+.vm-result-bar-caption{ flex:0 0 auto; font-size:12.5px; font-weight:600; width:180px; }
+.vm-result-bar-caption .pos{ color:#8FD19E; margin-left:6px; }
+
+/* ============================================================================
+   OPERATIONAL UPDATE — milestone / activity list
+============================================================================ */
+.milestone-list{ display:flex; flex-direction:column; gap:10px; }
+.milestone-card{
+  display:flex; align-items:flex-start; gap:14px;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m);
+  padding:14px 18px;
+}
+.milestone-num{
+  flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+  background:var(--card-tint); color:var(--brand); font-weight:700; font-size:12.5px;
+  display:flex; align-items:center; justify-content:center;
+}
+.milestone-title{ font-weight:700; font-size:13px; color:var(--brand-deep); margin-bottom:3px; }
+.milestone-text{ font-size:12.5px; color:var(--ink-soft); line-height:1.55; }
+
+/* ============================================================================
+   PEOPLE UPDATE — pipeline board
+============================================================================ */
+.pipeline-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+}
+@media (max-width:900px){ .pipeline-grid{ grid-template-columns:1fr; } }
+.pipeline-col{ display:flex; flex-direction:column; gap:8px; }
+.pipeline-col-head{
+  border-radius:var(--radius-m); padding:12px 16px; color:#fff; margin-bottom:4px;
+}
+.pipeline-col-head.onboard{ background:var(--positive); }
+.pipeline-col-head.pipeline{ background:var(--brand); }
+.pipeline-col-head.exit{ background:#4A5A66; }
+.pipeline-col-title{ font-weight:700; font-size:13.5px; letter-spacing:0.03em; }
+.pipeline-col-note{ font-size:11px; opacity:0.85; margin-top:2px; }
+.pipeline-card{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius-m);
+  padding:12px 14px;
+}
+.pipeline-role{ font-weight:700; font-size:13px; color:var(--brand-deep); }
+.pipeline-detail{ font-size:12px; color:var(--ink-soft); margin-top:4px; line-height:1.5; }
+.pipeline-timing{ font-size:11.5px; color:var(--positive); font-weight:600; margin-top:6px; }
+
+/* ============================================================================
+   Q3 STRATEGY & PLAN — priority pills, action/training tables, wellness bars
+============================================================================ */
+.priority-pill{
+  display:inline-block; font-size:10.5px; font-weight:700; letter-spacing:0.04em;
+  text-transform:uppercase; padding:4px 10px; border-radius:999px; color:#fff;
+}
+.priority-pill.high{ background:var(--negative); }
+.priority-pill.medium{ background:var(--gold); }
+.priority-pill.low{ background:var(--positive); }
+
+.wellness-bar-list{ display:flex; flex-direction:column; gap:10px; }
+.wellness-bar-row{
+  display:flex; align-items:center; gap:14px;
+  background:var(--card-tint); border-radius:var(--radius-m); padding:10px 14px;
+}
+.wellness-bar-title{ font-weight:700; font-size:13px; color:var(--brand-deep); }
+.wellness-bar-note{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; }
+.wellness-bar-metric{ flex:0 0 auto; font-family:var(--serif); font-weight:700; font-size:15px; color:var(--brand); text-align:right; }

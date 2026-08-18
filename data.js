@@ -724,9 +724,9 @@ marketing: {
       title: "ROI",
       subtitle: "Marketing spend return, by month",
       rows: [
-        { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "17,526x", salesPerUnit: "$17,526 per $1" },
-        { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "43,409x", salesPerUnit: "$43,409 per $1" },
-        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "17,056x", salesPerUnit: "$17,056 per $1" },
+        { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "1,130%", salesPerUnit: "$12,30" },
+        { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "17,080%", salesPerUnit: "$171,80" },
+        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
       ],
     },
   },
@@ -815,10 +815,271 @@ marketing: {
     },
   },
  
-  notIncluded: {
-    hr: "HR",
-    q3Overview: "Q3 Overview",
+  visualMerchandising: {
+    training: {
+      title: "VM Training",
+      steps: [
+        { step: 1, label: "VM Refreshment", text: "Refresh VM guidelines and standard" },
+        { step: 2, label: "Hands-On Execution", text: "Pratical display across 6 stores" },
+        { step: 3, label: "Commercial Thinking", text: "Q&A focus on balancing brand presentation and commercial opportunities" },
+      ],
+      result: {
+        label: "Result",
+        text: "Avg July Score = 96 or +11% vs Avg June score = 86",
+        juneScore: 86,
+        julyScore: 96,
+        changePct: 11,
+      },
+      image: null,
+      imageAlt: "VM training session with store team reviewing display guidelines in the stockroom",
+    },
   },
+ 
+  operational: {
+    keyHighlights: {
+      title: "Operational Q2 Key Highlights",
+      subtitle: "Strengthening proactive selling, product availability & store productivity",
+      cards: [
+        { num: "01", title: "Product Availability", text: "Improved availability of key best-sellers through tighter stock monitoring, replenishment and product prioritization during peak periods.", impact: "Reduced potential lost-sales opportunities from stock-outs." },
+        { num: "02", title: "Clientele & Proactive Selling", text: "Scaled store-specific product catalogues and WhatsApp outreach to existing customers, enabling more targeted product recommendations based on customer needs and stock availability.", impact: "Expanded non-walk-in sales opportunities and customer re-engagement." },
+        { num: "03", title: "Selling Capability & Team Engagement", text: "Introduced selling initiatives and team incentives to strengthen product recommendation, focus on slow-moving products and proactive selling behavior.", impact: "Increased team focus on conversion opportunities and targeted product sell-through." },
+      ],
+      summary: "Operations shifted from relying on walk-in traffic to a more proactive approach — optimizing every sales opportunity.",
+    },
+    activities: {
+      title: "Q2 Operational Activities & Team Development",
+      executionModel: "Store Managers led the execution of staff training, product knowledge, selling skills coaching, and operational checklist implementation, supported by Ops through direction, monitoring, and follow-up.",
+      items: [
+        { num: 1, title: "Staff Training & Coaching", text: "Regular staff training and coaching conducted by Store Managers to strengthen team capability, service standards, and daily operational execution." },
+        { num: 2, title: "Product Knowledge Development", text: "Continuous product knowledge refreshment to improve staff understanding of product features, benefits, and key selling points, enabling more confident customer recommendations." },
+        { num: 3, title: "Selling Skills Development", text: "Store-level coaching focused on customer approach, needs identification, product recommendation, upselling, and cross-selling to improve selling effectiveness." },
+        { num: 4, title: "Store Manager Development", text: "Strengthening Store Manager capabilities in team leadership, target monitoring, performance management, manpower planning, and daily operational follow-up." },
+        { num: 5, title: "Operational Checklist Implementation", text: "Daily operational checklist implementation to ensure consistency in store standards, operational readiness, stock management, VM, and customer service." },
+        { num: 6, title: "Store Productivity Improvement", text: "Daily and weekly performance monitoring with continuous follow-up to improve store productivity, conversion, ATV, and overall sales performance." },
+      ],
+      image: null,
+      imageAlt: "Store team development session with Store Managers and staff",
+    },
+  },
+ 
+  // "People Update" — renamed from HR per current instructions.
+  people: {
+    manpower: {
+      title: "Manpower — Q2 vs Q1",
+      subtitle: "March 2026 (Q1) vs June 2026 (Q2) headcount by placement",
+      categories: [
+        { label: "Head Quarter", march: 25, june: 32 },
+        { label: "Store", march: 62, june: 64 },
+      ],
+      totalMarch: 87,
+      totalJune: 96,
+      growthPct: 10.3,
+      summary: "Overall, total headcount increased from 87 to 96 employees (+10.3%). The organization's policy direction focuses on strengthening the foundation and governance at the Head Quarter, while store-level expansion is executed through a lean expansion model based on optimizing existing staff.",
+    },
+    pipeline: {
+      title: "Pipeline — Q3",
+      onBoard: {
+        label: "On Board",
+        note: "Confirmed & joined",
+        cards: [
+          { role: "2 Store Manager", detail: "[ex-Melissa & ex-Michael Kors]", timing: "Join in first July & August" },
+          { role: "Operation Manager", isNew: true, detail: "[ex-Galeries Lafayette] [ex-Tory Burch] [ex-Coach]", timing: "Joining in July first week" },
+        ],
+      },
+      pipeline: {
+        label: "Pipeline",
+        note: "6 upcoming hires",
+        cards: [
+          { role: "1 Store Manager", detail: "Store Manager hiring for Bekasi" },
+          { role: "HR Development Staff", isNew: true, detail: "The HR Development Staff optimizes recruitment and supports employee development and career progression to meet organizational needs." },
+          { role: "Marketing Manager", isNew: true, detail: "Strategizing marketing to optimize awareness and brand positioning.", timing: "Join in First August" },
+          { role: "F.A.T Lead", isNew: true, detail: "Strengthening finance team" },
+        ],
+      },
+      exit: {
+        label: "Exit",
+        note: "Team change",
+        cards: [
+          { role: "Sales Assistant", detail: "Hiring for Jakarta & Surabaya" },
+        ],
+      },
+      focusNotes: [
+        "Completing the Store Manager head count for a stronger sales team",
+        "Talent pool for Sales Assistant",
+      ],
+      brandPedigree: ["Kate Spade", "Galeries Lafayette", "Tory Burch", "Coach", "Rubi", "Cotton On"],
+    },
+  },
+ 
+  // ==========================================================================
+  // Q3 STRATEGY & PLAN
+  // ==========================================================================
+  q3Strategy: {
+    actionPlan: {
+      title: "Q3 Action Plan",
+      subtitle: "Recover traffic, strengthen selling capability, and shift the mix toward higher-value product",
+      rows: [
+        { priority: "High", pillar: "Traffic Recovery", action: "Weekly clienteling targets + WA outreach at Plaza Senayan, Plaza Indonesia, AEON BSD, Pakuwon Bekasi", kpiTarget: "Positive TRX growth QoQ in flagged stores", owner: "Store Ops", when: "Month 1" },
+        { priority: "High", pillar: "Sales & Service Training", action: "Structured training rollout: sales skills, product knowledge, service standards, on-floor coaching", kpiTarget: "UPT ≥ 1.25, AOV ≥ USD 160", owner: "Training / Store Ops", when: "Month 1–2" },
+        { priority: "High", pillar: "ASP Recovery (Fall/Boots)", action: "Prioritize boots & higher-value Fall styles; train upselling & cross-selling; secure stock on hero SKUs", kpiTarget: "ASP recovered to ≥ USD 132", owner: "Product / Merchandising", when: "Aug–Sep" },
+        { priority: "Medium", pillar: "New-Store Scaling & Stock", action: "Replicate PIM2 playbook; tighten store–warehouse coordination; monitor best-seller stock closely", kpiTarget: "Sustain PIM2 growth; fewer stockout-driven lost sales", owner: "Merchandising / Store Ops", when: "Ongoing" },
+        { priority: "Medium", pillar: "TSM Makassar Preparation", action: "Finalizing negotiation process and start store design", kpiTarget: "End of August", owner: "Project", when: "Month 2–3" },
+      ],
+      footer: "Traffic → Engagement → Conversion → AOV/ASP",
+    },
+ 
+    trainingPlan: {
+      title: "Q3 Training Plan",
+      subtitle: "Each module built to close the gap behind one strategic priority — with its own success metric",
+      rows: [
+        { priority: "High", module: "Clienteling & Proactive Outreach", linkedPillar: "Traffic Recovery", format: "Workshop + WA outreach playbook + weekly store huddle", audience: "SA & Store Supervisors", timing: "Week 1–2, then biweekly refresher", measure: "TRX growth QoQ +12%; weekly contact → visit → conversion funnel tracked per store" },
+        { priority: "High", module: "Sales Skills, Product Knowledge & Service Standards", linkedPillar: "Sales Capability & Service", format: "Structured training + on-floor coaching + role-play scenarios", audience: "All Sales Associates, all stores", timing: "Month 1–2, monthly refresher after", measure: "UPT ≥ 1.25, AOV ≥ USD 160; mystery-shopper / service audit score" },
+        { priority: "High", module: "Upselling & Cross-Selling: Fall Season / Boots", linkedPillar: "ASP Recovery", format: "Product knowledge deep-dive + storytelling + upsell role-play, pre-launch intensive", audience: "All SA, prioritized for high-traffic & high-AOV stores", timing: "Late Jul (pre-launch) → Sep", measure: "ASP recovered to ≥ USD 132; boots / higher-value sell-through rate" },
+      ],
+      footer: "Every module is measured against the exact KPI it's meant to move",
+    },
+ 
+    loyalCustomer: {
+      title: "Loyal Customer Event",
+      subtitle: "18 Loyal Customers – 2 sessions",
+      cards: [
+        { title: "Stock & Size", color: "red", text: "Pain point #1 — favorite colorways, golden sizes, and big sizes (41) sell out fast, directly blocking repeat purchase, push factor to buy online" },
+        { title: "Loyalty Program", color: "red", text: "Expect early access, discounts, birthday treat" },
+        { title: "Store Service", color: "gold", text: "Overall SA is informative & proactive, but 1 bad experience (reserve not honored) plus seating/mirrors need upgrading." },
+        { title: "Product", color: "green", text: "Seen as versatile & comfortable. Product gaps: boots (travel), bolder colors (yellow, bright pink), larger bags / office-style totes." },
+        { title: "Engagement", color: "green", text: "High interest in private events (showcase + on-the-spot purchase), and love GWP & instantly redeemable vouchers." },
+        { title: "Competitors", color: "gold", text: "Melissa, Steve Madden, Nike, New Balance, up to Hermès, Valentino, Fendi, Ferragamo. Switch triggers: wider model/size options & complimentary treatment." },
+      ],
+      images: [null, null, null],
+    },
+ 
+    luxuryExperience: {
+      title: "Elevating Luxury Retail Experience",
+      objectives: [
+        "elevate in-store hospitality",
+        "create memorable touchpoint",
+        "reinforce comfort positioning",
+        "strengthen premium perception",
+        "support longer in-store engagement",
+      ],
+      uniform: { title: "Refined Staff Uniform", beforeImage: null, afterImage: null },
+      hospitality: { title: "Store Hospitality", image: null },
+    },
+ 
+    expansionPlan: {
+      title: "Expansion Plan",
+      text: "VIVAIA's 2026 footprint is concentrated in Java — 14 stores across JAVA Island, with the most recent opening at DP Mall Semarang. Makassar and Bali are our next target for expansion.",
+      mapImage: null,
+      locations: [
+        { area: "Greater Jakarta", count: 11, status: "Open" },
+        { area: "Bandung", count: 1, status: "Open" },
+        { area: "Semarang", count: 1, status: "Open" },
+        { area: "Surabaya", count: 1, status: "Open" },
+        { area: "Makassar", count: 1, status: "Plan" },
+        { area: "Bali", count: 1, status: "Plan" },
+      ],
+    },
+    expansionMakassar: {
+      title: "Expansion Plan: TSM Makassar",
+      bullets: [
+        "Directly beside TUMI, same row as Onitsuka Tiger — only 2 tenants from Coach",
+        "Near the escalator & small atrium — high footfall capture",
+        "Across from Zara, Metro, Kate Spade, Michael Kors and Uniqlo",
+      ],
+      area: "119sqm",
+      targetOpening: "Jan 2027",
+      floorplanImage: null,
+    },
+ 
+    luxuryBrands: {
+      title: "Relevancy to Luxury Brands",
+      subtitle: "Luxury Category",
+      text: "Loyal Customer Event findings reveal that VIVAIA shares the same style-conscious consumer with established luxury brands, with many customers also shopping brands such as Gucci, Fendi, Valentino and Loro Piana. This is further supported by Google Trends, where VIVAIA demonstrates strong consumer search interest in Indonesia alongside these luxury names. While luxury brands fulfill aspiration, status and occasion-led needs, VIVAIA complements this wardrobe by serving the everyday footwear occasion through comfort, versatility and accessibility.",
+      brandsCompared: ["Vivaia", "Loro Piana", "Gucci", "Valentino", "Fendi"],
+      trendsImage: null,
+      trendsImageAlt: "Google Trends chart comparing VIVAIA search interest in Indonesia against Loro Piana, Gucci, Valentino and Fendi",
+    },
+ 
+    competitors: {
+      title: "Competitor Review Q2",
+      subtitle: "Fashion Category",
+      text: "Google Trends shows that VIVAIA maintained consistent consumer search interest in Indonesia throughout the past 12 months, with a relatively stable trend compared to the more campaign-driven fluctuations seen across competitors. Meanwhile, Melissa continued to lead overall search interest, while Steve Madden and STACCATO recorded notable spikes during specific Q2 periods. The consistent interest in VIVAIA indicates an established level of consumer awareness, providing a solid base to further build momentum through upcoming campaigns and product launches.",
+      trendsImage: null,
+      trendsImageAlt: "Google Trends chart comparing VIVAIA search interest in Indonesia against Steve Madden, Melissa and STACCATO",
+      brands: [
+        { name: "Melissa", text: "In Q2, Melissa's strategy centered on maintaining its established position in jelly footwear while driving fashion relevance through trend-led collections and designer collaborations. This was supported by KOL and media amplification, paid media across META and TikTok, and continued retail expansion.", image: null },
+        { name: "STACCATO", text: "In Q2, STACCATO focused on expanding its fashion positioning through its SS26 collection and new footwear concepts such as Sneakerina, while leveraging Korean celebrity influence through the appointment of Yang Mi as its Global Brand Ambassador. The brand also explored opportunities beyond footwear through its Scarf Collection, aiming to broaden its product offering and reach new audiences.", image: null },
+        { name: "Steve Madden", text: "In Q2, Steve Madden focused on leveraging current footwear trends, particularly Mary Janes, ballerina flats, and jelly shoes, while translating these trends into more accessible and commercial offerings. The strategy was supported by KOL and Homeless Media exposure across Instagram and TikTok, alongside tactical promotional activities to drive conversion.", image: null },
+      ],
+    },
+ 
+    googleReview: {
+      title: "Google Review",
+      subtitle: "360° plan across acquisition, response, root-cause, recognition & governance",
+      pillars: [
+        { num: 1, title: "Review Acquisition", owner: "Marketing-led, Ops-executed", bullets: ["Incentive for customers who leave a Google review", "QR code at checkout linking directly to the review page", "Ask at peak-satisfaction moments (resolved complaint, successful sizing help)"] },
+        { num: 2, title: "Response & Recovery", owner: "Marketing", bullets: ["Reply to reviews — positive & negative", "Response SLA: 24–48 hours, prioritize negative reviews", "Recovery flow: SM follow-up → concrete resolution → request review update", "Consistent tone-of-voice template across all stores"] },
+        { num: 3, title: "Root-Cause & Service", owner: "Ops", bullets: ["Weekly rating & feedback monitoring per store", "Identify & resolve recurring service issues", "Categorize complaints: service, stock/size, cleanliness, checkout speed", "Feed insights back into the Q3 training plan modules"] },
+        { num: 4, title: "Recognition & Culture", owner: "Ops + HR", bullets: ["Share positive reviews as service benchmarks & team motivation", "Monthly recognition/reward for stores or SA most mentioned positively"] },
+        { num: 5, title: "Governance & Target", owner: "Marketing + Ops", bullets: ["Improve Google Rating ≥ 4.5", "Weekly per-store dashboard: rating and new reviews"] },
+      ],
+      result: {
+        label: "Result: July 31 vs August 15",
+        stores: [
+          { store: "VIVAIA Plaza Senayan", julyRating: 3.9, julyReviews: 75, augRating: 4.1, augReviews: 91 },
+          { store: "VIVAIA Plaza Indonesia", julyRating: 3.8, julyReviews: 21, augRating: 4.3, augReviews: 37 },
+        ],
+      },
+      images: [null, null, null, null],
+    },
+ 
+    publicFigures: {
+      title: "The Choice of Indonesia's Leading Women of Influence",
+      subtitle: "Two Women. Two Forms of Earned Authority. One Natural VIVAIA Fit.",
+      figures: [
+        {
+          name: "Retno Marsudi",
+          tags: "Diplomacy · Competence · Composure · Global Leadership",
+          bio: "Indonesia's first female Foreign Minister and current UN Secretary-General's Special Envoy on Water. Retno is recognized less as a political celebrity than as an understated, highly credible institutional leader—representing Indonesia on the global stage through diplomacy, humanitarian advocacy and multilateral cooperation.",
+          fit: "Her frequent public wearing positions VIVAIA naturally within the life of an accomplished woman who must remain mobile, polished and present while doing consequential work.",
+          images: [null, null],
+        },
+        {
+          name: "Yenny Wahid",
+          tags: "Pluralism · Women's Empowerment · Social Inclusion · Purposeful Leadership",
+          bio: "Civil-society leader and Director of the Wahid Foundation, Yenny carries forward Gus Dur's humanistic legacy while building her own work around religious tolerance, peace, women's agency and socially resilient communities.",
+          fit: "Her frequent public wearing places VIVAIA alongside a woman whose style supports rather than defines her—modern, practical and purposeful.",
+          images: [null, null],
+        },
+      ],
+    },
+  },
+ 
+  // ==========================================================================
+  // INDONESIA WELLNESS ACTIVATION
+  // ==========================================================================
+  indonesiaWellness: {
+    title: "VIVAIA Wellness Circle – Indonesia 2nd Anniversary",
+    stats: [
+      { label: "Total media value generated", value: "$281k" },
+      { label: "Combined followers — vs a typical single-market launch roster of 5–15M", value: "73.7M" },
+      { label: "Estimated total exposure (posts & stories)", value: "$18M" },
+      { label: "Combined visible likes", value: "$180k likes" },
+    ],
+    localRelevance: {
+      title: "Local influencer × wellness lifestyle wins — by orders of magnitude",
+      subtitle: "The Local-Relevance Effect · All organic posts from @vivaia.indonesia",
+      text: "Same account, same audience, four organic content types. Wellness lifestyle with local KOLs out-engages commercial store-opening content 4.7:1, international celebrity seeding 33:1, and product shots 236:1. Relevance beats fame; ritual beats product; wellness beats commerce.",
+      rows: [
+        { type: "Local KOL × wellness lifestyle", metric: "4,500 likes", note: "Event recap with local KOLs · organic", image: null },
+        { type: "Local celebrity × new store opening", metric: "958 likes (post) · 119 (reel)", note: "Grand Opening PIM 2 — commercial content (post 958 + reel 119, co-post excluded) · organic", image: null },
+        { type: "International celebrity seeding", metric: "138 likes", note: "Anne Hathaway post · organic", image: null },
+        { type: "Standard product shots", metric: "13–25 likes (avg ~19)", note: "Product posts · organic", image: null },
+      ],
+    },
+  },
+ 
+  notIncluded: {},
 };
 
 const PRESENTATION_ORDER = [
@@ -846,4 +1107,20 @@ const PRESENTATION_ORDER = [
   { route: "#/social/instagram-posts", label: "Instagram Top Posts" },
   { route: "#/social/tiktok-growth", label: "TikTok Overview" },
   { route: "#/social/tiktok-posts", label: "TikTok Top Posts" },
+   { route: "#/vm-update/training", label: "VM Training" },
+  { route: "#/operational/key-highlights", label: "Operational Q2 Key Highlights" },
+  { route: "#/operational/activities", label: "Operational Activities & Team Development" },
+  { route: "#/people/manpower", label: "Manpower — Q2 vs Q1" },
+  { route: "#/people/pipeline", label: "Pipeline — Q3" },
+  { route: "#/q3-strategy/action-plan", label: "Q3 Action Plan" },
+  { route: "#/q3-strategy/training-plan", label: "Q3 Training Plan" },
+  { route: "#/q3-strategy/loyal-customer", label: "Loyal Customer Event" },
+  { route: "#/q3-strategy/luxury-experience", label: "Elevating Luxury Retail Experience" },
+  { route: "#/q3-strategy/expansion-plan", label: "Expansion Plan" },
+  { route: "#/q3-strategy/expansion-makassar", label: "Expansion Plan: TSM Makassar" },
+  { route: "#/q3-strategy/luxury-brands", label: "Relevancy to Luxury Brands" },
+  { route: "#/q3-strategy/competitors", label: "Competitor Review Q2" },
+  { route: "#/q3-strategy/google-review", label: "Google Review" },
+  { route: "#/q3-strategy/public-figures", label: "Indonesia's Leading Women of Influence" },
+  { route: "#/wellness/activation", label: "Indonesia Wellness Activation" },
 ];
