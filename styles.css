@@ -1288,3 +1288,75 @@ body.presenting .present-chrome{
   color: var(--brand);
   text-decoration: underline;
 }
+
+.retreat-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 28px;
+}
+
+.retreat-title {
+  font-family: var(--serif);
+  font-size: 30px;
+  line-height: 1.15;
+  color: var(--brand-deep);
+  margin-bottom: 22px;
+}
+
+.retreat-body {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.retreat-media {
+  width: 100%;
+  background: #111;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+
+.retreat-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #111;
+}
+
+.retreat-video-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--label);
+  background: #171313;
+  font-size: 13px;
+}
+
+.retreat-copy {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.retreat-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 48ch;
+}
+
+@media (max-width: 900px) {
+  .retreat-body {
+    grid-template-columns: 1fr;
+  }
+
+  .retreat-copy {
+    padding: 0;
+  }
+}

@@ -2265,45 +2265,43 @@ function renderWellnessActivation(){
  
     <div class="retreat-card section-block">
 
-      <div class="retreat-media">
-        ${rc.video
-          ? `
-            <video
-              class="retreat-video"
-              controls
-              preload="metadata"
-              playsinline
-            >
-              <source src="${rc.video}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          `
-          : `
-            <div class="retreat-video-placeholder">
-              <span>Video pending upload</span>
-            </div>
-          `
+      <div class="retreat-title">
+        ${rc.title}
+      </div>
+
+      <div class="retreat-body">
+
+        <div class="retreat-media">
+          ${rc.video
+            ? `
+              <video
+                class="retreat-video"
+                controls
+                preload="metadata"
+                playsinline
+              >
+                <source src="${rc.video}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            `
+            : `
+              <div class="retreat-video-placeholder">
+                <span>Video pending upload</span>
+              </div>
+            `
+          }
         }
       </div>
 
-      <div class="retreat-content">
-
-        <div class="retreat-eyebrow">
-          <span class="retreat-play">▷</span>
-          ${rc.eyebrow}
-        </div>
-
-        <div class="retreat-title">
-          ${rc.title}
-        </div>
-
+      <div class="retreat-copy">
         <p class="retreat-text">
           ${rc.text}
         </p>
-
       </div>
 
     </div>
+
+</div>
   `;
 }
  
