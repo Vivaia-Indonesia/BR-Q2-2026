@@ -38,7 +38,7 @@ const DATA = {
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Q2 2025", positive: true },
     { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Q2 2025", positive: true },
     { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Q2 2025", positive: false },
-    { key: "ach", label: "ACH.", value: "88%", growth: 16, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
+    { key: "ach", label: "ACH.", value: "98%", growth: 21, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
 
@@ -111,7 +111,7 @@ businessShareChart: [
       { level: "good", title: "Stable Macro Base", text: "GDP growth ~5.2% (ADB). Inflation at 3.08% — above target but manageable. BI easing cycle intact. Urban upper-middle and aspirational class remain resilient = VIVAIA's sweet spot." },
     ],
     holidays: {
-      title: "Q2 Public Holiday", text: "Weekdays only",
+      title: "Q2 Public Holiday",
       items: [
         { date: "3 Apr (Fri)", name: "Good Friday"},
         { date: "1 May (Fri)", name: "May Day", note: "→ Long weekend May 1–3" },
