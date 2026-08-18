@@ -1291,9 +1291,7 @@ function renderPim2Opening(){
       ${statCardsHTML(med.stats)}
       </div>
       <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
-      <div style="margin-top:20px;">${mediaNewsLinksHTML(med.newsLinks)}
       </div>
-      <div style="margin-top:16px;">
     </div>
   `;
 }
