@@ -2219,6 +2219,7 @@ function renderQ3PublicFigures(){
 function renderWellnessActivation(){
   const d = DATA.indonesiaWellness;
   const lr = d.localRelevance;
+  const rc = d.retreatRecap;
   return `
     <div class="page-head">
       <div class="eyebrow">Indonesia Wellness Activation</div>
@@ -2241,7 +2242,6 @@ function renderWellnessActivation(){
         ${lr.rows.map(r=>`
           <div class="wellness-bar-row">
             ${mediaSlot(r.image, r.type, {cls:"wellness-thumb"})}
-
             <div style="flex:1;">
               ${r.link
                 ? `<div class="wellness-bar-title">
@@ -2256,14 +2256,23 @@ function renderWellnessActivation(){
                    </div>`
                 : `<div class="wellness-bar-title">${r.type}</div>`
               }
-
               <div class="wellness-bar-note">${r.note}</div>
             </div>
-
             <div class="wellness-bar-metric">${r.metric}</div>
-          </div>
-        `).join("")}
+          </div>`).join("")}
       </div>
+    </div>
+ 
+    <div class="retreat-card section-block">
+      <div class="retreat-media">
+        ${rc.video
+          ? `<video class="retreat-video" controls preload="metadata" ${rc.videoPoster ? `poster="${rc.videoPoster}"` : ""}><source src="${rc.video}"></video>`
+          : `<div class="media-slot placeholder retreat-video-placeholder"><span>▶ Video pending upload${rc.title ? ' — ' + esc(rc.title) : ''}</span></div>`}
+      </div>
+      <div class="retreat-content">
+        <div class="retreat-eyebrow">▷ ${rc.eyebrow}</div>
+        <div class="retreat-title">${rc.title}</div>
+        <p class="retreat-text">${rc.text}</p>
     </div>
   `;
 }
