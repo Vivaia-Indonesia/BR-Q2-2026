@@ -1105,20 +1105,22 @@ function linkedGalleryHTML(items, altText = "Linked image") {
   `;
 }
  
-function mediaNewsLinksHTML(links){
+function mediaNewsLinksHTML(links = []){
   return `
     <div class="media-news-links">
-      ${links.filter(x => x.url).map(x => `
-        <a
-          href="${x.url}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="media-news-link"
-        >
-          <span>${x.outlet}</span>
-          <span>View news here ↗</span>
-        </a>
-      `).join("")}
+      ${links
+        .filter(x => x && x.url)
+        .map(x => `
+          <a
+            href="${x.url}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="media-news-link"
+          >
+            <span>${x.outlet}</span>
+            <span>View news here ↗</span>
+          </a>
+        `).join("")}
     </div>
   `;
 }
@@ -1290,7 +1292,8 @@ function renderPim2Opening(){
       <div style="margin-top:18px;">
       ${statCardsHTML(med.stats)}
       </div>
-      <div style="margin-top:16px;">${mediaTiersHTML(med.tiers)}</div>
+      <div style="margin-top:16px;">
+      ${mediaTiersHTML(med.tiers)}
       </div>
     </div>
   `;
