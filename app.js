@@ -1050,8 +1050,18 @@ function mediaTiersHTML(tiers){
     ${tiers.map(t => `
       <div class="media-tier-card">
         <div class="media-tier-title">${t.tier}</div>
-        <ul class="media-tier-list">${t.outlets.map(o=>`<li>${o}</li>`).join("")}</ul>
-      </div>`).join("")}
+        <ul class="media-tier-list">
+          ${t.outlets.map(o => {
+            const name = typeof o === "string" ? o : o.name;
+            const link = typeof o === "string" ? "" : o.link;
+
+            return link
+              ? `<li><a href="${link}" target="_blank" rel="noopener noreferrer">${name}</a></li>`
+              : `<li>${name}</li>`;
+          }).join("")}
+        </ul>
+      </div>
+    `).join("")}
   </div>`;
 }
 function kolGridHTML(kols){
