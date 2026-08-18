@@ -10,9 +10,6 @@ const SIDEBAR_HTML = `
     <div class="sub">Indonesia · Q2 2026</div>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-group">
-      <button class="nav-item" data-nav="#/overview">Overview</button>
-    </div>
     <div class="nav-group" id="navBusiness">
       <button class="nav-item" data-toggle-group="navBusiness">
         <span>Business Overview</span><span class="nav-caret">▸</span>
@@ -88,7 +85,7 @@ const ROUTES = {
 };
 
 function currentRoute(){
-  const h = location.hash || "#/overview";
+  const h = location.hash || "#/business/sales-overview";
   return h.split("?")[0];
 }
 
@@ -108,7 +105,7 @@ let presentMode = false;
 let presentIndex = 0;
  
 function currentRoute(){
-  const h = location.hash || "#/overview";
+  const h = location.hash || "#/business/sales-overview";
   return h.split("?")[0];
 }
  
@@ -126,7 +123,7 @@ function setActiveNav(route){
  
 function renderRoute(){
   const route = currentRoute();
-  const meta = ROUTES[route] || ROUTES["#/overview"];
+  const meta = ROUTES[route] || ROUTES["#/business/sales-overview"];
   const html = meta.render();
   const contentEl = document.getElementById("content");
   contentEl.innerHTML = `<div class="view-fade">${html}</div>`;
@@ -239,7 +236,7 @@ window.addEventListener("hashchange", renderRoute);
 /* ------------------------------ Boot ----------------------------------------- */
 function boot(){
   document.getElementById("sidebar").innerHTML = SIDEBAR_HTML;
-  if (!location.hash) location.hash = "#/overview";
+  if (!location.hash) location.hash = "#/business/sales-overview";
   renderRoute();
 }
 boot();

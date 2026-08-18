@@ -101,7 +101,6 @@ function tabRowHTML(tabs, current){
 function breadcrumbHTML(route){
   const node = NAV_TREE[route];
   if (!node) return "";
-  let html = `<a data-nav="#/overview">Overview</a>`;
   if (node.parent){ html += `<span class="sep">/</span><span>${node.parent}</span>`; }
   html += `<span class="sep">/</span><span class="cur">${node.label}</span>`;
   return html;
