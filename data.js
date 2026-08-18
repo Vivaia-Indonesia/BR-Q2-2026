@@ -38,7 +38,7 @@ const DATA = {
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Jun 2025", positive: true },
     { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Jun 2025", positive: true },
     { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Jun 2025", positive: false },
-    { key: "ach", label: "ACH.", value: "22%", growth: 16, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
+    { key: "ach", label: "ACH.", value: "88%", growth: 16, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
 
@@ -832,7 +832,7 @@ marketing: {
         julyScore: 96,
         changePct: 11,
       },
-      image: null,
+      image: "image/Training.png",
       imageAlt: "VM training session with store team reviewing display guidelines in the stockroom",
     },
   },
@@ -859,7 +859,7 @@ marketing: {
         { num: 5, title: "Operational Checklist Implementation", text: "Daily operational checklist implementation to ensure consistency in store standards, operational readiness, stock management, VM, and customer service." },
         { num: 6, title: "Store Productivity Improvement", text: "Daily and weekly performance monitoring with continuous follow-up to improve store productivity, conversion, ATV, and overall sales performance." },
       ],
-      image: null,
+      image: "image/Ops.png",
       imageAlt: "Store team development session with Store Managers and staff",
     },
   },
@@ -952,7 +952,7 @@ marketing: {
         { title: "Engagement", color: "green", text: "High interest in private events (showcase + on-the-spot purchase), and love GWP & instantly redeemable vouchers." },
         { title: "Competitors", color: "gold", text: "Melissa, Steve Madden, Nike, New Balance, up to Hermès, Valentino, Fendi, Ferragamo. Switch triggers: wider model/size options & complimentary treatment." },
       ],
-      images: [null, null, null],
+      images: ["image/Loyal1.png", "image/Loyal2.png", "image/Loyal3.png"],
     },
  
     luxuryExperience: {
@@ -964,14 +964,14 @@ marketing: {
         "Strengthen premium perception",
         "Support longer in-store engagement",
       ],
-      uniform: { title: "Refined Staff Uniform", beforeImage: null, afterImage: null },
-      hospitality: { title: "Store Hospitality", image: null },
+      uniform: { title: "Refined Staff Uniform", beforeImage: "image/Uniform1.png", afterImage: "image/Uniform2.png" },
+      hospitality: { title: "Store Hospitality", image: "image/Hospitality.png" },
     },
  
     expansionPlan: {
       title: "Expansion Plan",
       text: "VIVAIA's 2026 footprint is concentrated in Java — 14 stores across JAVA Island, with the most recent opening at DP Mall Semarang. Makassar and Bali are our next target for expansion.",
-      mapImage: null,
+      mapImage: "image/Map.png",
       locations: [
         { area: "Greater Jakarta", count: 11, status: "Open" },
         { area: "Bandung", count: 1, status: "Open" },
@@ -990,7 +990,7 @@ marketing: {
       ],
       area: "119sqm",
       targetOpening: "Jan 2027",
-      floorplanImage: null,
+      floorplanImage: "image/TSMMKS.png",
     },
     
     luxuryBrands: {
@@ -998,7 +998,7 @@ marketing: {
       subtitle: "Luxury Category",
       text: "Loyal Customer Event findings reveal that VIVAIA shares the same style-conscious consumer with established luxury brands, with many customers also shopping brands such as Gucci, Fendi, Valentino and Loro Piana. This is further supported by Google Trends, where VIVAIA demonstrates strong consumer search interest in Indonesia alongside these luxury names. While luxury brands fulfill aspiration, status and occasion-led needs, VIVAIA complements this wardrobe by serving the everyday footwear occasion through comfort, versatility and accessibility.",
       brandsCompared: ["Vivaia", "Loro Piana", "Gucci", "Valentino", "Fendi"],
-      trendsImage: null,
+      trendsImage: "image/Luxury.png",
       trendsImageAlt: "Google Trends chart comparing VIVAIA search interest in Indonesia against Loro Piana, Gucci, Valentino and Fendi",
     },
  
@@ -1006,7 +1006,7 @@ marketing: {
       title: "Competitor Review Q2",
       subtitle: "Fashion Category",
       text: "Google Trends shows that VIVAIA maintained consistent consumer search interest in Indonesia throughout the past 12 months, with a relatively stable trend compared to the more campaign-driven fluctuations seen across competitors. Meanwhile, Melissa continued to lead overall search interest, while Steve Madden and STACCATO recorded notable spikes during specific Q2 periods. The consistent interest in VIVAIA indicates an established level of consumer awareness, providing a solid base to further build momentum through upcoming campaigns and product launches.",
-      trendsImage: null,
+      trendsImage: "image/Competitor.png",
       trendsImageAlt: "Google Trends chart comparing VIVAIA search interest in Indonesia against Steve Madden, Melissa and STACCATO",
       brands: [
         { name: "Melissa", text: "In Q2, Melissa's strategy centered on maintaining its established position in jelly footwear while driving fashion relevance through trend-led collections and designer collaborations. This was supported by KOL and media amplification, paid media across META and TikTok, and continued retail expansion.", image: null },
@@ -1032,7 +1032,7 @@ marketing: {
           { store: "VIVAIA Plaza Indonesia", julyRating: 3.8, julyReviews: 21, augRating: 4.3, augReviews: 37 },
         ],
       },
-      images: [null, null, null, null],
+      images: ["image/PS1.png", "image/PS2.png", "image/PI1.png", "image/PI2.png"],
     },
  
     publicFigures: {
@@ -1044,14 +1044,14 @@ marketing: {
           tags: "Diplomacy · Competence · Composure · Global Leadership",
           bio: "Indonesia's first female Foreign Minister and current UN Secretary-General's Special Envoy on Water. Retno is recognized less as a political celebrity than as an understated, highly credible institutional leader—representing Indonesia on the global stage through diplomacy, humanitarian advocacy and multilateral cooperation.",
           fit: "Her frequent public wearing positions VIVAIA naturally within the life of an accomplished woman who must remain mobile, polished and present while doing consequential work.",
-          images: [null, null],
+          images: ["image/Retno1.png", "image/Retno2.png"],
         },
         {
           name: "Yenny Wahid",
           tags: "Pluralism · Women's Empowerment · Social Inclusion · Purposeful Leadership",
           bio: "Civil-society leader and Director of the Wahid Foundation, Yenny carries forward Gus Dur's humanistic legacy while building her own work around religious tolerance, peace, women's agency and socially resilient communities.",
           fit: "Her frequent public wearing places VIVAIA alongside a woman whose style supports rather than defines her—modern, practical and purposeful.",
-          images: [null, null],
+          images: ["image/Yenny1.png", "image/Yenny2.png"],
         },
       ],
     },
@@ -1110,7 +1110,7 @@ marketing: {
       eyebrow: "Watch the Recap",
       title: "The retreat in one minute",
       text: "Sunset yoga above the Jakarta skyline, the jamu bar, the bloom atelier, the floating sound bath — the official 2nd Anniversary recap, as the community lived it.",
-      video: null,
+      video: "VIDEO.mov",
     },
   },
  
