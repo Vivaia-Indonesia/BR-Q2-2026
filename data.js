@@ -978,18 +978,18 @@ marketing: {
         { area: "Makassar", count: 1, status: "Plan" },
         { area: "Bali", count: 1, status: "Plan" },
       ],
-      expansionMakassar: {
-        title: "Expansion Plan: TSM Makassar",
-        bullets: [
-          "Directly beside TUMI, same row as Onitsuka Tiger — only 2 tenants from Coach",
-          "Near the escalator & small atrium — high footfall capture",
-          "Across from Zara, Metro, Kate Spade, Michael Kors and Uniqlo",
-        ],
-        area: "119sqm",
-        targetOpening: "Jan 2027",
-        floorplanImage: null,
-      },
-    }, 
+    },
+    expansionMakassar: {
+      title: "Expansion Plan: TSM Makassar",
+      bullets: [
+        "Directly beside TUMI, same row as Onitsuka Tiger — only 2 tenants from Coach",
+        "Near the escalator & small atrium — high footfall capture",
+        "Across from Zara, Metro, Kate Spade, Michael Kors and Uniqlo",
+      ],
+      area: "119sqm",
+      targetOpening: "Jan 2027",
+      floorplanImage: null,
+    },
     
     luxuryBrands: {
       title: "Relevancy to Luxury Brands",
@@ -1117,7 +1117,6 @@ const PRESENTATION_ORDER = [
   { route: "#/q3-strategy/loyal-customer", label: "Loyal Customer Event" },
   { route: "#/q3-strategy/luxury-experience", label: "Elevating Luxury Retail Experience" },
   { route: "#/q3-strategy/expansion-plan", label: "Expansion Plan" },
-  { route: "#/q3-strategy/expansion-makassar", label: "Expansion Plan: TSM Makassar" },
   { route: "#/q3-strategy/luxury-brands", label: "Relevancy to Luxury Brands" },
   { route: "#/q3-strategy/competitors", label: "Competitor Review Q2" },
   { route: "#/q3-strategy/google-review", label: "Google Review" },

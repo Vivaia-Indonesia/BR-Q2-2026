@@ -2060,28 +2060,6 @@ function renderQ3LuxuryExperience(){
  
 function renderQ3ExpansionPlan(){
   const d = DATA.q3Strategy.expansionPlan;
-  return `
-    <div class="page-head">
-      <div class="eyebrow">Q3 Strategy & Plan</div>
-      <h1 class="page-title">${d.title}</h1>
-      <p class="page-sub">${d.text}</p>
-    </div>
-    ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-plan")}
- 
-    <div class="two-col section-block">
-      ${mediaSlot(d.mapImage, "Indonesia expansion map — Open vs Plan stores", {height:"auto"})}
-      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
-        <thead><tr><th>Area</th><th>Stores</th><th>Status</th></tr></thead>
-        <tbody>
-          ${d.locations.map(l=>`<tr><td>${l.area}</td><td>${l.count}</td><td><span class="priority-pill ${l.status==='Open'?'low':'medium'}">${l.status}</span></td></tr>`).join("")}
-        </tbody>
-      </table></div>
-    </div>
-  `;
-}
- 
-function renderQ3ExpansionPlan(){
-  const d = DATA.q3Strategy.expansionPlan;
   const m = DATA.q3Strategy.expansionMakassar;
   return `
     <div class="page-head">
