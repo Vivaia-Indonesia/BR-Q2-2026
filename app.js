@@ -1785,7 +1785,7 @@ function renderOperationalKeyHighlights(){
         </div>`).join("")}
     </div>
  
-    <div class="section-block">
+    <div class="section-block" style="margin-top:30px;">
       <div class="callout brand"><strong>${d.summary}</strong></div>
     </div>
   `;
@@ -1923,20 +1923,24 @@ function renderPeoplePipeline(){
       </div>
     </div>
  
-    <div class="section-block">
+    <div class="section-block" style="margin-top:32px;">
       <div class="insight-grid" style="grid-template-columns:1fr;">
         <div class="insight-card">
           <div class="tag">Q3 Focus</div>
-          <ul class="bullet-list" style="margin-top:6px;">${d.focusNotes.map(t=>`<li>${t}</li>`).join("")}</ul>
+          <ul class="bullet-list" style="margin-top:6px;">
+            ${d.focusNotes.map(t=>`<li>${t}</li>`).join("")}
+          </ul>
         </div>
       </div>
     </div>
- 
+
     <div class="section-block">
-      <div class="callout brand"><strong>Brand pedigree joining VIVAIA:</strong> ${d.brandPedigree.join(" · ")}</div>
+      <div class="callout brand">
+        <strong>Brand pedigree joining VIVAIA:</strong> ${d.brandPedigree.join(" · ")}
+      </div>
     </div>
-  `;
-}
+      `;
+    }
  
 /* ============================================================================
    Q3 STRATEGY & PLAN
@@ -2017,7 +2021,7 @@ function renderQ3LoyalCustomer(){
         </div>`).join("")}
     </div>
  
-    <div class="section-block">
+    <div class="section-block" style="margin-top:30px;">
       <div class="section-label">Session Photos</div>
       <div class="media-row">
         ${d.images.map((img,i)=>mediaSlot(img, `Loyal Customer Event photo ${i+1}`, {height:"160px"})).join("")}
@@ -2167,7 +2171,7 @@ function renderQ3GoogleReview(){
         </div>`).join("")}
     </div>
  
-    <div class="section-block">
+    <div class="section-block" style="margin-top:30px;">
       <div class="section-label">${d.result.label}</div>
       <div class="table-wrap"><table class="data">
         <thead><tr><th>Store</th><th>July 31 — Rating</th><th>July 31 — Reviews</th><th>Aug 15 — Rating</th><th>Aug 15 — Reviews</th></tr></thead>
@@ -2221,7 +2225,7 @@ function renderWellnessActivation(){
       <h1 class="page-title">${d.title}</h1>
     </div>
  
-    <div class="kpi-grid section-block">
+    <div class="kpi-grid section-block" style="grid-template-columns:repeat(4,1fr);">
       ${d.stats.map(s=>`
         <div class="tag-card">
           <div class="t-value" style="font-size:26px;">${s.value}</div>
@@ -2237,12 +2241,28 @@ function renderWellnessActivation(){
         ${lr.rows.map(r=>`
           <div class="wellness-bar-row">
             ${mediaSlot(r.image, r.type, {cls:"wellness-thumb"})}
+
             <div style="flex:1;">
-              <div class="wellness-bar-title">${r.type}</div>
+              ${r.link
+                ? `<div class="wellness-bar-title">
+                     <a
+                       href="${r.link}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="wellness-source-link"
+                     >
+                       ${r.type} ↗
+                     </a>
+                   </div>`
+                : `<div class="wellness-bar-title">${r.type}</div>`
+              }
+
               <div class="wellness-bar-note">${r.note}</div>
             </div>
+
             <div class="wellness-bar-metric">${r.metric}</div>
-          </div>`).join("")}
+          </div>
+        `).join("")}
       </div>
     </div>
   `;

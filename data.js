@@ -956,11 +956,11 @@ marketing: {
     luxuryExperience: {
       title: "Elevating Luxury Retail Experience",
       objectives: [
-        "elevate in-store hospitality",
-        "create memorable touchpoint",
-        "reinforce comfort positioning",
-        "strengthen premium perception",
-        "support longer in-store engagement",
+        "Elevate in-store hospitality",
+        "Create memorable touchpoint",
+        "Reinforce comfort positioning",
+        "Strengthen premium perception",
+        "Support longer in-store engagement",
       ],
       uniform: { title: "Refined Staff Uniform", beforeImage: null, afterImage: null },
       hospitality: { title: "Store Hospitality", image: null },
@@ -1071,11 +1071,44 @@ marketing: {
       subtitle: "The Local-Relevance Effect · All organic posts from @vivaia.indonesia",
       text: "Same account, same audience, four organic content types. Wellness lifestyle with local KOLs out-engages commercial store-opening content 4.7:1, international celebrity seeding 33:1, and product shots 236:1. Relevance beats fame; ritual beats product; wellness beats commerce.",
       rows: [
-        { type: "Local KOL × wellness lifestyle", metric: "4,500 likes", note: "Event recap with local KOLs · organic", image: null },
-        { type: "Local celebrity × new store opening", metric: "958 likes (post) · 119 (reel)", note: "Grand Opening PIM 2 — commercial content (post 958 + reel 119, co-post excluded) · organic", image: null },
-        { type: "International celebrity seeding", metric: "138 likes", note: "Anne Hathaway post · organic", image: null },
-        { type: "Standard product shots", metric: "13–25 likes (avg ~19)", note: "Product posts · organic", image: null },
+        {
+          type: "Local KOL × wellness lifestyle",
+          metric: "4,500 likes",
+          note: "Event recap with local KOLs · organic",
+          image: null,
+          link: "PASTE_SOURCE_POST_URL_HERE"
+        },
+
+        {
+          type: "Local celebrity × new store opening",
+          metric: "958 likes (post) · 119 (reel)",
+          note: "Grand Opening PIM 2 — commercial content (post 958 + reel 119, co-post excluded) · organic",
+          image: null,
+          link: "PASTE_SOURCE_POST_URL_HERE"
+        },
+
+        {
+          type: "International celebrity seeding",
+          metric: "138 likes",
+          note: "Anne Hathaway post · organic",
+          image: null,
+          link: "PASTE_SOURCE_POST_URL_HERE"
+        },
+
+        {
+          type: "Standard product shots",
+          metric: "13–25 likes (avg ~19)",
+          note: "Product posts · organic",
+          image: null,
+          link: "PASTE_SOURCE_POST_URL_HERE"
+        }
       ],
+    },
+    retreatRecap: {
+      eyebrow: "Watch the Recap",
+      title: "The retreat in one minute",
+      text: "Sunset yoga above the Jakarta skyline, the jamu bar, the bloom atelier, the floating sound bath — the official 2nd Anniversary recap, as the community lived it.",
+      video: null,
     },
   },
  
