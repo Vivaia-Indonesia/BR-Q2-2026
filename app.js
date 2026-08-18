@@ -967,20 +967,20 @@ function initPromoOverviewChart() {
 
           if (value < 1) {
             return {
-              size: 9,
+              size: 8,
               weight: "bold"
             };
           }
 
           if (value < 2) {
             return {
-              size: 10,
+              size: 9,
               weight: "bold"
             };
           }
 
           return {
-            size: 12,
+            size: 11,
             weight: "bold"
           };
         },
@@ -990,16 +990,29 @@ function initPromoOverviewChart() {
 
         formatter: (value) => `${value}%`,
 
-        anchor: "center",
-        align: "center",
+        anchor: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+
+          return value >= 80 ? "center" : "end";
+        },
+
+        align: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+
+          return value >= 80 ? "center" : "center";
+        },
+
         offset: (context) => {
           const value = context.dataset.data[context.dataIndex];
 
-          if (value < 1) return -2;
-          if (value < 2) return -4;
-          if (value < 3) return -6;
+          if (value >= 80) return 0;
 
-          return 0;
+          if (value < 1) return -8;
+          if (value < 2) return -10;
+          if (value < 4) return -12;
+          if (value < 8) return -14;
+
+          return -16;
         },
 
         clamp: true,
