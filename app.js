@@ -195,7 +195,9 @@ function renderSalesOverview(){
 
     <div class="section-block">
       <div class="section-label">Headline KPIs — Q2 2026 vs Q2 2025</div>
-      <div class="kpi-grid">${kpiCards}</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);">
+        ${kpiCards}
+      </div>
     </div>
 
     <div class="section-block">

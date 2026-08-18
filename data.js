@@ -38,7 +38,7 @@ const DATA = {
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Jun 2025", positive: true },
     { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Jun 2025", positive: true },
     { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Jun 2025", positive: false },
-    { key: "ach", label: "ACH.", value: "22%", growth: 16, compareLabel: "vs 19% Q2 2025", positive: true },
+    { key: "ach", label: "ACH.", value: "22%", growth: 16, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
 
