@@ -1106,7 +1106,7 @@ marketing: {
     },
     retreatRecap: {
       eyebrow: "Watch the Recap",
-      title: "The retreat in one minute",
+      subtitle: "The retreat in one minute",
       text: "Sunset yoga above the Jakarta skyline, the jamu bar, the bloom atelier, the floating sound bath — the official 2nd Anniversary recap, as the community lived it.",
       video: null,
     },
