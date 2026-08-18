@@ -962,9 +962,27 @@ function initPromoOverviewChart() {
       datalabels: {
         color: "#FFFFFF",
 
-        font: {
-          size: 12,
-          weight: "bold"
+        font: (context) => {
+          const value = context.dataset.data[context.dataIndex];
+
+          if (value < 1) {
+            return {
+              size: 9,
+              weight: "bold"
+            };
+          }
+
+          if (value < 2) {
+            return {
+              size: 10,
+              weight: "bold"
+            };
+          }
+
+          return {
+            size: 12,
+            weight: "bold"
+          };
         },
 
         textStrokeColor: "#000000",
@@ -972,33 +990,23 @@ function initPromoOverviewChart() {
 
         formatter: (value) => `${value}%`,
 
-        anchor: (context) => {
-          const value = context.dataset.data[context.dataIndex];
-          return value < 4 ? "end" : "center";
-        },
-
-        align: (context) => {
-          const value = context.dataset.data[context.dataIndex];
-          return value < 4 ? "end" : "center";
-        },
-
+        anchor: "center",
+        align: "center",
         offset: (context) => {
           const value = context.dataset.data[context.dataIndex];
 
-          if (value >= 4) return 0;
+          if (value < 1) return -2;
+          if (value < 2) return -4;
+          if (value < 3) return -6;
 
-          const index = context.dataIndex;
-          return 8 + (index % 3) * 6;
+          return 0;
         },
 
         clamp: true,
-        clip: false,
+        clip: true,
 
-        display: (context) => {
-          const value = context.dataset.data[context.dataIndex];
-          return value >= 0.5;
-        }
-      },  
+        display: true
+      },
 
         tooltip: {
           callbacks: {
