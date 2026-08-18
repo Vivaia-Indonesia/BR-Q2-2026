@@ -145,6 +145,8 @@ function renderSalesOverview(){
       <p class="page-sub">Q2 2026 sales performance across VIVAIA's Indonesia store network.</p>
     </div>
 
+    ${tabRowHTML(BUSINESS_TABS, "#/business/sales-overview")}
+
     <div class="section-block">
       <div class="section-label">Headline KPIs — Q2 2026 vs Q2 2025</div>
       <div class="kpi-grid">${kpiCards}</div>
@@ -846,6 +848,8 @@ function renderPromoOverview(){
       <h1 class="page-title">${d.title}</h1>
       <p class="page-sub">${d.subtitle}</p>
     </div>
+
+    ${tabRowHTML(BUSINESS_TABS, "#/business/promotion-overview")}
 
     <div class="section-block">
       <div class="table-wrap">

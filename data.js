@@ -420,7 +420,8 @@ businessShareChart: [
       { label: "Buy 4+", value: 1.2 },
       { label: "Clearance", value: 6.8 },
       { label: "Buy 3 Get 1", value: 0.2 },
-      { label: "Envelope Mystery Gift", value: 2.4 }
+      { label: "Envelope Mystery Gift", value: 2.4 },
+      { label: "Full Price", value: 82.9 },
     ],
 
     insights: [
