@@ -36,8 +36,8 @@ function channelPill(ch){ return `<span class="channel-pill ${ch}">${ch}</span>`
 
 /* ---------------------------- nav tree for breadcrumbs -------------------- */
 const NAV_TREE = {
-  "#/overview": { label: "Overview" },
   "#/business/economy": { label: "Economic Overview", parent: "Business Overview" },
+  "#/business/sales-overview": { label: "Sales Overview", parent: "Business Overview" },
   "#/business/channel-mix": { label: "Channel Mix", parent: "Business Overview" },
   "#/business/independent-stores": { label: "Independent Stores", parent: "Business Overview" },
   "#/business/department-stores": { label: "Department Stores", parent: "Business Overview" },
@@ -211,7 +211,8 @@ function initBusinessShareChart() {
 
       plugins: {
         legend: {
-          display: false
+          display: true,
+          position: "bottom",
         },
 
         datalabels: {
