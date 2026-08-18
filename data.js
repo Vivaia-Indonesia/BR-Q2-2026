@@ -38,6 +38,7 @@ const DATA = {
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Jun 2025", positive: true },
     { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Jun 2025", positive: true },
     { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Jun 2025", positive: false },
+    { key: "ach", label: "ACH.", value: "22%", growth: 16, compareLabel: "vs 19% Q2 2025", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
 
@@ -726,7 +727,8 @@ marketing: {
       rows: [
         { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "1,130%", salesPerUnit: "$12,30" },
         { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "17,080%", salesPerUnit: "$171,80" },
-        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
+        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
+        { period: "Total", totalSales: "$2,645.535", reportedRoi: "3,481%", salesPerUnit: "$35,81" },
       ],
     },
   },
@@ -1076,7 +1078,7 @@ marketing: {
           metric: "4,500 likes",
           note: "Event recap with local KOLs · organic",
           image: null,
-          link: "PASTE_SOURCE_POST_URL_HERE"
+          link: "https://www.instagram.com/p/DbACEzyk_Hh/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
         },
 
         {
@@ -1084,7 +1086,7 @@ marketing: {
           metric: "958 likes (post) · 119 (reel)",
           note: "Grand Opening PIM 2 — commercial content (post 958 + reel 119, co-post excluded) · organic",
           image: null,
-          link: "PASTE_SOURCE_POST_URL_HERE"
+          link: "https://www.instagram.com/p/DXoNa_nk6WX/"
         },
 
         {
@@ -1092,7 +1094,7 @@ marketing: {
           metric: "138 likes",
           note: "Anne Hathaway post · organic",
           image: null,
-          link: "PASTE_SOURCE_POST_URL_HERE"
+          link: "https://www.instagram.com/p/DaPAQSFEzzO/"
         },
 
         {
@@ -1100,13 +1102,13 @@ marketing: {
           metric: "13–25 likes (avg ~19)",
           note: "Product posts · organic",
           image: null,
-          link: "PASTE_SOURCE_POST_URL_HERE"
+          link: "https://www.instagram.com/p/Db91GvSk0Dm/?img_index=1t"
         }
       ],
     },
     retreatRecap: {
       eyebrow: "Watch the Recap",
-      subtitle: "The retreat in one minute",
+      title: "The retreat in one minute",
       text: "Sunset yoga above the Jakarta skyline, the jamu bar, the bloom atelier, the floating sound bath — the official 2nd Anniversary recap, as the community lived it.",
       video: null,
     },
