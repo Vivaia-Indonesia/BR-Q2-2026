@@ -84,23 +84,6 @@ const ROUTES = {
   "#/q3-overview": { render: () => renderEmpty("Q3 Overview"), init: null },
 };
 
-function currentRoute(){
-  const h = location.hash || "#/business/sales-overview";
-  return h.split("?")[0];
-}
-
-function setActiveNav(route){
-  document.querySelectorAll(".nav-item[data-nav]").forEach(el=>{
-    el.classList.toggle("active", el.getAttribute("data-nav") === route);
-  });
-  const meta = ROUTES[route];
-  if (meta && meta.group){
-    document.querySelectorAll(".nav-group").forEach(g=>g.classList.remove("open"));
-    const g = document.getElementById(meta.group);
-    if (g) g.classList.add("open");
-  }
-}
-
 let presentMode = false;
 let presentIndex = 0;
  

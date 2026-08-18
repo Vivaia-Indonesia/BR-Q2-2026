@@ -44,11 +44,11 @@ const NAV_TREE = {
   "#/business/q2-vs-q1": { label: "Q2 vs Q1", parent: "Business Overview" },
   "#/business/q2-vs-q2ly": { label: "Q2 vs Q2 LY", parent: "Business Overview" },
   "#/business/same-store": { label: "Same-Store Growth", parent: "Business Overview" },
+  "#/business/promotion-overview": { label: "Q2 Promotion Overview", parent: "Business Overview" },
   "#/merchandise/overview": { label: "Q2 Performance", parent: "Merchandise" },
   "#/merchandise/best-sellers": { label: "Best Sellers", parent: "Merchandise" },
   "#/merchandise/slow-movers": { label: "Slow Movers", parent: "Merchandise" },
   "#/merchandise/size-analysis": { label: "Size Analysis", parent: "Merchandise" },
-  "#/promotions/overview": { label: "Q2 Promotion Overview", parent: "Promotions" },
   "#/marketing": { label: "Marketing" },
   "#/social": { label: "Social Media Insights" },
   "#/hr": { label: "HR" },
@@ -101,8 +101,15 @@ function tabRowHTML(tabs, current){
 function breadcrumbHTML(route){
   const node = NAV_TREE[route];
   if (!node) return "";
-  if (node.parent){ html += `<span class="sep">/</span><span>${node.parent}</span>`; }
+
+  let html = "";
+
+  if (node.parent){
+    html += `<span class="sep">/</span><span>${node.parent}</span>`;
+  }
+
   html += `<span class="sep">/</span><span class="cur">${node.label}</span>`;
+
   return html;
 }
 
