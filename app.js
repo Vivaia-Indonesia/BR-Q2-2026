@@ -2488,7 +2488,7 @@ function renderQ3PublicFigures(){
    INDONESIA WELLNESS ACTIVATION
 ============================================================================ */
 function renderWellnessActivation(){
-  const d = DATA.indonesiaWellness;
+  const d = DATA.wellnessActivation;
   const lr = d.localRelevance;
   const rc = d.retreatRecap;
   return `
