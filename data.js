@@ -38,7 +38,6 @@ const DATA = {
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Q2 2025", positive: true },
     { key: "upt", label: "UPT", value: "1.22", growth: 6.5, compareLabel: "vs 1.15 Q2 2025", positive: true },
     { key: "asp", label: "ASP", value: "USD 128", growth: -3.2, compareLabel: "vs USD 132 Q2 2025", positive: false },
-    { key: "ach", label: "ACH.", value: "98%", growth: 21, compareLabel: "vs USD 2.64M sales Q2 2026", positive: true },
   ],
   kpiHeadline: "Q2 2026 vs Q2 2025 — 5 KPIs positive, 1 KPI negative",
 
@@ -60,6 +59,26 @@ const DATA = {
       text: "Footfall issue: transactions at Plaza Senayan, Plaza Indonesia and AEON Mall BSD are declining year-on-year, pointing to traffic loss to newer VIVAIA stores or competitors — urgent traffic-driver action needed.",
     },
   ],
+
+  fySalesVsTarget: {
+    kpis: [
+      { label: "FY Sales", value: "USD 11.78M", note: "Best Estimate", tone: "neutral" },
+      { label: "FY Target", value: "USD 12.61M", note: "Full-year target", tone: "neutral" },
+      { label: "Achievement", value: "93.4%", note: "vs FY target", tone: "positive" },
+      { label: "Gap", value: "USD 0.83M", note: "Below target", tone: "negative" },
+    ],
+    table: [
+      { period: "Q1", sales: "USD 2.09M", target: "USD 2.86M", achievement: "73.0%", growth: 1.0 },
+      { period: "Q2", sales: "USD 2.65M", target: "USD 2.70M", achievement: "97.9%", growth: 31.3 },
+      { period: "YTD", sales: "USD 4.74M", target: "USD 5.57M", achievement: "85.1%", growth: 16.0 },
+      { period: "FY BE", sales: "USD 11.78M", target: "USD 12.61M", achievement: "93.4%", growth: null, total: true },
+    ],
+    takeaways: [
+      { title: "Q2 recovery", text: "Achievement improved from 73.0% in Q1 to 97.9% in Q2." },
+      { title: "Growth", text: "YTD sales are +16.0% vs 2025, showing positive momentum." },
+      { title: "Gap to close", text: "FY Best Estimate is still USD 0.83M below target; H2 needs sustained delivery." },
+    ],
+  },
 
 businessShareChart: [
   {
@@ -1009,9 +1028,9 @@ marketing: {
       trendsImage: "image/Competitor.png",
       trendsImageAlt: "Google Trends chart comparing VIVAIA search interest in Indonesia against Steve Madden, Melissa and STACCATO",
       brands: [
-        { name: "Melissa", text: "In Q2, Melissa's strategy centered on maintaining its established position in jelly footwear while driving fashion relevance through trend-led collections and designer collaborations. This was supported by KOL and media amplification, paid media across META and TikTok, and continued retail expansion.", image: null },
-        { name: "STACCATO", text: "In Q2, STACCATO focused on expanding its fashion positioning through its SS26 collection and new footwear concepts such as Sneakerina, while leveraging Korean celebrity influence through the appointment of Yang Mi as its Global Brand Ambassador. The brand also explored opportunities beyond footwear through its Scarf Collection, aiming to broaden its product offering and reach new audiences.", image: null },
-        { name: "Steve Madden", text: "In Q2, Steve Madden focused on leveraging current footwear trends, particularly Mary Janes, ballerina flats, and jelly shoes, while translating these trends into more accessible and commercial offerings. The strategy was supported by KOL and Homeless Media exposure across Instagram and TikTok, alongside tactical promotional activities to drive conversion.", image: null },
+        { name: "Melissa", text: "In Q2, Melissa's strategy centered on maintaining its established position in jelly footwear while driving fashion relevance through trend-led collections and designer collaborations. This was supported by KOL and media amplification, paid media across META and TikTok, and continued retail expansion.", image: "image/Melissa.png" },
+        { name: "STACCATO", text: "In Q2, STACCATO focused on expanding its fashion positioning through its SS26 collection and new footwear concepts such as Sneakerina, while leveraging Korean celebrity influence through the appointment of Yang Mi as its Global Brand Ambassador. The brand also explored opportunities beyond footwear through its Scarf Collection, aiming to broaden its product offering and reach new audiences.", image: "image/Staccato.png" },
+        { name: "Steve Madden", text: "In Q2, Steve Madden focused on leveraging current footwear trends, particularly Mary Janes, ballerina flats, and jelly shoes, while translating these trends into more accessible and commercial offerings. The strategy was supported by KOL and Homeless Media exposure across Instagram and TikTok, alongside tactical promotional activities to drive conversion.", image: "image/Steve.png" },
       ],
     },
  

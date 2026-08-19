@@ -195,10 +195,12 @@ function renderSalesOverview(){
 
     <div class="section-block">
       <div class="section-label">Headline KPIs — Q2 2026 vs Q2 2025</div>
-      <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="kpi-grid">
         ${kpiCards}
       </div>
     </div>
+
+    ${fySalesVsTargetHTML()}
 
     <div class="section-block">
       <div class="section-label">Executive Insights</div>
@@ -219,6 +221,52 @@ function renderSalesOverview(){
         </div>
 
       </div>
+    </div>
+  `;
+}
+function fySalesVsTargetHTML(){
+  const d = DATA.fySalesVsTarget;
+  if (!d) return "";
+ 
+  const toneColor = { positive: "var(--positive)", negative: "var(--negative)", neutral: "var(--brand-deep)" };
+ 
+  const kpiCards = d.kpis.map(k => `
+    <div class="tag-card">
+      <div class="t-label">${k.label}</div>
+      <div class="t-value" style="color:${toneColor[k.tone] || toneColor.neutral};">${k.value}</div>
+      <div class="t-compare">${k.note}</div>
+    </div>`).join("");
+ 
+  const rows = d.table.map(r => `
+    <tr${r.total ? ' class="total-row"' : ''}>
+      <td>${r.period}</td>
+      <td>${r.sales}</td>
+      <td>${r.target}</td>
+      <td>${r.achievement}</td>
+      ${cellGrowth(r.growth)}
+    </tr>`).join("");
+ 
+  const takeaways = d.takeaways.map(t => `<li><strong>${t.title}:</strong> ${t.text}</li>`).join("");
+ 
+  return `
+    <div class="section-block">
+      <div class="section-label">2026 Sales vs Target</div>
+      <div class="kpi-grid">
+        ${kpiCards}
+      </div>
+ 
+      <div class="table-wrap" style="margin-top:14px;">
+        <table class="data">
+          <thead><tr><th>Period</th><th>Sales</th><th>Target</th><th>Achievement</th><th>Growth vs 2025</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+ 
+      <div class="callout" style="margin-top:14px;">
+        <strong>Key Takeaways</strong>
+        <ul class="bullet-list" style="margin-top:8px;">${takeaways}</ul>
+      </div>
+      ${d.source ? `<div class="t-compare" style="margin-top:8px;">Source: ${d.source}</div>` : ""}
     </div>
   `;
 }
