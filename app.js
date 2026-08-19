@@ -438,7 +438,7 @@ function renderChannelStorePage(channel){
   const route = isInd ? "#/business/independent-stores" : "#/business/department-stores";
   const highlights = isInd ? DATA.monthlyGmv.highlightsIndependent : DATA.monthlyGmv.highlightsDepartment;
   const title = isInd ? "Independent Store Q2 GMV Breakdown" : "Department Store Q2 GMV Breakdown";
-
+ 
   return `
     <div class="page-head">
       <div class="eyebrow">Business Overview · Store Performance</div>
@@ -446,7 +446,7 @@ function renderChannelStorePage(channel){
       <p class="page-sub">Revenue distribution across ${isInd?'independent':'department'} stores, since Jan – Jun 2026. ${DATA.meta.fxNote}</p>
     </div>
     ${tabRowHTML(BUSINESS_TABS, route)}
-
+ 
     <div class="two-col section-block">
       <div class="card">
         <div class="card-title">Monthly GMV by Store</div>
@@ -458,7 +458,7 @@ function renderChannelStorePage(channel){
         <ul class="bullet-list">${highlights.map(t=>`<li>${t}</li>`).join("")}</ul>
       </div>
     </div>
-
+ 
     <div class="section-block">
       <div class="section-label">Store Ranking — YTD GMV (USD K)</div>
       <div class="store-list">
@@ -466,7 +466,7 @@ function renderChannelStorePage(channel){
           const ytd = DATA.monthlyGmv.ytdTotal[key] || 0;
           const pctW = maxYtd ? Math.max(4, Math.round(ytd/maxYtd*100)) : 0;
           return `
-          <div class="store-row" data-panel="store" data-key="${key}">
+          <div class="store-row" data-panel="store" data-key="${key}" data-compare="q1">
             <div class="rank">${i+1}</div>
             <div class="name"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${storeColor(key)};margin-right:7px;"></span>${storeName(key)}<span class="ch">${storeChannel(key)} store</span></div>
             <div class="bar-wrap"><div class="bar-fill" style="width:${pctW}%;background:${storeColor(key)};"></div></div>
@@ -481,7 +481,7 @@ function renderChannelStorePage(channel){
 }
 function renderIndependentStores(){ return renderChannelStorePage("independent"); }
 function renderDepartmentStores(){ return renderChannelStorePage("department"); }
-
+ 
 function initChannelTrendChart(channel){
   killChart("channelTrend");
   const stores = storesForChannel(channel);
@@ -515,327 +515,92 @@ function initChannelTrendChart(channel){
 /* ============================================================================
    STORE DETAIL PANEL
 ============================================================================ */
-function renderStoreDetail(key) {
+function renderStoreDetail(key, compare) {
   const meta = DATA.storeMeta[key];
   if (!meta) return `<div class="callout">Store not found.</div>`;
-
   const monthly = DATA.monthlyGmv.byStore[key];
   const ytd = DATA.monthlyGmv.ytdTotal[key];
-
-  const q1 = DATA.q2vsQ1.independent
-    .concat(DATA.q2vsQ1.department)
-    .find(r => r.key === key);
-
-  const ly = DATA.q2vsQ2ly.independent
-    .concat(DATA.q2vsQ2ly.department)
-    .find(r => r.key === key);
-
-  const sameStore = DATA.sameStore.rows.find(r => r.key === key);
-
+  const q1 = DATA.q2vsQ1.independent.concat(DATA.q2vsQ1.department).find(r=>r.key===key);
+  const ly = DATA.q2vsQ2ly.independent.concat(DATA.q2vsQ2ly.department).find(r=>r.key===key);
+  const sameStore = DATA.sameStore.rows.find(r=>r.key===key);
+ 
   /*
-   * ----------------------------------------------------------
-   * UNIVERSAL STORE DETAIL
-   * ----------------------------------------------------------
-   * Every store gets the same layout.
-   *
-   * Q1 data is used when available.
-   * Otherwise Q2 vs Q2 2025 data is used.
+   * Which comparison to show is driven by the section the panel
+   * was opened from (`compare`: "q1" from Independent/Department
+   * Stores & Q2 vs Q1 2026, "ly" from Q2 vs Q2 LY & Same-Store
+   * Growth) — not just by whichever dataset happens to exist.
+   * Still falls back gracefully if the requested comparison has
+   * no data for this particular store.
    */
-
-  const isQ1Store = !!q1;
-
-  const comparisonLabel = isQ1Store
-    ? "vs Q1 2026"
-    : "vs Q2 2025";
-
-  const currentGMV = isQ1Store
-    ? q1.gmvQ2
-    : ly?.gmvQ2;
-
-  const currentQty = isQ1Store
-    ? q1.qtyQ2
-    : ly?.qtyQ2;
-
-  const growthColor = (value) => {
-    if (value === null || value === undefined || Number.isNaN(value)) {
-      return "var(--label)";
-    }
-
-    return value >= 0
-      ? "var(--positive)"
-      : "var(--negative)";
-  };
-
-  const growthValue = (value) => {
-    if (value === null || value === undefined || Number.isNaN(value)) {
-      return "—";
-    }
-
-    return `${value > 0 ? "+" : ""}${value.toFixed(1)}%`;
-  };
-
-  /*
-   * Growth KPIs
-   *
-   * Q1 stores:
-   *   use Q2 vs Q1 values
-   *
-   * Other stores:
-   *   use Q2 vs Q2 2025 values
-   *
-   * Same-store diagnosis values are only used where available.
-   */
-
-  const growthCards = [
-    {
-      label: "GMV Growth",
-      value: isQ1Store
-        ? q1.gmvGrowth
-        : ly?.gmvGrowth
-    },
-
-    {
-      label: "Qty Growth",
-      value: isQ1Store
-        ? q1.qtyGrowth
-        : ly?.qtyGrowth
-    },
-
-    {
-      label: "TRX Growth",
-      value: isQ1Store
-        ? q1.trxGrowth
-        : sameStore?.trxGrowth
-    },
-
-    {
-      label: "UPT Growth",
-      value: isQ1Store
-        ? q1.uptGrowth
-        : sameStore?.uptGrowth
-    },
-
-    {
-      label: "AOV Growth",
-      value: sameStore?.aovGrowth
-    },
-
-    {
-      label: "ASP Growth",
-      value: sameStore?.aspGrowth
-    }
-  ];
-
+  const hasQ1 = !!q1, hasLY = !!ly;
+  const mode = compare === "ly" && hasLY ? "ly"
+    : compare === "q1" && hasQ1 ? "q1"
+    : hasQ1 ? "q1"
+    : "ly";
+  const isQ1Mode = mode === "q1";
+ 
+  let kpiHtml = "";
+  if (isQ1Mode && q1 && !q1.closed) {
+    kpiHtml = `
+      <div class="panel-kpis">
+        <div class="tag-card"><div class="t-label">GMV (Q2'26)</div><div class="t-value" style="font-size:22px;">${fmtM(q1.gmvQ2)}</div>${q1.isNew?'<span class="pill">New store</span>':growthPillHTML(q1.gmvGrowth)}<div class="t-compare">vs Q1 2026</div></div>
+        <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:22px;">${fmtNum(q1.qtyQ2)}</div>${q1.isNew?'':growthPillHTML(q1.qtyGrowth)}<div class="t-compare">vs Q1 2026</div></div>
+        ${q1.isNew ? "" : `
+        <div class="tag-card"><div class="t-label">TRX Growth</div><div class="t-value" style="font-size:22px;">${q1.trxGrowth!==null?q1.trxGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(q1.trxGrowth)}<div class="t-compare">vs Q1 2026</div></div>
+        <div class="tag-card"><div class="t-label">UPT Growth</div><div class="t-value" style="font-size:22px;">${q1.uptGrowth!==null?q1.uptGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(q1.uptGrowth)}<div class="t-compare">vs Q1 2026</div></div>`}
+      </div>`;
+  } else if (isQ1Mode && q1 && q1.closed) {
+    kpiHtml = `<div class="callout"><strong>Store closed.</strong> Last recorded GMV Q1 2026: ${fmtM(q1.gmvQ1)}.</div>`;
+  } else if (!isQ1Mode && ly && !ly.closed) {
+    kpiHtml = `
+      <div class="panel-kpis">
+        <div class="tag-card"><div class="t-label">GMV (Q2'26)</div><div class="t-value" style="font-size:22px;">${fmtM(ly.gmvQ2)}</div>${ly.isNew?'<span class="pill">New store</span>':growthPillHTML(ly.gmvGrowth)}<div class="t-compare">vs Q2 2025</div></div>
+        <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:22px;">${fmtNum(ly.qtyQ2)}</div>${ly.isNew?'':growthPillHTML(ly.qtyGrowth)}<div class="t-compare">vs Q2 2025</div></div>
+        ${ly.isNew ? "" : `
+        <div class="tag-card"><div class="t-label">TRX Growth</div><div class="t-value" style="font-size:22px;">${ly.trxGrowth!==null&&ly.trxGrowth!==undefined?ly.trxGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.trxGrowth)}<div class="t-compare">vs Q2 2025</div></div>
+        <div class="tag-card"><div class="t-label">UPT Growth</div><div class="t-value" style="font-size:22px;">${ly.uptGrowth!==null&&ly.uptGrowth!==undefined?ly.uptGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.uptGrowth)}<div class="t-compare">vs Q2 2025</div></div>`}
+      </div>`;
+  } else if (!isQ1Mode && ly && ly.closed) {
+    kpiHtml = `<div class="callout"><strong>Store closed.</strong> Last recorded GMV Q2 2025: ${fmtM(ly.gmvLY)}.</div>`;
+  }
+ 
   return `
-    <button class="panel-back" data-panel-back="1">
-      ‹ Back
-    </button>
-
-    <div class="panel-eyebrow">
-      ${meta.channel} store
+    <button class="panel-back" data-panel-back="1">‹ Back</button>
+    <div class="panel-eyebrow">${meta.channel} store</div>
+    <h2 class="panel-title">${meta.name}</h2>
+    ${kpiHtml}
+ 
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-title">Monthly GMV Trend</div>
+      <div class="card-note">Jan – Jun 2026 (USD K) · YTD total ${fmtM(ytd)}</div>
+      <div class="chart-wrap short"><canvas id="chartStoreTrend"></canvas></div>
     </div>
-
-    <h2 class="panel-title">
-      ${meta.name}
-    </h2>
-
-    <!-- ======================================================
-         TOP KPI CARDS
-         ====================================================== -->
-
-    <div
-      class="panel-kpis"
-      style="grid-template-columns:repeat(2,1fr);"
-    >
-
-      <div class="tag-card">
-        <div class="t-label">
-          GMV (Q2'26)
-        </div>
-
-        <div
-          class="t-value"
-          style="font-size:22px;"
-        >
-          ${
-            currentGMV !== null &&
-            currentGMV !== undefined
-              ? fmtM(currentGMV)
-              : "—"
-          }
-        </div>
-
-        <div class="t-compare">
-          ${comparisonLabel}
-        </div>
-      </div>
-
-
-      <div class="tag-card">
-        <div class="t-label">
-          Units Sold
-        </div>
-
-        <div
-          class="t-value"
-          style="font-size:22px;"
-        >
-          ${
-            currentQty !== null &&
-            currentQty !== undefined
-              ? fmtNum(currentQty)
-              : "—"
-          }
-        </div>
-
-        <div class="t-compare">
-          ${comparisonLabel}
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- ======================================================
-         MONTHLY GMV TREND
-         ====================================================== -->
-
-    <div
-      class="card"
-      style="margin-top:20px;margin-bottom:20px;"
-    >
-
-      <div class="card-title">
-        Monthly GMV Trend
-      </div>
-
-      <div class="card-note">
-        Jan – Jun 2026 (USD K)
-        ${
-          ytd !== undefined && ytd !== null
-            ? ` · YTD total ${fmtM(ytd)}`
-            : ""
-        }
-      </div>
-
-      <div class="chart-wrap short">
-        <canvas id="chartStoreTrend"></canvas>
-      </div>
-
-    </div>
-
-
-    <!-- ======================================================
-         GROWTH KPIs
-         ====================================================== -->
-
-    <div
-      class="card"
-      style="margin-bottom:20px;"
-    >
-
-      <div class="card-title">
-        Growth KPIs
-      </div>
-
-      <div
-        class="kpi-grid"
-        style="
-          grid-template-columns:repeat(2,1fr);
-          margin-top:14px;
-        "
-      >
-
-        ${growthCards.map(c => `
-          <div class="tag-card">
-
-            <div class="t-label">
-              ${c.label}
-            </div>
-
-            <div
-              class="t-value"
-              style="
-                font-size:22px;
-                color:${growthColor(c.value)};
-              "
-            >
-              ${growthValue(c.value)}
-            </div>
-
-            <div class="t-compare">
-              ${comparisonLabel}
-            </div>
-
-          </div>
-        `).join("")}
-
-      </div>
-    </div>
-
-
-    <!-- ======================================================
-         SAME-STORE DIAGNOSIS
-         ====================================================== -->
-
-    ${
-      sameStore
-        ? `
-          <div
-            class="card"
-            style="margin-bottom:20px;"
-          >
-
-            <div class="card-title">
-              Same-Store Diagnosis
-            </div>
-
-            <div class="card-note">
-              Q2 2026 vs Q2 2025
-            </div>
-
-            <div class="table-wrap">
-              <table
-                class="data"
-                style="width:100%;min-width:0;"
-              >
-                <tbody>
-
-                  <tr>
-                    <td>Transactions</td>
-                    <td>${fmtNum(sameStore.trxQ2)}</td>
-                    ${cellGrowth(sameStore.trxGrowth)}
-                  </tr>
-
-                  <tr>
-                    <td>AOV (USD)</td>
-                    <td>${sameStore.aovQ2}</td>
-                    ${cellGrowth(sameStore.aovGrowth)}
-                  </tr>
-
-                  <tr>
-                    <td>ASP (USD)</td>
-                    <td>${sameStore.aspQ2}</td>
-                    ${cellGrowth(sameStore.aspGrowth)}
-                  </tr>
-
-                  <tr>
-                    <td>UPT</td>
-                    <td>${sameStore.uptQ2}</td>
-                    ${cellGrowth(sameStore.uptGrowth)}
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-
-          </div>
-        `
-        : ""
-    }
+ 
+    ${ly && !ly.closed ? `
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-title">Q2 2026 vs Q2 2025</div>
+      ${ly.isNew ? `<div class="callout">New store in Q2 2026 — no prior-year comparison available.</div>` :
+        `<div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
+          <div class="tag-card"><div class="t-label">GMV Growth</div><div class="t-value" style="font-size:20px;">${ly.gmvGrowth!==null?ly.gmvGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.gmvGrowth)}</div>
+          <div class="tag-card"><div class="t-label">Qty Growth</div><div class="t-value" style="font-size:20px;">${ly.qtyGrowth!==null?ly.qtyGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.qtyGrowth)}</div>
+        </div>`}
+    </div>` : ``}
+ 
+    ${sameStore ? `
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-title">Same-Store Diagnosis</div>
+      <div class="card-note">Q2 2026 vs Q2 2025</div>
+      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
+        <tbody>
+          <tr><td>Transactions</td><td>${fmtNum(sameStore.trxQ2)}</td>${cellGrowth(sameStore.trxGrowth)}</tr>
+          <tr><td>AOV (USD)</td><td>${sameStore.aovQ2}</td>${cellGrowth(sameStore.aovGrowth)}</tr>
+          <tr><td>ASP (USD)</td><td>${sameStore.aspQ2}</td>${cellGrowth(sameStore.aspGrowth)}</tr>
+          <tr><td>UPT</td><td>${sameStore.uptQ2}</td>${cellGrowth(sameStore.uptGrowth)}</tr>
+        </tbody>
+      </table></div>
+    </div>` : ``}
   `;
 }
-
 function initStoreTrendChart(key){
   killChart("storeTrend");
   const el = document.getElementById("chartStoreTrend");
@@ -848,7 +613,7 @@ function initStoreTrendChart(key){
       scales:{ y:{ grid:{color:CLINE} }, x:{ grid:{display:false} } } }
   });
 }
-
+ 
 /* ============================================================================
    Q2 vs Q1 / Q2 vs Q2LY (USD)
 ============================================================================ */
@@ -856,7 +621,7 @@ function growthTableRows(list, isLY){
   return list.map(r => {
     if (r.closed) return `<tr class="closed-row"><td>${storeName(r.key)}</td><td colspan="9">Closed — last recorded GMV ${isLY?'':'Q1 2026'} ${fmtM(r.gmvQ1 !== undefined ? r.gmvQ1 : r.gmvLY)}</td></tr>`;
     if (r.isNew) return `<tr class="new-row"><td>${storeName(r.key)}</td><td>${fmtM(r.gmvQ2)}</td><td colspan="8">New store in Q2 2026 — no prior comparison</td></tr>`;
-    return `<tr class="clickable" data-panel="store" data-key="${r.key}">
+    return `<tr class="clickable" data-panel="store" data-key="${r.key}" data-compare="${isLY ? 'ly' : 'q1'}">
       <td>${storeName(r.key)}</td>
       <td>${fmtM(r.gmvQ2)}</td><td>${fmtM(isLY?r.gmvLY:r.gmvQ1)}</td>${cellGrowth(r.gmvGrowth)}
       <td>${fmtNum(r.qtyQ2)}</td><td>${fmtNum(isLY?r.qtyLY:r.qtyQ1)}</td>${cellGrowth(r.qtyGrowth)}
@@ -874,7 +639,7 @@ function totalRow(t, label){
 function growthTableHead(compareLabel){
   return `<thead><tr><th>Store</th><th>GMV Q2'26</th><th>GMV ${compareLabel}</th><th>GMV Growth</th><th>Qty Q2'26</th><th>Qty ${compareLabel}</th><th>Qty Growth</th><th>TRX Growth</th><th>AOV Growth</th><th>ASP Growth</th><th>UPT Growth</th></tr></thead>`;
 }
-
+ 
 function renderQ2vsQ1(){
   const d = DATA.q2vsQ1;
   return `
@@ -884,7 +649,7 @@ function renderQ2vsQ1(){
       <p class="page-sub">Q2 2026 vs Q1 2026 — Independent Stores & Department Stores (USD K)</p>
     </div>
     ${tabRowHTML(BUSINESS_TABS, "#/business/q2-vs-q1")}
-
+ 
     <div class="section-block">
       <div class="section-label">Independent Stores</div>
       <div class="table-wrap"><table class="data">
@@ -895,7 +660,7 @@ function renderQ2vsQ1(){
         <ul class="bullet-list" style="margin-top:8px;">${d.independentInsight.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
     </div>
-
+ 
     <div class="section-block">
       <div class="section-label">Department Stores</div>
       <div class="table-wrap"><table class="data">
@@ -917,7 +682,7 @@ function renderQ2vsQ2LY(){
       <p class="page-sub">Q2 2026 vs Q2 2025 — Independent Stores & Department Stores (USD K)</p>
     </div>
     ${tabRowHTML(BUSINESS_TABS, "#/business/q2-vs-q2ly")}
-
+ 
     <div class="section-block">
       <div class="section-label">Independent Stores</div>
       <div class="table-wrap"><table class="data">
@@ -928,7 +693,7 @@ function renderQ2vsQ2LY(){
         <ul class="bullet-list" style="margin-top:8px;">${d.independentInsight.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
       </div>
     </div>
-
+ 
     <div class="section-block">
       <div class="section-label">Department Stores</div>
       <div class="table-wrap"><table class="data">
@@ -941,7 +706,7 @@ function renderQ2vsQ2LY(){
     </div>
   `;
 }
-
+ 
 /* ============================================================================
    SAME-STORE DEEP DIVE
 ============================================================================ */
@@ -961,7 +726,7 @@ function renderSameStore(){
       <div class="table-wrap"><table class="data">
         <thead><tr><th>Store</th><th>TRX Q2'26</th><th>TRX Q2'25</th><th>TRX Growth</th><th>AOV (USD) Q2'26</th><th>Q2'25</th><th>Growth</th><th>ASP Q2'26</th><th>Q2'25</th><th>Growth</th><th>UPT Q2'26</th><th>Q2'25</th><th>Growth</th></tr></thead>
         <tbody>
-          ${d.rows.map(r=>`<tr class="clickable" data-panel="store" data-key="${r.key}">
+          ${d.rows.map(r=>`<tr class="clickable" data-panel="store" data-key="${r.key}" data-compare="ly">
             <td>${storeName(r.key)}</td>
             <td>${fmtNum(r.trxQ2)}</td><td>${fmtNum(r.trxLY)}</td>${cellGrowth(r.trxGrowth)}
             <td>${r.aovQ2}</td><td>${r.aovLY??'—'}</td>${cellGrowth(r.aovGrowth)}
@@ -2158,7 +1923,27 @@ function renderOperationalActivities(){
           </div>`).join("")}
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;">
-        ${mediaSlot(d.image, d.imageAlt, {height:"180px"})}
+        <div
+          style="
+            display:flex;
+            justify-content:flex-start;
+            align-items:flex-start;
+            min-height:180px;
+          "
+        >
+          <img
+            src="${d.image}"
+            alt="${d.imageAlt || d.title}"
+            style="
+              width:auto;
+              height:auto;
+              max-width:100%;
+              max-height:180px;
+              object-fit:contain;
+              display:block;
+            "
+          >
+        </div>
         <div class="card">
           <div class="card-title" style="font-size:15px;">Execution Model</div>
           <p style="font-size:13px;line-height:1.6;margin:8px 0 0;">${d.executionModel}</p>
@@ -2419,29 +2204,125 @@ function renderQ3ExpansionPlan(){
     ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-plan")}
  
     <div class="two-col section-block">
-      ${mediaSlot(d.mapImage, "Indonesia expansion map — Open vs Plan stores", {height:"auto"})}
-      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
-        <thead><tr><th>Area</th><th>Stores</th><th>Status</th></tr></thead>
-        <tbody>
-          ${d.locations.map(l=>`<tr><td>${l.area}</td><td>${l.count}</td><td><span class="priority-pill ${l.status==='Open'?'low':'medium'}">${l.status}</span></td></tr>`).join("")}
-        </tbody>
-      </table></div>
-    </div>
- 
-    <div class="hairline"></div>
- 
-    <div class="section-block">
-      <div class="section-label">${m.title}</div>
-      <div class="two-col">
-        ${mediaSlot(m.floorplanImage, "TSM Makassar mall floor plan showing the VIVAIA unit location", {height:"auto"})}
-        <div>
-          <ul class="bullet-list">${m.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
-          <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px;">
-            <div class="tag-card"><div class="t-label">Area</div><div class="t-value" style="font-size:22px;">${m.area}</div></div>
-            <div class="tag-card"><div class="t-label">Target Opening</div><div class="t-value" style="font-size:22px;">${m.targetOpening}</div></div>
-          </div>
-        </div>
+
+      <div
+        style="
+          height:260px;
+          display:flex;
+          align-items:center;
+          justify-content:flex-start;
+          overflow:hidden;
+        "
+      >
+        <img
+          src="${d.mapImage}"
+          alt="Indonesia expansion map — Open vs Plan stores"
+          style="
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:260px;
+            object-fit:contain;
+            display:block;
+          "
+        >
       </div>
+
+      <div class="table-wrap">
+        <table class="data" style="width:100%;min-width:0;">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Stores</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${d.locations.map(l => `
+              <tr>
+                <td>${l.area}</td>
+                <td>${l.count}</td>
+                <td>
+                  <span class="priority-pill ${l.status === 'Open' ? 'low' : 'medium'}">
+                    ${l.status}
+                  </span>
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="hairline"></div>
+
+    <div class="section-block">
+
+      <div class="section-label">
+        ${m.title}
+      </div>
+
+      <div class="two-col">
+
+        <div
+          style="
+            height:260px;
+            display:flex;
+            align-items:center;
+            justify-content:flex-start;
+            overflow:hidden;
+          "
+        >
+          <img
+            src="${m.floorplanImage}"
+            alt="TSM Makassar mall floor plan showing the VIVAIA unit location"
+            style="
+              width:auto;
+              height:auto;
+              max-width:100%;
+              max-height:260px;
+              object-fit:contain;
+              display:block;
+            "
+          >
+        </div>
+
+        <div>
+
+          <ul class="bullet-list">
+            ${m.bullets.map(b => `<li>${b}</li>`).join("")}
+          </ul>
+
+          <div
+            class="kpi-grid"
+            style="
+              grid-template-columns:repeat(2,1fr);
+              margin-top:16px;
+            "
+          >
+
+            <div class="tag-card">
+              <div class="t-label">Area</div>
+              <div class="t-value" style="font-size:22px;">
+                ${m.area}
+              </div>
+            </div>
+
+            <div class="tag-card">
+              <div class="t-label">Target Opening</div>
+              <div class="t-value" style="font-size:22px;">
+                ${m.targetOpening}
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   `;
 }
@@ -2455,15 +2336,42 @@ function renderQ3LuxuryBrands(){
       <p class="page-sub">${d.subtitle}</p>
     </div>
     ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/luxury-brands")}
- 
-    <div class="section-block">
-      ${mediaSlot(d.trendsImage, d.trendsImageAlt, {height:"auto"})}
+    <div class="section-block" style="margin-bottom:12px;">
+      <div
+        style="
+          display:flex;
+          align-items:flex-start;
+          justify-content:flex-start;
+          max-height:220px;
+          overflow:hidden;
+        "
+      >
+        <img
+          src="${d.trendsImage}"
+          alt="${d.trendsImageAlt || ''}"
+          style="
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:220px;
+            object-fit:contain;
+            display:block;
+          "
+        >
+      </div>
     </div>
-    <div class="section-block">
-      <div class="callout brand">${d.text}</div>
+
+    <div class="section-block" style="margin-top:0;">
+      <div class="callout brand">
+        ${d.text}
+      </div>
     </div>
-    <div class="footnote">Brands compared in the deck's Google Trends chart: ${d.brandsCompared.join(", ")}.</div>
-  `;
+
+    <div class="footnote">
+      Brands compared in the deck's Google Trends chart:
+      ${d.brandsCompared.join(", ")}.
+    </div>
+      `;
 }
  
 function renderQ3Competitors(){
@@ -2476,11 +2384,35 @@ function renderQ3Competitors(){
     </div>
     ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/competitors")}
  
-    <div class="section-block">
-      ${mediaSlot(d.trendsImage, d.trendsImageAlt, {height:"auto"})}
+    <div class="section-block" style="margin-bottom:12px;">
+      <div
+        style="
+          display:flex;
+          align-items:flex-start;
+          justify-content:flex-start;
+          max-height:220px;
+          overflow:hidden;
+        "
+      >
+        <img
+          src="${d.trendsImage}"
+          alt="${d.trendsImageAlt || ''}"
+          style="
+            width:auto;
+            height:auto;
+            max-width:100%;
+            max-height:220px;
+            object-fit:contain;
+            display:block;
+          "
+        >
+      </div>
     </div>
-    <div class="section-block">
-      <div class="callout">${d.text}</div>
+
+    <div class="section-block" style="margin-top:0;">
+      <div class="callout">
+        ${d.text}
+      </div>
     </div>
  
     <div class="insight-grid" style="grid-template-columns:repeat(3,1fr);">

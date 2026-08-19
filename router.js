@@ -77,6 +77,7 @@ const SIDEBAR_HTML = `
       <div class="nav-group">
         <button class="nav-item" data-nav="#/wellness/activation">Indonesia Wellness Activation</button>
       </div>
+      </div>
     </nav>
     <div class="sidebar-footer">
       <button class="btn-present" id="btnPresent">▶ Present</button>
@@ -159,11 +160,11 @@ function renderRoute(){
 }
  
 /* ------------------------------ Panel (drill-down) ------------------------- */
-function openPanel(kind, key){
+function openPanel(kind, key, compare){
   const overlay = document.getElementById("panelOverlay");
   const panel = document.getElementById("panel");
   let html = "";
-  if (kind === "store") html = renderStoreDetail(key);
+  if (kind === "store") html = renderStoreDetail(key, compare);
   else if (kind === "product") html = renderProductDetail(key);
   else if (kind === "reason") html = renderReasonDetail(key);
   document.getElementById("panelInner").innerHTML = html;
@@ -234,7 +235,7 @@ document.addEventListener("click", (e)=>{
  
   const panelTrigger = e.target.closest("[data-panel]");
   if (panelTrigger){
-    openPanel(panelTrigger.getAttribute("data-panel"), panelTrigger.getAttribute("data-key"));
+    openPanel(panelTrigger.getAttribute("data-panel"), panelTrigger.getAttribute("data-key"), panelTrigger.getAttribute("data-compare"));
     return;
   }
   const panelBack = e.target.closest("[data-panel-back]");
