@@ -2424,7 +2424,7 @@ function renderQ3LuxuryBrands(){
       <div
         style="
           width:100%;
-          height:320px;
+          height:500px;
           display:flex;
           align-items:center;
           justify-content:flex-start;
@@ -2472,7 +2472,7 @@ function renderQ3Competitors(){
       <div
         style="
           width:100%;
-          height:320px;
+          height:500px;
           display:flex;
           align-items:center;
           justify-content:flex-start;
