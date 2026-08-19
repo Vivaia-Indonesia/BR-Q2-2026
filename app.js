@@ -515,22 +515,109 @@ function initChannelTrendChart(channel){
 /* ============================================================================
    STORE DETAIL PANEL
 ============================================================================ */
+function storesForChannel(channel){
+  return Object.keys(DATA.storeMeta).filter(k => DATA.storeMeta[k].channel === channel);
+}
+function renderChannelStorePage(channel){
+  const isInd = channel === "independent";
+  const stores = storesForChannel(channel);
+  const sorted = stores.slice().sort((a,b)=> (DATA.monthlyGmv.ytdTotal[b]||0) - (DATA.monthlyGmv.ytdTotal[a]||0));
+  const maxYtd = Math.max(...stores.map(k => DATA.monthlyGmv.ytdTotal[k] || 0));
+  const route = isInd ? "#/business/independent-stores" : "#/business/department-stores";
+  const highlights = isInd ? DATA.monthlyGmv.highlightsIndependent : DATA.monthlyGmv.highlightsDepartment;
+  const title = isInd ? "Independent Store Q2 GMV Breakdown" : "Department Store Q2 GMV Breakdown";
+ 
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Business Overview · Store Performance</div>
+      <h1 class="page-title">${title}</h1>
+      <p class="page-sub">Revenue distribution across ${isInd?'independent':'department'} stores, since Jan – Jun 2026. ${DATA.meta.fxNote}</p>
+    </div>
+    ${tabRowHTML(BUSINESS_TABS, route)}
+ 
+    <div class="two-col section-block">
+      <div class="card">
+        <div class="card-title">Monthly GMV by Store</div>
+        <div class="card-note">USD K · hover a point for the exact value, click a legend name to show/hide that store</div>
+        <div class="chart-wrap" style="height:360px;"><canvas id="chartChannelTrend"></canvas></div>
+      </div>
+      <div>
+        <div class="section-label">Highlights on ${isInd?'Independent':'Department'} Store</div>
+        <ul class="bullet-list">${highlights.map(t=>`<li>${t}</li>`).join("")}</ul>
+      </div>
+    </div>
+ 
+    <div class="section-block">
+      <div class="section-label">Store Ranking — YTD GMV (USD K)</div>
+      <div class="store-list">
+        ${sorted.map((key,i)=>{
+          const ytd = DATA.monthlyGmv.ytdTotal[key] || 0;
+          const pctW = maxYtd ? Math.max(4, Math.round(ytd/maxYtd*100)) : 0;
+          return `
+          <div class="store-row" data-panel="store" data-key="${key}" data-compare="q1">
+            <div class="rank">${i+1}</div>
+            <div class="name"><span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${storeColor(key)};margin-right:7px;"></span>${storeName(key)}<span class="ch">${storeChannel(key)} store</span></div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:${pctW}%;background:${storeColor(key)};"></div></div>
+            <div class="gmv">${fmtNum(ytd)}K</div>
+            <div class="chev">›</div>
+          </div>`;
+        }).join("")}
+      </div>
+      <div class="footnote">Click any store to open its detail view with monthly trend and KPIs.</div>
+    </div>
+  `;
+}
+function renderIndependentStores(){ return renderChannelStorePage("independent"); }
+function renderDepartmentStores(){ return renderChannelStorePage("department"); }
+ 
+function initChannelTrendChart(channel){
+  killChart("channelTrend");
+  const stores = storesForChannel(channel);
+  const el = document.getElementById("chartChannelTrend");
+  if (!el) return;
+  const datasets = stores.map(key => ({
+    label: storeName(key),
+    data: DATA.monthlyGmv.byStore[key],
+    borderColor: storeColor(key),
+    backgroundColor: storeColor(key),
+    spanGaps: true,
+    tension: .35,
+    pointRadius: 3,
+    borderWidth: 2,
+  }));
+  charts.channelTrend = new Chart(el, {
+    type: "line",
+    data: { labels: DATA.monthlyGmv.months, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: "nearest", axis: "x", intersect: false },
+      plugins: {
+        legend: { position:"bottom", labels:{ boxWidth:9, font:{size:10.5}, usePointStyle:true } },
+        tooltip: { callbacks:{ label:(c)=> c.parsed.y===null?`${c.dataset.label}: no data`:`${c.dataset.label}: USD ${c.parsed.y}K` } },
+      },
+      scales: { y:{ grid:{color:CLINE}, ticks:{callback:(v)=>v} }, x:{ grid:{display:false} } },
+    }
+  });
+}
+ 
+/* ============================================================================
+   STORE DETAIL PANEL
+============================================================================ */
 function renderStoreDetail(key, compare) {
   const meta = DATA.storeMeta[key];
   if (!meta) return `<div class="callout">Store not found.</div>`;
-  const monthly = DATA.monthlyGmv.byStore[key];
   const ytd = DATA.monthlyGmv.ytdTotal[key];
   const q1 = DATA.q2vsQ1.independent.concat(DATA.q2vsQ1.department).find(r=>r.key===key);
   const ly = DATA.q2vsQ2ly.independent.concat(DATA.q2vsQ2ly.department).find(r=>r.key===key);
   const sameStore = DATA.sameStore.rows.find(r=>r.key===key);
  
   /*
-   * Which comparison to show is driven by the section the panel
-   * was opened from (`compare`: "q1" from Independent/Department
-   * Stores & Q2 vs Q1 2026, "ly" from Q2 vs Q2 LY & Same-Store
-   * Growth) — not just by whichever dataset happens to exist.
-   * Still falls back gracefully if the requested comparison has
-   * no data for this particular store.
+   * Which comparison period to show is driven by the section the
+   * panel was opened from (`compare`: "q1" from Independent/
+   * Department Stores & Q2 vs Q1 2026, "ly" from Q2 vs Q2 LY &
+   * Same-Store Growth) — not just by whichever dataset happens to
+   * exist. Still falls back gracefully if the requested comparison
+   * has no data for this particular store.
    */
   const hasQ1 = !!q1, hasLY = !!ly;
   const mode = compare === "ly" && hasLY ? "ly"
@@ -538,31 +625,50 @@ function renderStoreDetail(key, compare) {
     : hasQ1 ? "q1"
     : "ly";
   const isQ1Mode = mode === "q1";
+  const current = isQ1Mode ? q1 : ly;
+  const comparisonLabel = isQ1Mode ? "vs Q1 2026" : "vs Q2 2025";
  
-  let kpiHtml = "";
-  if (isQ1Mode && q1 && !q1.closed) {
-    kpiHtml = `
-      <div class="panel-kpis">
-        <div class="tag-card"><div class="t-label">GMV (Q2'26)</div><div class="t-value" style="font-size:22px;">${fmtM(q1.gmvQ2)}</div>${q1.isNew?'<span class="pill">New store</span>':growthPillHTML(q1.gmvGrowth)}<div class="t-compare">vs Q1 2026</div></div>
-        <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:22px;">${fmtNum(q1.qtyQ2)}</div>${q1.isNew?'':growthPillHTML(q1.qtyGrowth)}<div class="t-compare">vs Q1 2026</div></div>
-        ${q1.isNew ? "" : `
-        <div class="tag-card"><div class="t-label">TRX Growth</div><div class="t-value" style="font-size:22px;">${q1.trxGrowth!==null?q1.trxGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(q1.trxGrowth)}<div class="t-compare">vs Q1 2026</div></div>
-        <div class="tag-card"><div class="t-label">UPT Growth</div><div class="t-value" style="font-size:22px;">${q1.uptGrowth!==null?q1.uptGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(q1.uptGrowth)}<div class="t-compare">vs Q1 2026</div></div>`}
-      </div>`;
-  } else if (isQ1Mode && q1 && q1.closed) {
-    kpiHtml = `<div class="callout"><strong>Store closed.</strong> Last recorded GMV Q1 2026: ${fmtM(q1.gmvQ1)}.</div>`;
-  } else if (!isQ1Mode && ly && !ly.closed) {
-    kpiHtml = `
-      <div class="panel-kpis">
-        <div class="tag-card"><div class="t-label">GMV (Q2'26)</div><div class="t-value" style="font-size:22px;">${fmtM(ly.gmvQ2)}</div>${ly.isNew?'<span class="pill">New store</span>':growthPillHTML(ly.gmvGrowth)}<div class="t-compare">vs Q2 2025</div></div>
-        <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:22px;">${fmtNum(ly.qtyQ2)}</div>${ly.isNew?'':growthPillHTML(ly.qtyGrowth)}<div class="t-compare">vs Q2 2025</div></div>
-        ${ly.isNew ? "" : `
-        <div class="tag-card"><div class="t-label">TRX Growth</div><div class="t-value" style="font-size:22px;">${ly.trxGrowth!==null&&ly.trxGrowth!==undefined?ly.trxGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.trxGrowth)}<div class="t-compare">vs Q2 2025</div></div>
-        <div class="tag-card"><div class="t-label">UPT Growth</div><div class="t-value" style="font-size:22px;">${ly.uptGrowth!==null&&ly.uptGrowth!==undefined?ly.uptGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.uptGrowth)}<div class="t-compare">vs Q2 2025</div></div>`}
-      </div>`;
-  } else if (!isQ1Mode && ly && ly.closed) {
-    kpiHtml = `<div class="callout"><strong>Store closed.</strong> Last recorded GMV Q2 2025: ${fmtM(ly.gmvLY)}.</div>`;
+  if (current && current.closed) {
+    const lastGmv = isQ1Mode ? current.gmvQ1 : current.gmvLY;
+    return `
+      <button class="panel-back" data-panel-back="1">‹ Back</button>
+      <div class="panel-eyebrow">${meta.channel} store</div>
+      <h2 class="panel-title">${meta.name}</h2>
+      <div class="callout"><strong>Store closed.</strong> Last recorded GMV ${comparisonLabel.replace('vs ','')}: ${fmtM(lastGmv)}.</div>
+    `;
   }
+ 
+  const isNewStore = !!current?.isNew;
+ 
+  /* GMV / Units Sold / TRX / UPT / AOV / ASP — 2-column grid.
+     TRX/UPT/AOV/ASP absolute figures only exist in the Same-Store
+     dataset (4 stores); growth still follows the section's mode. */
+  const kpiDefs = [
+    { label: "GMV",         value: fmtM(current?.gmvQ2),                              growth: current?.gmvGrowth },
+    { label: "Units Sold",  value: fmtNum(current?.qtyQ2),                            growth: current?.qtyGrowth },
+    { label: "TRX",         value: sameStore ? fmtNum(sameStore.trxQ2) : "—",         growth: current?.trxGrowth },
+    { label: "UPT",         value: sameStore ? sameStore.uptQ2 : "—",                 growth: current?.uptGrowth },
+    { label: "AOV",         value: sameStore ? `USD ${sameStore.aovQ2}` : "—",        growth: current?.aovGrowth },
+    { label: "ASP",         value: sameStore ? `USD ${sameStore.aspQ2}` : "—",        growth: current?.aspGrowth },
+  ];
+ 
+  const kpiHtml = isNewStore
+    ? `
+      <div class="callout">New store in Q2 2026 — no prior comparison available.</div>
+      <div class="panel-kpis" style="grid-template-columns:repeat(2,1fr);">
+        <div class="tag-card"><div class="t-label">GMV</div><div class="t-value" style="font-size:22px;">${fmtM(current.gmvQ2)}</div><span class="pill">New store</span></div>
+        <div class="tag-card"><div class="t-label">Units Sold</div><div class="t-value" style="font-size:22px;">${fmtNum(current.qtyQ2)}</div></div>
+      </div>`
+    : `
+      <div class="panel-kpis" style="grid-template-columns:repeat(2,1fr);">
+        ${kpiDefs.map(k => `
+          <div class="tag-card">
+            <div class="t-label">${k.label}</div>
+            <div class="t-value" style="font-size:22px;">${k.value}</div>
+            ${growthPillHTML(k.growth)}
+            <div class="t-compare">${comparisonLabel}</div>
+          </div>`).join("")}
+      </div>`;
  
   return `
     <button class="panel-back" data-panel-back="1">‹ Back</button>
@@ -570,35 +676,11 @@ function renderStoreDetail(key, compare) {
     <h2 class="panel-title">${meta.name}</h2>
     ${kpiHtml}
  
-    <div class="card" style="margin-bottom:20px;">
+    <div class="card" style="margin-top:20px;">
       <div class="card-title">Monthly GMV Trend</div>
       <div class="card-note">Jan – Jun 2026 (USD K) · YTD total ${fmtM(ytd)}</div>
       <div class="chart-wrap short"><canvas id="chartStoreTrend"></canvas></div>
     </div>
- 
-    ${ly && !ly.closed ? `
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">Q2 2026 vs Q2 2025</div>
-      ${ly.isNew ? `<div class="callout">New store in Q2 2026 — no prior-year comparison available.</div>` :
-        `<div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
-          <div class="tag-card"><div class="t-label">GMV Growth</div><div class="t-value" style="font-size:20px;">${ly.gmvGrowth!==null?ly.gmvGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.gmvGrowth)}</div>
-          <div class="tag-card"><div class="t-label">Qty Growth</div><div class="t-value" style="font-size:20px;">${ly.qtyGrowth!==null?ly.qtyGrowth.toFixed(1)+'%':'—'}</div>${growthPillHTML(ly.qtyGrowth)}</div>
-        </div>`}
-    </div>` : ``}
- 
-    ${sameStore ? `
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">Same-Store Diagnosis</div>
-      <div class="card-note">Q2 2026 vs Q2 2025</div>
-      <div class="table-wrap"><table class="data" style="width:100%;min-width:0;">
-        <tbody>
-          <tr><td>Transactions</td><td>${fmtNum(sameStore.trxQ2)}</td>${cellGrowth(sameStore.trxGrowth)}</tr>
-          <tr><td>AOV (USD)</td><td>${sameStore.aovQ2}</td>${cellGrowth(sameStore.aovGrowth)}</tr>
-          <tr><td>ASP (USD)</td><td>${sameStore.aspQ2}</td>${cellGrowth(sameStore.aspGrowth)}</tr>
-          <tr><td>UPT</td><td>${sameStore.uptQ2}</td>${cellGrowth(sameStore.uptGrowth)}</tr>
-        </tbody>
-      </table></div>
-    </div>` : ``}
   `;
 }
 function initStoreTrendChart(key){
@@ -2203,14 +2285,14 @@ function renderQ3ExpansionPlan(){
     </div>
     ${tabRowHTML(Q3_STRATEGY_TABS, "#/q3-strategy/expansion-plan")}
  
-    <div class="two-col section-block">
+    <div class="two-col section-block" style="align-items:stretch;">
 
       <div
         style="
-          height:260px;
+          min-height:360px;
           display:flex;
           align-items:center;
-          justify-content:flex-start;
+          justify-content:center;
           overflow:hidden;
         "
       >
@@ -2218,10 +2300,8 @@ function renderQ3ExpansionPlan(){
           src="${d.mapImage}"
           alt="Indonesia expansion map — Open vs Plan stores"
           style="
-            width:auto;
-            height:auto;
-            max-width:100%;
-            max-height:260px;
+            width:100%;
+            height:100%;
             object-fit:contain;
             display:block;
           "
@@ -2264,30 +2344,34 @@ function renderQ3ExpansionPlan(){
         ${m.title}
       </div>
 
-      <div class="two-col">
+      <div
+        class="two-col"
+        style="
+          grid-template-columns:1.15fr 1fr;
+          align-items:start;
+        "
+      >
 
         <div
           style="
-            height:260px;
             display:flex;
-            align-items:center;
+            align-items:flex-start;
             justify-content:flex-start;
             overflow:hidden;
-          "
+         "
         >
           <img
             src="${m.floorplanImage}"
             alt="TSM Makassar mall floor plan showing the VIVAIA unit location"
             style="
-              width:auto;
+              width:100%;
               height:auto;
               max-width:100%;
-              max-height:260px;
-              object-fit:contain;
               display:block;
+              object-fit:contain;
             "
           >
-        </div>
+       </div>
 
         <div>
 
