@@ -2424,7 +2424,6 @@ function renderQ3LuxuryBrands(){
       <div
         style="
           width:100%;
-          height:320px;
           display:flex;
           align-items:center;
           justify-content:flex-start;
@@ -2435,8 +2434,9 @@ function renderQ3LuxuryBrands(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:200%;
-            height:200%;
+            width:100%;
+            height:auto;
+            max-width:100%; 
             object-fit:contain;
             object-position:left center;
             display:block;
