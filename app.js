@@ -2487,85 +2487,166 @@ function renderQ3PublicFigures(){
 /* ============================================================================
    INDONESIA WELLNESS ACTIVATION
 ============================================================================ */
-function renderWellnessActivation(){
-  const d = DATA.wellnessActivation;
-  const lr = d.localRelevance;
-  const rc = d.retreatRecap;
+function renderWellnessActivation() {
+  const d = DATA.indonesiaWellness || {
+    title: "Indonesia Wellness Activation",
+    stats: [],
+    localRelevance: {
+      subtitle: "",
+      title: "Local Relevance",
+      text: "",
+      rows: []
+    },
+    retreatRecap: {
+      title: "Wellness Retreat Recap",
+      video: ""
+    }
+  };
+
+  const lr = d.localRelevance || {
+    subtitle: "",
+    title: "Local Relevance",
+    text: "",
+    rows: []
+  };
+
+  const rc = d.retreatRecap || {
+    title: "Wellness Retreat Recap",
+    video: ""
+  };
+
   return `
     <div class="page-head">
       <div class="eyebrow">Indonesia Wellness Activation</div>
       <h1 class="page-title">${d.title}</h1>
     </div>
- 
-    <div class="kpi-grid section-block" style="grid-template-columns:repeat(4,1fr);">
-      ${d.stats.map(s=>`
-        <div class="tag-card">
-          <div class="t-value" style="font-size:26px;">${s.value}</div>
-          <div class="t-compare" style="margin-top:6px;">${s.label}</div>
-        </div>`).join("")}
-    </div>
- 
+
+    ${
+      d.stats && d.stats.length
+        ? `
+          <div
+            class="kpi-grid section-block"
+            style="grid-template-columns:repeat(4,1fr);"
+          >
+            ${d.stats.map(s => `
+              <div class="tag-card">
+                <div class="t-value" style="font-size:26px;">
+                  ${s.value ?? "—"}
+                </div>
+                <div class="t-compare" style="margin-top:6px;">
+                  ${s.label ?? ""}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        `
+        : ""
+    }
+
     <div class="card section-block">
-      <div class="eyebrow" style="margin-bottom:4px;">${lr.subtitle}</div>
+      ${
+        lr.subtitle
+          ? `<div class="eyebrow" style="margin-bottom:4px;">${lr.subtitle}</div>`
+          : ""
+      }
+
       <div class="card-title">${lr.title}</div>
-      <p style="font-size:13px;line-height:1.6;margin:10px 0 18px;">${lr.text}</p>
+
+      ${
+        lr.text
+          ? `
+            <p style="font-size:13px;line-height:1.6;margin:10px 0 18px;">
+              ${lr.text}
+            </p>
+          `
+          : ""
+      }
+
       <div class="wellness-bar-list">
-        ${lr.rows.map(r=>`
-          <div class="wellness-bar-row">
-            ${mediaSlot(r.image, r.type, {cls:"wellness-thumb"})}
-            <div style="flex:1;">
-              ${r.link
-                ? `<div class="wellness-bar-title">
-                     <a
-                       href="${r.link}"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="wellness-source-link"
-                     >
-                       ${r.type} ↗
-                     </a>
-                   </div>`
-                : `<div class="wellness-bar-title">${r.type}</div>`
-              }
-              <div class="wellness-bar-note">${r.note}</div>
-            </div>
-            <div class="wellness-bar-metric">${r.metric}</div>
-          </div>`).join("")}
+        ${
+          lr.rows && lr.rows.length
+            ? lr.rows.map(r => `
+                <div class="wellness-bar-row">
+                  ${mediaSlot(
+                    r.image,
+                    r.type,
+                    { cls: "wellness-thumb" }
+                  )}
+
+                  <div style="flex:1;">
+                    ${
+                      r.link
+                        ? `
+                          <div class="wellness-bar-title">
+                            <a
+                              href="${r.link}"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="wellness-source-link"
+                            >
+                              ${r.type} ↗
+                            </a>
+                          </div>
+                        `
+                        : `
+                          <div class="wellness-bar-title">
+                            ${r.type ?? ""}
+                          </div>
+                        `
+                    }
+
+                    <div class="wellness-bar-note">
+                      ${r.note ?? ""}
+                    </div>
+                  </div>
+
+                  <div class="wellness-bar-metric">
+                    ${r.metric ?? ""}
+                  </div>
+                </div>
+              `).join("")
+            : `
+              <div class="empty-state">
+                <div class="glyph">◌</div>
+                <h3>Wellness activation data pending</h3>
+                <p>
+                  Add the Indonesia wellness source data to populate this section.
+                </p>
+              </div>
+            `
+        }
       </div>
     </div>
- 
-    <div class="retreat-card section-block">
 
+    <div class="retreat-card section-block">
       <div class="retreat-title">
         ${rc.title}
       </div>
 
       <div class="retreat-body">
-
         <div class="retreat-media">
-          ${rc.video
-            ? `
-              <video
-                class="retreat-video"
-                controls
-                preload="metadata"
-                playsinline
-              >
-                <source src="${rc.video}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            `
-            : `
-              <div class="retreat-video-placeholder">
-                <span>Video pending upload</span>
-              </div>
-            `
+          ${
+            rc.video
+              ? `
+                <video
+                  class="retreat-video"
+                  controls
+                  preload="metadata"
+                  playsinline
+                >
+                  <source src="${rc.video}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              `
+              : `
+                <div class="retreat-video-placeholder">
+                  <span>Video pending upload</span>
+                </div>
+              `
           }
-        }
+        </div>
       </div>
     </div>
-
-</div>
   `;
 }
  
