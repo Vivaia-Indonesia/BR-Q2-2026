@@ -2483,8 +2483,8 @@ function renderQ3Competitors(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:100%;
-            height:100%;
+            width:200%;
+            height:200%;
             object-fit:contain;
             object-position:left center;
             display:block;
