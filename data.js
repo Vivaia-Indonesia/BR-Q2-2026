@@ -311,8 +311,8 @@ businessShareChart: [
         action: "→ URGENT: traffic driver campaigns, loyalty program activation, in-mall visibility boosts for existing stores",
       },
       {
-        title: "KPI declining",
-        text: "The decline in ASP was generally more pronounced than the change in UPT, indicating pricing/mix pressure rather than a reduction in basket size as the primary driver of lower AOV.",
+        title: "KPI improving",
+        text: "UPT improved by 4.7%, helping support basket quality despite a 4.2% decline in ASP.",
       },
     ],
   },
