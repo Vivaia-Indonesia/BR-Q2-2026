@@ -2438,7 +2438,7 @@ function renderQ3LuxuryBrands(){
             height:auto;
             max-width:100%; 
             object-fit:contain;
-            object-position:left center;
+            object-position:left top;
             display:block;
           "
         >
