@@ -32,7 +32,7 @@ const DATA = {
   },
 
   kpis: [
-    { key: "gmv", label: "GMV", value: "USD 2.64M", growth: 31.3, compareLabel: "vs USD 2.01M Q2 2025", positive: true },
+    { key: "gmv", label: "GMV", value: "USD 2.64M", growth: 21.7, compareLabel: "vs USD 2.17M Q2 2025", positive: true },
     { key: "units", label: "Units Sold", value: "20,635", growth: 35.7, compareLabel: "vs 15,211 Q2 2025", positive: true },
     { key: "transactions", label: "Transactions", value: "16,866", growth: 27.4, compareLabel: "vs 13,238 Q2 2025", positive: true },
     { key: "aov", label: "AOV", value: "USD 157", growth: 3.1, compareLabel: "vs USD 152 Q2 2025", positive: true },
@@ -289,7 +289,7 @@ businessShareChart: [
         "Grand Indonesia, Kelapa Gading, and Central Park, even though declining, VIVAIA is still rank 1 in the ladies footwear department.",
       ],
     },
-    grandTotal: { gmvQ2: 2645, gmvLY: 2014, gmvGrowth: 31.3, qtyQ2: 20635, qtyLY: 15211, qtyGrowth: 35.7, trxGrowth: 27.4, aovGrowth: 3.1, aspGrowth: -3.2, uptGrowth: 6.5 },
+    grandTotal: { gmvQ2: 2645, gmvLY: 2173, gmvGrowth: 21.7, qtyQ2: 20635, qtyLY: 15211, qtyGrowth: 35.7, trxGrowth: 27.4, aovGrowth: 3.1, aspGrowth: -3.2, uptGrowth: 6.5 },
   },
 
   sameStore: {
@@ -748,7 +748,7 @@ marketing: {
         { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "17,080%", salesPerUnit: "$171,80" },
         { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
       ],
-      grandTotal: {totalSales: "$2,645.535", reportedRoi: "3,481%", salesPerUnit: "$35,81" },
+      grandTotal: {period: "Total", totalSales: "$2,645.535", reportedRoi: "3,481%", salesPerUnit: "$35,81" },
     },
   },
  

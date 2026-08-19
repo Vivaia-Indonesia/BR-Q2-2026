@@ -1491,27 +1491,61 @@ function renderPrintedMedia(){
 ============================================================================ */
 function renderMarketingRoi(){
   const d = DATA.marketing.roi;
+
   return `
     <div class="page-head">
       <div class="eyebrow">Marketing</div>
       <h1 class="page-title">${d.title}</h1>
       <p class="page-sub">${d.subtitle}</p>
     </div>
+
     ${tabRowHTML(MARKETING_TABS, "#/marketing/roi")}
- 
+
     <div class="section-block">
-      <div class="table-wrap"><table class="data">
-        <thead><tr><th>Period</th><th>Total Sales</th><th>Reported ROI</th><th>Sales per $1 Spent</th></tr></thead>
-        <tbody>
-          ${d.rows.map(r=>`<tr><td>${r.period}</td><td>${r.totalSales}</td><td style="font-weight:700;color:var(--brand-deep);">${r.reportedRoi}</td><td>${r.salesPerUnit}</td></tr>`).join("")}
-        </tbody>
-      </table></div>
+      <div class="table-wrap">
+        <table class="data">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Total Sales</th>
+              <th>Reported ROI</th>
+              <th>Sales per $1 Spent</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${d.rows.map(r => `
+              <tr>
+                <td>${r.period}</td>
+                <td>${r.totalSales}</td>
+                <td style="font-weight:700;color:var(--brand-deep);">
+                  ${r.reportedRoi}
+                </td>
+                <td>${r.salesPerUnit}</td>
+              </tr>
+            `).join("")}
+
+            ${d.grandTotal ? `
+              <tr class="total-row">
+                <td>${d.grandTotal.period || "Total"}</td>
+                <td>${d.grandTotal.totalSales}</td>
+                <td style="font-weight:700;color:var(--brand-deep);">
+                  ${d.grandTotal.reportedRoi}
+                </td>
+                <td>${d.grandTotal.salesPerUnit}</td>
+              </tr>
+            ` : ""}
+          </tbody>
+        </table>
+      </div>
     </div>
- 
+
     <div class="section-block">
       <div class="card">
         <div class="card-title">Total Sales by Month</div>
-        <div class="chart-wrap short"><canvas id="chartMarketingRoi"></canvas></div>
+        <div class="chart-wrap short">
+          <canvas id="chartMarketingRoi"></canvas>
+        </div>
       </div>
     </div>
   `;
