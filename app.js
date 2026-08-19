@@ -515,7 +515,7 @@ function initChannelTrendChart(channel){
 /* ============================================================================
    STORE DETAIL PANEL
 ============================================================================ */
-function renderStoreDetail(key){
+function renderStoreDetail(key) {
   const meta = DATA.storeMeta[key];
   if (!meta) return `<div class="callout">Store not found.</div>`;
 
@@ -533,235 +533,309 @@ function renderStoreDetail(key){
   const sameStore = DATA.sameStore.rows.find(r => r.key === key);
 
   /*
-   * SAME-STORE DETAIL
-   * Only this view changes when clicking a store from Same-Store Growth.
-   * The main summary table remains untouched.
+   * ----------------------------------------------------------
+   * UNIVERSAL STORE DETAIL
+   * ----------------------------------------------------------
+   * Every store gets the same layout.
+   *
+   * Q1 data is used when available.
+   * Otherwise Q2 vs Q2 2025 data is used.
    */
-  if (sameStore && ly && !ly.closed) {
 
-    const growthColor = (value) => {
-      if (value === null || value === undefined) return "var(--label)";
-      return value >= 0 ? "var(--positive)" : "var(--negative)";
-    };
+  const isQ1Store = !!q1;
 
-    const growthValue = (value) => {
-      if (value === null || value === undefined) return "—";
-      return `${value > 0 ? "+" : ""}${value.toFixed(1)}%`;
-    };
+  const comparisonLabel = isQ1Store
+    ? "vs Q1 2026"
+    : "vs Q2 2025";
 
-    const growthCards = [
-      {
-        label: "GMV Growth",
-        value: ly.gmvGrowth
-      },
-      {
-        label: "Qty Growth",
-        value: ly.qtyGrowth
-      },
-      {
-        label: "TRX Growth",
-        value: sameStore.trxGrowth
-      },
-      {
-        label: "UPT Growth",
-        value: sameStore.uptGrowth
-      },
-      {
-        label: "AOV Growth",
-        value: sameStore.aovGrowth
-      },
-      {
-        label: "ASP Growth",
-        value: sameStore.aspGrowth
-      }
-    ];
+  const currentGMV = isQ1Store
+    ? q1.gmvQ2
+    : ly?.gmvQ2;
 
-    return `
-      <button class="panel-back" data-panel-back="1">‹ Back</button>
+  const currentQty = isQ1Store
+    ? q1.qtyQ2
+    : ly?.qtyQ2;
 
-      <div class="panel-eyebrow">Same-Store Growth</div>
-      <h2 class="panel-title">${meta.name}</h2>
+  const growthColor = (value) => {
+    if (value === null || value === undefined || Number.isNaN(value)) {
+      return "var(--label)";
+    }
 
-      <!-- 2 KPI CARDS -->
-      <div class="panel-kpis" style="grid-template-columns:repeat(2,1fr);">
+    return value >= 0
+      ? "var(--positive)"
+      : "var(--negative)";
+  };
 
-        <div class="tag-card">
-          <div class="t-label">GMV (Q2'26)</div>
-          <div class="t-value" style="font-size:22px;">
-            ${fmtM(ly.gmvQ2)}
-          </div>
-          <div class="t-compare">vs Q2 2025</div>
-        </div>
+  const growthValue = (value) => {
+    if (value === null || value === undefined || Number.isNaN(value)) {
+      return "—";
+    }
 
-        <div class="tag-card">
-          <div class="t-label">Units Sold</div>
-          <div class="t-value" style="font-size:22px;">
-            ${fmtNum(ly.qtyQ2)}
-          </div>
-          <div class="t-compare">vs Q2 2025</div>
-        </div>
-
-      </div>
-
-      <!-- MONTHLY GMV TREND -->
-      <div class="card" style="margin-top:20px;margin-bottom:20px;">
-        <div class="card-title">Monthly GMV Trend</div>
-        <div class="card-note">
-          Jan – Jun 2026 (USD K) · YTD total ${fmtM(ytd)}
-        </div>
-        <div class="chart-wrap short">
-          <canvas id="chartStoreTrend"></canvas>
-        </div>
-      </div>
-
-      <!-- 6 GROWTH KPIs -->
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">Growth KPIs</div>
-
-        <div
-          class="kpi-grid"
-          style="grid-template-columns:repeat(2,1fr);margin-top:14px;"
-        >
-          ${growthCards.map(c => `
-            <div class="tag-card">
-              <div class="t-label">${c.label}</div>
-
-              <div
-                class="t-value"
-                style="
-                  font-size:22px;
-                  color:${growthColor(c.value)};
-                "
-              >
-                ${growthValue(c.value)}
-              </div>
-
-              <div class="t-compare">
-                vs Q2 2025
-              </div>
-            </div>
-          `).join("")}
-        </div>
-      </div>
-    `;
-  }
+    return `${value > 0 ? "+" : ""}${value.toFixed(1)}%`;
+  };
 
   /*
-   * ORIGINAL STORE DETAIL
-   * Keep the existing behavior for stores opened from other pages.
+   * Growth KPIs
+   *
+   * Q1 stores:
+   *   use Q2 vs Q1 values
+   *
+   * Other stores:
+   *   use Q2 vs Q2 2025 values
+   *
+   * Same-store diagnosis values are only used where available.
    */
-  let kpiHtml = "";
 
-  if (q1 && !q1.closed) {
-    kpiHtml = `
-      <div class="panel-kpis">
-        <div class="tag-card">
-          <div class="t-label">GMV (Q2'26)</div>
-          <div class="t-value" style="font-size:22px;">
-            ${fmtM(q1.gmvQ2)}
-          </div>
-          ${q1.isNew ? '<span class="pill">New store</span>' : growthPillHTML(q1.gmvGrowth)}
-          <div class="t-compare">vs Q1 2026</div>
-        </div>
+  const growthCards = [
+    {
+      label: "GMV Growth",
+      value: isQ1Store
+        ? q1.gmvGrowth
+        : ly?.gmvGrowth
+    },
 
-        <div class="tag-card">
-          <div class="t-label">Units Sold</div>
-          <div class="t-value" style="font-size:22px;">
-            ${fmtNum(q1.qtyQ2)}
-          </div>
-          ${q1.isNew ? '' : growthPillHTML(q1.qtyGrowth)}
-          <div class="t-compare">vs Q1 2026</div>
-        </div>
+    {
+      label: "Qty Growth",
+      value: isQ1Store
+        ? q1.qtyGrowth
+        : ly?.qtyGrowth
+    },
 
-        ${q1.isNew ? "" : `
-        <div class="tag-card">
-          <div class="t-label">TRX Growth</div>
-          <div class="t-value" style="font-size:22px;">
-            ${q1.trxGrowth !== null ? q1.trxGrowth.toFixed(1) + '%' : '—'}
-          </div>
-          ${growthPillHTML(q1.trxGrowth)}
-          <div class="t-compare">vs Q1 2026</div>
-        </div>
+    {
+      label: "TRX Growth",
+      value: isQ1Store
+        ? q1.trxGrowth
+        : sameStore?.trxGrowth
+    },
 
-        <div class="tag-card">
-          <div class="t-label">UPT Growth</div>
-          <div class="t-value" style="font-size:22px;">
-            ${q1.uptGrowth !== null ? q1.uptGrowth.toFixed(1) + '%' : '—'}
-          </div>
-          ${growthPillHTML(q1.uptGrowth)}
-          <div class="t-compare">vs Q1 2026</div>
-        </div>
-        `}
-      </div>
-    `;
-  } else if (q1 && q1.closed) {
-    kpiHtml = `
-      <div class="callout">
-        <strong>Store closed.</strong>
-        Last recorded GMV Q1 2026: ${fmtM(q1.gmvQ1)}.
-      </div>
-    `;
-  }
+    {
+      label: "UPT Growth",
+      value: isQ1Store
+        ? q1.uptGrowth
+        : sameStore?.uptGrowth
+    },
+
+    {
+      label: "AOV Growth",
+      value: sameStore?.aovGrowth
+    },
+
+    {
+      label: "ASP Growth",
+      value: sameStore?.aspGrowth
+    }
+  ];
 
   return `
-    <button class="panel-back" data-panel-back="1">‹ Back</button>
-    <div class="panel-eyebrow">${meta.channel} store</div>
-    <h2 class="panel-title">${meta.name}</h2>
-    ${kpiHtml}
+    <button class="panel-back" data-panel-back="1">
+      ‹ Back
+    </button>
 
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">Monthly GMV Trend</div>
-      <div class="card-note">
-        Jan – Jun 2026 (USD K) · YTD total ${fmtM(ytd)}
+    <div class="panel-eyebrow">
+      ${meta.channel} store
+    </div>
+
+    <h2 class="panel-title">
+      ${meta.name}
+    </h2>
+
+    <!-- ======================================================
+         TOP KPI CARDS
+         ====================================================== -->
+
+    <div
+      class="panel-kpis"
+      style="grid-template-columns:repeat(2,1fr);"
+    >
+
+      <div class="tag-card">
+        <div class="t-label">
+          GMV (Q2'26)
+        </div>
+
+        <div
+          class="t-value"
+          style="font-size:22px;"
+        >
+          ${
+            currentGMV !== null &&
+            currentGMV !== undefined
+              ? fmtM(currentGMV)
+              : "—"
+          }
+        </div>
+
+        <div class="t-compare">
+          ${comparisonLabel}
+        </div>
       </div>
+
+
+      <div class="tag-card">
+        <div class="t-label">
+          Units Sold
+        </div>
+
+        <div
+          class="t-value"
+          style="font-size:22px;"
+        >
+          ${
+            currentQty !== null &&
+            currentQty !== undefined
+              ? fmtNum(currentQty)
+              : "—"
+          }
+        </div>
+
+        <div class="t-compare">
+          ${comparisonLabel}
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ======================================================
+         MONTHLY GMV TREND
+         ====================================================== -->
+
+    <div
+      class="card"
+      style="margin-top:20px;margin-bottom:20px;"
+    >
+
+      <div class="card-title">
+        Monthly GMV Trend
+      </div>
+
+      <div class="card-note">
+        Jan – Jun 2026 (USD K)
+        ${
+          ytd !== undefined && ytd !== null
+            ? ` · YTD total ${fmtM(ytd)}`
+            : ""
+        }
+      </div>
+
       <div class="chart-wrap short">
         <canvas id="chartStoreTrend"></canvas>
       </div>
+
     </div>
 
-    ${ly && !ly.closed ? `
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">Q2 2026 vs Q2 2025</div>
-      ${ly.isNew
-        ? `<div class="callout">New store in Q2 2026 — no prior-year comparison available.</div>`
-        : `
-          <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
-            <div class="tag-card">
-              <div class="t-label">GMV Growth</div>
-              <div class="t-value" style="font-size:20px;">
-                ${ly.gmvGrowth !== null ? ly.gmvGrowth.toFixed(1) + '%' : '—'}
-              </div>
-              ${growthPillHTML(ly.gmvGrowth)}
-            </div>
 
-            <div class="tag-card">
-              <div class="t-label">Qty Growth</div>
-              <div class="t-value" style="font-size:20px;">
-                ${ly.qtyGrowth !== null ? ly.qtyGrowth.toFixed(1) + '%' : '—'}
-              </div>
-              ${growthPillHTML(ly.qtyGrowth)}
-            </div>
-          </div>
-        `}
-    </div>` : ``}
+    <!-- ======================================================
+         GROWTH KPIs
+         ====================================================== -->
 
-    ${sameStore ? `
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">Same-Store Diagnosis</div>
-      <div class="card-note">Q2 2026 vs Q2 2025</div>
-      <div class="table-wrap">
-        <table class="data" style="width:100%;min-width:0;">
-          <tbody>
-            <tr><td>Transactions</td><td>${fmtNum(sameStore.trxQ2)}</td>${cellGrowth(sameStore.trxGrowth)}</tr>
-            <tr><td>AOV (USD)</td><td>${sameStore.aovQ2}</td>${cellGrowth(sameStore.aovGrowth)}</tr>
-            <tr><td>ASP (USD)</td><td>${sameStore.aspQ2}</td>${cellGrowth(sameStore.aspGrowth)}</tr>
-            <tr><td>UPT</td><td>${sameStore.uptQ2}</td>${cellGrowth(sameStore.uptGrowth)}</tr>
-          </tbody>
-        </table>
+    <div
+      class="card"
+      style="margin-bottom:20px;"
+    >
+
+      <div class="card-title">
+        Growth KPIs
       </div>
-    </div>` : ``}
+
+      <div
+        class="kpi-grid"
+        style="
+          grid-template-columns:repeat(2,1fr);
+          margin-top:14px;
+        "
+      >
+
+        ${growthCards.map(c => `
+          <div class="tag-card">
+
+            <div class="t-label">
+              ${c.label}
+            </div>
+
+            <div
+              class="t-value"
+              style="
+                font-size:22px;
+                color:${growthColor(c.value)};
+              "
+            >
+              ${growthValue(c.value)}
+            </div>
+
+            <div class="t-compare">
+              ${comparisonLabel}
+            </div>
+
+          </div>
+        `).join("")}
+
+      </div>
+    </div>
+
+
+    <!-- ======================================================
+         SAME-STORE DIAGNOSIS
+         ====================================================== -->
+
+    ${
+      sameStore
+        ? `
+          <div
+            class="card"
+            style="margin-bottom:20px;"
+          >
+
+            <div class="card-title">
+              Same-Store Diagnosis
+            </div>
+
+            <div class="card-note">
+              Q2 2026 vs Q2 2025
+            </div>
+
+            <div class="table-wrap">
+              <table
+                class="data"
+                style="width:100%;min-width:0;"
+              >
+                <tbody>
+
+                  <tr>
+                    <td>Transactions</td>
+                    <td>${fmtNum(sameStore.trxQ2)}</td>
+                    ${cellGrowth(sameStore.trxGrowth)}
+                  </tr>
+
+                  <tr>
+                    <td>AOV (USD)</td>
+                    <td>${sameStore.aovQ2}</td>
+                    ${cellGrowth(sameStore.aovGrowth)}
+                  </tr>
+
+                  <tr>
+                    <td>ASP (USD)</td>
+                    <td>${sameStore.aspQ2}</td>
+                    ${cellGrowth(sameStore.aspGrowth)}
+                  </tr>
+
+                  <tr>
+                    <td>UPT</td>
+                    <td>${sameStore.uptQ2}</td>
+                    ${cellGrowth(sameStore.uptGrowth)}
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        `
+        : ""
+    }
   `;
 }
+
 function initStoreTrendChart(key){
   killChart("storeTrend");
   const el = document.getElementById("chartStoreTrend");
