@@ -2423,10 +2423,11 @@ function renderQ3LuxuryBrands(){
     <div class="section-block" style="margin-bottom:12px;">
       <div
         style="
+          width:100%;
+          height:320px;
           display:flex;
-          align-items:flex-start;
+          align-items:center;
           justify-content:flex-start;
-          max-height:220px;
           overflow:hidden;
         "
       >
@@ -2434,11 +2435,10 @@ function renderQ3LuxuryBrands(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:auto;
-            height:auto;
-            max-width:100%;
-            max-height:220px;
+            width:100%;
+            height:100%;
             object-fit:contain;
+            object-position:left center;
             display:block;
           "
         >
@@ -2471,10 +2471,11 @@ function renderQ3Competitors(){
     <div class="section-block" style="margin-bottom:12px;">
       <div
         style="
+          width:100%;
+          height:320px;
           display:flex;
-          align-items:flex-start;
+          align-items:center;
           justify-content:flex-start;
-          max-height:220px;
           overflow:hidden;
         "
       >
@@ -2482,11 +2483,10 @@ function renderQ3Competitors(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:auto;
-            height:auto;
-            max-width:100%;
-            max-height:220px;
+            width:100%;
+            height:100%;
             object-fit:contain;
+            object-position:left center;
             display:block;
           "
         >
