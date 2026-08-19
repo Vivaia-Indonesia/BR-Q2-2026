@@ -2268,7 +2268,7 @@ function renderQ3LuxuryExperience(){
       </div>
       <div class="card">
         <div class="card-title" style="font-size:15px;">${d.hospitality.title}</div>
-        <div style="margin-top:12px;">${mediaSlot(d.hospitality.image, "Store hospitality amenity tray", {height:"200px"})}</div>
+        <div style="margin-top:12px;">${mediaSlot(d.hospitality.image, "Store hospitality amenity tray")}</div>
       </div>
     </div>
   `;
@@ -2424,6 +2424,7 @@ function renderQ3LuxuryBrands(){
       <div
         style="
           width:100%;
+          height:320px;
           display:flex;
           align-items:center;
           justify-content:flex-start;
@@ -2434,11 +2435,10 @@ function renderQ3LuxuryBrands(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:100%;
-            height:auto;
-            max-width:100%; 
+            width:200%;
+            height:200%;
             object-fit:contain;
-            object-position:left top;
+            object-position:left center;
             display:block;
           "
         >
@@ -2483,8 +2483,8 @@ function renderQ3Competitors(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:200%;
-            height:200%;
+            width:100%;
+            height:100%;
             object-fit:contain;
             object-position:left center;
             display:block;
