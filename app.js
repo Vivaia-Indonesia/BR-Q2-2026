@@ -392,7 +392,7 @@ function renderEconomy(){
 
     <div class="section-block">
       <div class="callout brand">
-        <strong>${e.holidays.title}</strong> — ${e.holidays.subtitle}<br/><br/>
+        <strong>${e.holidays.title}</strong><br/><br/>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:10px 0 16px;">
           ${e.holidays.items.map(h => `<div><div style="font-weight:700;">${h.date}</div><div>${h.name}</div><div style="opacity:.75;font-size:12px;">${h.note || ""}</div></div>`).join("")}
         </div>
@@ -523,6 +523,62 @@ function renderStoreDetail(key){
   const q1 = DATA.q2vsQ1.independent.concat(DATA.q2vsQ1.department).find(r=>r.key===key);
   const ly = DATA.q2vsQ2ly.independent.concat(DATA.q2vsQ2ly.department).find(r=>r.key===key);
   const sameStore = DATA.sameStore.rows.find(r=>r.key===key);
+  if (sameStore) {
+  const monthly = DATA.monthlyGmv.byStore[key];
+  const q2vsq1 = DATA.q2vsQ1.independent
+    .concat(DATA.q2vsQ1.department)
+    .find(r => r.key === key);
+
+  const growthCards = [
+    { label: "GMV Growth", value: q2vsq1?.gmvGrowth },
+    { label: "Qty Growth", value: q2vsq1?.qtyGrowth },
+    { label: "TRX Growth", value: sameStore.trxGrowth },
+    { label: "UPT Growth", value: sameStore.uptGrowth },
+    { label: "AOV Growth", value: sameStore.aovGrowth },
+    { label: "ASP Growth", value: sameStore.aspGrowth },
+  ];
+
+  return `
+    <div class="panel-back" onclick="closePanel()">← Back</div>
+
+    <div class="panel-eyebrow">Same-Store Growth</div>
+    <h2 class="panel-title">${storeName(key)}</h2>
+
+    <div class="panel-kpis" style="grid-template-columns:repeat(2,1fr);">
+      <div class="tag-card">
+        <div class="t-label">GMV</div>
+        <div class="t-value">${q2vsq1?.gmvQ2 !== undefined ? fmtM(q2vsq1.gmvQ2) : "—"}</div>
+      </div>
+
+      <div class="tag-card">
+        <div class="t-label">Units Sold</div>
+        <div class="t-value">${q2vsq1?.qtyQ2 !== undefined ? fmtNum(q2vsq1.qtyQ2) : "—"}</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Monthly GMV Trend</div>
+      <div class="card">
+        <div class="chart-wrap" style="height:300px;">
+          <canvas id="chartStoreTrend"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-label">Growth KPIs</div>
+
+      <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
+        ${growthCards.map(c => `
+          <div class="tag-card">
+            <div class="t-label">${c.label}</div>
+            <div class="t-value">${c.value === undefined || c.value === null ? "—" : `${c.value > 0 ? "+" : ""}${c.value}%`}</div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
 
   let kpiHtml = "";
   if (q1 && !q1.closed) {
@@ -686,41 +742,57 @@ function renderQ2vsQ2LY(){
 ============================================================================ */
 function renderSameStore(){
   const d = DATA.sameStore;
+
   return `
     <div class="page-head">
       <div class="eyebrow">Business Overview</div>
       <h1 class="page-title">Same-Store Growth</h1>
       <p class="page-sub">${d.subtitle}</p>
     </div>
+
     ${tabRowHTML(BUSINESS_TABS, "#/business/same-store")}
 
-    <div class="callout brand section-block"><strong>${d.headline}</strong></div>
+    <div class="callout brand section-block">
+      <strong>${d.headline}</strong>
+    </div>
 
     <div class="section-block">
-      <div class="table-wrap"><table class="data">
-        <thead><tr><th>Store</th><th>TRX Q2'26</th><th>TRX Q2'25</th><th>TRX Growth</th><th>AOV (USD) Q2'26</th><th>Q2'25</th><th>Growth</th><th>ASP Q2'26</th><th>Q2'25</th><th>Growth</th><th>UPT Q2'26</th><th>Q2'25</th><th>Growth</th></tr></thead>
-        <tbody>
-          ${d.rows.map(r=>`<tr class="clickable" data-panel="store" data-key="${r.key}">
-            <td>${storeName(r.key)}</td>
-            <td>${fmtNum(r.trxQ2)}</td><td>${fmtNum(r.trxLY)}</td>${cellGrowth(r.trxGrowth)}
-            <td>${r.aovQ2}</td><td>${r.aovLY??'—'}</td>${cellGrowth(r.aovGrowth)}
-            <td>${r.aspQ2}</td><td>${r.aspLY??'—'}</td>${cellGrowth(r.aspGrowth)}
-            <td>${r.uptQ2}</td><td>${r.uptLY??'—'}</td>${cellGrowth(r.uptGrowth)}
-          </tr>`).join("")}
-          <tr class="total-row">
-            <td>Total</td>
-            <td>${fmtNum(d.total.trxQ2)}</td><td>${fmtNum(d.total.trxLY)}</td>${cellGrowth(d.total.trxGrowth)}
-            <td>${d.total.aovQ2}</td><td>${d.total.aovLY}</td>${cellGrowth(d.total.aovGrowth)}
-            <td>${d.total.aspQ2}</td><td>${d.total.aspLY}</td>${cellGrowth(d.total.aspGrowth)}
-            <td>${d.total.uptQ2}</td><td>${d.total.uptLY}</td>${cellGrowth(d.total.uptGrowth)}
-          </tr>
-        </tbody>
-      </table></div>
-      ${d.aspUnitNote ? `<div class="flag-callout" style="margin-top:14px;">⚠ <strong>Source-deck note:</strong> ${d.aspUnitNote}</div>` : ""}
+      <div class="section-label">Same-Store Growth</div>
+
+      <div class="store-list">
+        ${d.rows.map(r => `
+          <div class="store-row" data-panel="store" data-key="${r.key}">
+            <div class="name">
+              <span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${storeColor(r.key)};margin-right:7px;"></span>
+              ${storeName(r.key)}
+              <span class="ch">Same Store</span>
+            </div>
+            <div class="chev">›</div>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="footnote">
+        Click any store to open its same-store performance detail.
+      </div>
     </div>
 
     <div class="insight-grid section-block" style="grid-template-columns:repeat(2,1fr);">
-      ${d.cards.map(c=>`<div class="card"><div class="card-title" style="font-size:15px;text-transform:uppercase;letter-spacing:.06em;">${c.title}</div><p style="font-size:13.5px;line-height:1.6;margin:10px 0 0;">${c.text}</p>${c.action?`<div class="callout" style="margin-top:12px;background:var(--negative-bg);color:var(--negative);font-weight:600;">${c.action}</div>`:''}</div>`).join("")}
+      ${d.cards.map(c => `
+        <div class="card">
+          <div class="card-title" style="font-size:15px;text-transform:uppercase;letter-spacing:.06em;">
+            ${c.title}
+          </div>
+          <p style="font-size:13.5px;line-height:1.6;margin:10px 0 0;">
+            ${c.text}
+          </p>
+          ${c.action ? `
+            <div class="callout" style="margin-top:12px;background:var(--negative-bg);color:var(--negative);font-weight:600;">
+              ${c.action}
+            </div>
+          ` : ""}
+        </div>
+      `).join("")}
     </div>
   `;
 }
@@ -1298,7 +1370,7 @@ function renderMothersDay(){
         <p style="font-size:14px;font-weight:600;margin:8px 0 14px;">${d.mechanic}</p>
         <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);">
           <div class="tag-card"><div class="t-label">Campaign Period</div><div class="t-value" style="font-size:20px;">${d.period}</div></div>
-          <div class="tag-card"><div class="t-label">Independent-Store Sales</div><div class="t-value" style="font-size:18px;">${d.sales.idr}</div><div class="t-compare">${d.sales.usd}</div></div>
+          <div class="tag-card"><div class="t-label">Independent-Store Sales</div><div class="t-value" style="font-size:18px;">${d.sales.idr}</div></div>
         </div>
       </div>
     </div>

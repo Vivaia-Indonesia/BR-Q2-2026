@@ -539,7 +539,6 @@ marketing: {
       mothersDay: {
         title: "Mother's Day Campaign — \"Walk Beside Her\"",
         text: "A strategic move to drive multi-pair sales by positioning VIVAIA as the ultimate Mother's Day gift. Customers buying 2 pairs received a complimentary, premium flower bouquet, enhancing brand affinity. This emotional engagement strategy paid off massively, generating Rp 6,116,870,000 (approx. $382,300 USD) in sales across independent stores between May 1 – 10.",
-        mechanic: "Buy 2 pairs and receive a FREE bouquet",
         period: "May 1 – 10",
         sales: { idr: "$382,300 USD" },
         heroImage: "image/WBH.png",
@@ -746,7 +745,7 @@ marketing: {
       rows: [
         { period: "Apr (Full Month)", totalSales: "$765.532", reportedRoi: "1,130%", salesPerUnit: "$12,30" },
         { period: "May (Full Month)", totalSales: "$965.363", reportedRoi: "17,080%", salesPerUnit: "$171,80" },
-        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
+        { period: "June (Full Month)", totalSales: "$914.640", reportedRoi: "15,115%", salesPerUnit: "$152,16" },
       ],
       grandTotal: {period: "Total", totalSales: "$2,645.535", reportedRoi: "3,481%", salesPerUnit: "$35,81" },
     },
