@@ -2435,8 +2435,8 @@ function renderQ3LuxuryBrands(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:200%;
-            height:200%;
+            width:300%;
+            height:300%;
             object-fit:contain;
             object-position:left center;
             display:block;
@@ -2483,8 +2483,8 @@ function renderQ3Competitors(){
           src="${d.trendsImage}"
           alt="${d.trendsImageAlt || ''}"
           style="
-            width:200%;
-            height:200%;
+            width:300%;
+            height:300%;
             object-fit:contain;
             object-position:left center;
             display:block;
