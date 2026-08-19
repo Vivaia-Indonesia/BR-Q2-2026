@@ -77,7 +77,6 @@ const SIDEBAR_HTML = `
       <div class="nav-group">
         <button class="nav-item" data-nav="#/wellness/activation">Indonesia Wellness Activation</button>
       </div>
-      </div>
     </nav>
     <div class="sidebar-footer">
       <button class="btn-present" id="btnPresent">▶ Present</button>
