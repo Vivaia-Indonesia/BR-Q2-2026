@@ -321,7 +321,7 @@ businessShareChart: [
     { num: "01", title: "Revenue Breakthrough", text: "Total GMV USD 2.64M (+31.3% YoY). 5 volume KPIs positive — meanwhile ASP decreasing (-3.2% YoY)." },
     { num: "02", title: "Margot Mary-Jane = Hero SKU", text: "3,314 units sold, 17.2% of GMV. Undisputed commercial anchor — decreased -8.3% YoY. Restock EU38–EU40 immediately." },
     { num: "03", title: "Nelly — Explosive Growth", text: "487 units, +325.9% YoY. Firmly #7 best-seller. Sustained momentum — not a spike. Scale allocation for H3." },
-    { num: "04", title: "New Collections Contributing", text: "Silvie (#3), Tamia Mary-Jane A (#4), and Myriel (#5) — all new — entered Top 5. Fresh assortment strategy working; accelerate H3 reorder." },
+    { num: "04", title: "New Collections Contributing", text: "Silvie (#3), Myriel (#5), and Marah (#10) — all new — entered Top 10. Fresh assortment strategy working; accelerate Q3 reorder." },
     { num: "05", title: "UPT Biggest Opportunity", text: "UPT 1.22. Each +0.1 UPT ≈ USD 216K incremental revenue annually. Bundle mechanics + SA upsell training are the fastest, highest-ROI action available." },
   ],
 
