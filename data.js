@@ -69,7 +69,7 @@ const DATA = {
     ],
     table: [
       { period: "Q1", sales: "USD 2.09M", target: "USD 2.86M", achievement: "73.0%", growth: 1.0 },
-      { period: "Q2", sales: "USD 2.65M", target: "USD 2.70M", achievement: "97.9%", growth: 31.3 },
+      { period: "Q2", sales: "USD 2.64M", target: "USD 2.70M", achievement: "97.9%", growth: 31.3 },
       { period: "YTD", sales: "USD 4.74M", target: "USD 5.57M", achievement: "85.1%", growth: 16.0 },
       { period: "FY BE", sales: "USD 11.78M", target: "USD 12.61M", achievement: "93.4%", growth: null, total: true },
     ],
@@ -331,7 +331,7 @@ businessShareChart: [
       { rank: 1, name: "Margot Mary-Jane", image: "image/Margot.png", qtyQ2: 3314, gmvQ2: 455, contribQ2: 17.2, qtyLY: 3857, growth: -8.3, gmvLY: 496, contribLY: 24.7 },
       { rank: 2, name: "Audrey", image: "image/Audrey.png", qtyQ2: 1527, gmvQ2: 203, contribQ2: 7.7, qtyLY: 713, growth: 128.4, gmvLY: 89, contribLY: 4.4 },
       { rank: 3, name: "Silvie", image: "image/Silvie.png", qtyQ2: 1077, gmvQ2: 135, contribQ2: 5.1, isNew: true },
-      { rank: 4, name: "Tamia Mary-Jane A", image: "image/Tamia.png", qtyQ2: 810, gmvQ2: 108, contribQ2: 4.1, isNew: true },
+      { rank: 4, name: "Tamia Mary-Jane A", image: "image/Tamia.png", qtyQ2: 810, gmvQ2: 108, contribQ2: 4.1, qtyLY: 1143, growth: -28.8, gmvLY: 152, contribLY: 7.6 },
       { rank: 5, name: "Myriel", image: "image/Myriel.png", qtyQ2: 709, gmvQ2: 95, contribQ2: 3.6, isNew: true },
       { rank: 6, name: "Addison", image: "image/Addison.png", qtyQ2: 569, gmvQ2: 93, contribQ2: 3.5, qtyLY: 644, growth: -6.5, gmvLY: 99, contribLY: 5.0 },
       { rank: 7, name: "Nelly", image: "image/Nelly.png", qtyQ2: 487, gmvQ2: 66, contribQ2: 2.5, qtyLY: 116, growth: 325.9, gmvLY: 15, contribLY: 0.8 },
